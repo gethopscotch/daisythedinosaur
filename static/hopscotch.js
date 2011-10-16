@@ -1,13 +1,32 @@
-var Hopscotch = {
-  init: function() {
-    this.paper = Raphael("print-area");
-    this.circle = this.paper.circle(50, 40, 10);
-    this.circle.attr("fill", "#f00");
+var Methods = {
+  moveRight: function() {
+    var anim = Hopscotch.circle.animate({cx: Hopscotch.circle.attr('cx') + 100}, 500, 'linear');
   },
 
-  moveRight: function() {
-    var anim = this.circle.animate({cx: this.circle.attr('cx') + 100}, 500, 'linear');
+  moveLeft: function() {
+    var anim = Hopscotch.circle.animate({cx: Hopscotch.circle.attr('cx') - 100}, 500, 'linear');
   },
+
+  moveUp: function() {
+    var anim = Hopscotch.circle.animate({cy: Hopscotch.circle.attr('cy') - 100}, 500, 'linear');
+  },
+
+  moveDown: function() {
+    var anim = Hopscotch.circle.animate({cy: Hopscotch.circle.attr('cy') + 100}, 500, 'linear');
+  }
+};
+
+var Hopscotch = {
+  init: function() {
+    this.paper = Raphael("print-area", 500, 200);
+    this.circle = this.paper.circle(50, 40, 10);
+    this.circle.attr("fill", "#f00");
+
+    _.each(_.keys(Methods), function(method) {
+      $('#methods').append("<div class='command'>" + method + "</div>");
+    });
+  },
+
 
   commandsToRun: function() {
     return _.map($("#command-list .command"), function(command) {
@@ -77,7 +96,7 @@ $(function() {
 
   $("#play").click(function(){
     _.each(Hopscotch.commandsToRun(), function(command, index) {
-      setTimeout(function() {eval('Hopscotch.' + command + '()')}, 500*index);
+      setTimeout(function() {eval('Methods.' + command + '()')}, 500*index);
     });
   })
 });
