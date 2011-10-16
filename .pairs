@@ -1,0 +1,9 @@
+# .pairs - configuration for 'git pair'
+# place in project or home directory
+pairs:
+  sj: Sam John; samantha
+  ef: Evan Farrar; evan
+  jl: Jocelyn Leavitt; jocelyn
+email:
+  prefix: pair
+  domain: hopscotchapp.com
