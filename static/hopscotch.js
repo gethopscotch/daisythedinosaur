@@ -1,11 +1,26 @@
+var Hopscotch = {
+  init: function() {
+    this.paper = Raphael($("#print-area"), 50, 600, 600);
+    this.circle = this.paper.circle(50, 40, 10);
+    this.circle.attr("fill", "#f00");
+  },
+
+  moveLeft: function() {
+    var anim = this.circle.animate({cx: 150}, 500, 'linear');
+  },
+
+  commands: ['moveLeft']
+}
 $(function() {
-  var paper = Raphael(10, 50, 600, 600);
-  var circle = paper.circle(50, 40, 10);
-  circle.attr("fill", "#f00");
+  Hopscotch.init();
+  _.each(Hopscotch.commands, function(command) {
+    $("#command-area #command-list").append($("<div class='command'>"+command+"</div>"));
+  })
 
   $("#play").click(function(){
-    console.log(circle);
-    var anim = circle.animate({cx: 150}, 500, 'linear');
+    _.each(Hopscotch.commands, function(command) {
+      eval('Hopscotch.' + command + '()');
+    });
   })
 });
 

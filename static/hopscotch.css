@@ -3,4 +3,27 @@
   top: 200px;
   left: 700px;
 }
+#print-area {
+  border: 2px solid gray;
+  height: 200px;
+  width: 600px;
+}
+#command-area {
+  margin-top: 10px;
+  border: 2px solid gray;
+  height: 300px;
+  width: 600px;
+}
+.title {
+  text-align: center;
+  padding: 2px;
+}
 
+#command-list .command {
+  border: 2px solid gray;
+  margin: 6px 20px;
+  width: 100px;
+  padding: 2px;
+  border-radius: 8px;
+  text-align: center;
+}

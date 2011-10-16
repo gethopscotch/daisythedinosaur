@@ -15,7 +15,6 @@ get '/app' do
   %head
     %meta{charset:"utf-8"}
     %script{src: 'raphael.js'}
-    %script{src: 'tiger.js'}
     %script{src: 'jquery.js'}
     %script{src: 'underscore.js'}
     %script{src: 'hopscotch.js'}
@@ -24,7 +23,10 @@ get '/app' do
   %body
     #controls
       %a{href: "#", id: 'play'} Play
-    #holder
+    #print-area
+    #command-area
+      .title Commands
+      #command-list
 END
   Haml::Engine.new(haml).render
 end
