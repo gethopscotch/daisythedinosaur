@@ -1,29 +1,39 @@
+body {
+  width: 900px;
+}
 #controls {
-  position: absolute;
-  top: 200px;
-  left: 700px;
+  float: right;
 }
 #print-area {
   border: 2px solid gray;
   height: 200px;
-  width: 600px;
+  width: 500px;
 }
 #command-area {
   margin-top: 10px;
   border: 2px solid gray;
   height: 300px;
-  width: 600px;
+  width: 500px;
+  float: left;
 }
 .title {
   text-align: center;
   padding: 2px;
 }
 
-#command-list .command {
+.command {
   border: 2px solid gray;
   margin: 6px 20px;
   width: 100px;
   padding: 2px;
   border-radius: 8px;
   text-align: center;
+}
+
+#command-library {
+  margin-top: 10px;
+  border: 2px solid gray;
+  height: 300px;
+  width: 300px;
+  float: right;
 }

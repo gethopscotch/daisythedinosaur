@@ -6,20 +6,21 @@ var Hopscotch = {
   },
 
   moveLeft: function() {
-    var anim = this.circle.animate({cx: 150}, 500, 'linear');
+    var anim = this.circle.animate({cx: this.circle.attr('cx') + 100}, 500, 'linear');
   },
 
-  commands: ['moveLeft']
+  commandsToRun: function() {
+    return _.map($("#command-list .command"), function(command) {
+      return $(command).html();
+    });
+  }
 }
 $(function() {
   Hopscotch.init();
-  _.each(Hopscotch.commands, function(command) {
-    $("#command-area #command-list").append($("<div class='command'>"+command+"</div>"));
-  })
 
   $("#play").click(function(){
-    _.each(Hopscotch.commands, function(command) {
-      eval('Hopscotch.' + command + '()');
+    _.each(Hopscotch.commandsToRun(), function(command, index) {
+      setTimeout(function() {eval('Hopscotch.' + command + '()')}, 500*index);
     });
   })
 });
