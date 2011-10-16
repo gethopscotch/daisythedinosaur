@@ -1,3 +1,3 @@
-require 'hopscotch.rb'
+require './hopscotch.rb'
 run Sinatra::Application
 
