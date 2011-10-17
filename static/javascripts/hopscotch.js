@@ -4,16 +4,8 @@ var Hopscotch = {
     this.circle = this.paper.circle(50, 40, 10);
     this.circle.attr("fill", "#f00");
 
-    _.each(_.keys(Methods), function(method) {
-      $('#methods').append("<div class='command'>" + method + "</div>");
-    });
   },
 
-  commandsToRun: function() {
-    return _.map($("#command-list .command"), function(command) {
-      return $(command).html();
-    });
-  },
 
   methodDownCallback: function() {
     var $self = $(this).clone();
@@ -71,7 +63,21 @@ var Hopscotch = {
   },
 
   upCallbackCommandList: function(element, e) {
-    if ( Hopscotch.isInsideDroppable(element, $("#command-list")) ) {
+    var insideLoop = false;
+    $('#command-list .loop').each(function() {
+      if ( Hopscotch.isInsideDroppable(element, $(this)) ) {
+        insideLoop = true;
+        $(this).append(element);
+        element.css({
+          'position': 'relative',
+          'top' : '0',
+          'left': '0'
+        });
+      }
+    });
+
+    if (insideLoop) {
+    } else if ( Hopscotch.isInsideDroppable(element, $("#command-list")) ) {
       $("#command-list").append(element);
       element.css({
         'position': 'relative',

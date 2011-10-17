@@ -13,6 +13,10 @@ var Methods = {
 
   moveDown: function() {
     var anim = Hopscotch.circle.animate({cy: Hopscotch.circle.attr('cy') + 100}, 500, 'linear');
+  },
+
+  loop: function() {
+
   }
 };
 

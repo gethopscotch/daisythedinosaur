@@ -53,6 +53,11 @@ body {
   z-index: 999;
 }
 
+.loop {
+  width: 200px;
+  min-height: 40px;
+}
+
 #command-library {
   margin-top: 10px;
   border: 2px solid gray;
