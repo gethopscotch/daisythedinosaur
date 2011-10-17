@@ -17,7 +17,6 @@ body {
   width: 228px;
   height: 228px;
   padding: 20px;
-  border: 1px solid black;
   background: url(/images/trash.png) no-repeat center center;
 }
 

@@ -1,21 +1,3 @@
-var Methods = {
-  moveRight: function() {
-    var anim = Hopscotch.circle.animate({cx: Hopscotch.circle.attr('cx') + 100}, 500, 'linear');
-  },
-
-  moveLeft: function() {
-    var anim = Hopscotch.circle.animate({cx: Hopscotch.circle.attr('cx') - 100}, 500, 'linear');
-  },
-
-  moveUp: function() {
-    var anim = Hopscotch.circle.animate({cy: Hopscotch.circle.attr('cy') - 100}, 500, 'linear');
-  },
-
-  moveDown: function() {
-    var anim = Hopscotch.circle.animate({cy: Hopscotch.circle.attr('cy') + 100}, 500, 'linear');
-  }
-};
-
 var Hopscotch = {
   init: function() {
     this.paper = Raphael("print-area", 500, 200);
@@ -26,7 +8,6 @@ var Hopscotch = {
       $('#methods').append("<div class='command'>" + method + "</div>");
     });
   },
-
 
   commandsToRun: function() {
     return _.map($("#command-list .command"), function(command) {
@@ -136,21 +117,3 @@ var Hopscotch = {
     $("body").unbind("touchmove");
   }
 }
-$(function() {
-  Hopscotch.init();
-
-  $('#command-list .command').live('mousedown', Hopscotch.listDownCallback);
-  $("#command-list .command").live('touchstart', Hopscotch.listDownCallback);
-  $('#methods .command').live('mousedown', Hopscotch.methodDownCallback);
-  $("#methods .command").live('touchstart', Hopscotch.methodDownCallback);
-
-
-
-
-  $("#play").click(function(){
-    _.each(Hopscotch.commandsToRun(), function(command, index) {
-      setTimeout(function() {eval('Methods.' + command + '()')}, 500*index);
-    });
-  })
-});
-
