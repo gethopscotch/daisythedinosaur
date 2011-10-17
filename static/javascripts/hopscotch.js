@@ -20,18 +20,15 @@ var Hopscotch = {
     $self.css("position", "absolute");
     $self.offset($(this).offset());
     $("body").append($self);
-    var move = function(e) {
-      $self.css("top", e.pageY);
-      $self.css('left', e.pageX);
-    }
+
     $("body").bind("touchmove", function(e) {
       e.preventDefault();
       var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-      move(touch);
+      Hopscotch.move(touch, $self);
     });
     $("body").bind("mousemove", function(e) {
       e.preventDefault();
-      move(e);
+      Hopscotch.move(e, $self);
     });
 
     $('body').bind('touchend', function(e) {
@@ -48,18 +45,15 @@ var Hopscotch = {
     var oldOffset = $(this).offset();
     $self.css("position", "absolute");
     $self.offset(oldOffset);
-    var move = function(e) {
-      $self.css("top", e.pageY);
-      $self.css('left', e.pageX);
-    }
+
     $("body").bind("touchmove", function(e) {
       e.preventDefault();
       var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-      move(touch);
+      Hopscotch.move(touch, $self);
     });
     $("body").bind("mousemove", function(e) {
       e.preventDefault();
-      move(e);
+      Hopscotch.move(e, $self);
     });
 
     $('body').bind('touchend', function(e) {
@@ -71,14 +65,13 @@ var Hopscotch = {
     });
   },
 
-  upCallbackCommandList: function(element, e) {
-    $cl = $("#command-list");
-    var height = $cl.height();
-    var width = $cl.width();
-    var topPos = $cl.position().top;
-    var leftPos = $cl.position().left;
+  move: function(e, $element) {
+    $element.css("top", e.pageY);
+    $element.css('left', e.pageX);
+  },
 
-    if ($(element).position().left >= leftPos && $(element).position().left <= leftPos + width && $(element).position().top >= topPos && $(element).position().top <= topPos + height) {
+  upCallbackCommandList: function(element, e) {
+    if ( Hopscotch.isInsideDroppable(element, $("#command-list")) ) {
       $("#command-list").append(element);
       element.css({
         'position': 'relative',
@@ -88,32 +81,40 @@ var Hopscotch = {
     } else {
       element.remove();
     }
+    Hopscotch.unbindEvents();
+  },
+
+  upCallbackTrash: function(element, e) {
+    if ( Hopscotch.isInsideDroppable(element, $("#trash-bin")) ) {
+      element.remove();
+    } else {
+      $("#command-list").append(element);
+      element.css({
+        'position': 'relative',
+        'top' : '0',
+        'left': '0'
+      });
+    }
+    Hopscotch.unbindEvents();
+  },
+
+  unbindEvents: function() {
     $("body").unbind("mouseup");
     $("body").unbind("touchend");
     $("body").unbind("mousemove");
     $("body").unbind("touchmove");
   },
 
-  upCallbackTrash: function(element, e) {
-    $cl = $("#trash-bin");
-    var height = $cl.height();
-    var width = $cl.width();
-    var topPos = $cl.position().top;
-    var leftPos = $cl.position().left;
+  isInsideDroppable: function($draggable, $droppable) {
+    var height = $droppable.height();
+    var width = $droppable.width();
+    var topPos = $droppable.position().top;
+    var leftPos = $droppable.position().left;
 
-    if ($(element).position().left >= leftPos && $(element).position().left <= leftPos + width && $(element).position().top >= topPos && $(element).position().top <= topPos + height) {
-      element.remove();
+    if ($draggable.position().left >= leftPos && $draggable.position().left <= leftPos + width && $draggable.position().top >= topPos && $draggable.position().top <= topPos + height) {
+      return true;
     } else {
-      $("#command-list").append(element);
-      element.css({
-        'position': 'relative',
-        'top' : '0',
-        'left': '0'
-      });
+      return false;
     }
-    $("body").unbind("mouseup");
-    $("body").unbind("touchend");
-    $("body").unbind("mousemove");
-    $("body").unbind("touchmove");
   }
 }
