@@ -66,8 +66,8 @@ var Hopscotch = {
   },
 
   move: function(e, $element) {
-    $element.css("top", e.pageY);
-    $element.css('left', e.pageX);
+    $element.css("top", e.pageY - 10);
+    $element.css('left', e.pageX - 80);
   },
 
   upCallbackCommandList: function(element, e) {
