@@ -5,6 +5,22 @@ body {
 #controls {
   float: right;
 }
+#controls a {
+  display: block;
+  height: 50px;
+  width: 50px;
+  background: url(/images/play_button.png) no-repeat;
+  text-indent: -9999px;
+}
+
+#trash-bin {
+  width: 228px;
+  height: 228px;
+  padding: 20px;
+  border: 1px solid black;
+  background: url(/images/trash.png) no-repeat center center;
+}
+
 #print-area {
   border: 2px solid gray;
   height: 200px;
