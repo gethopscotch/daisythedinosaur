@@ -22,6 +22,7 @@ $(function() {
 
   $("#play").click(function(){
     var index = 0;
+    Hopscotch.circle.animate({cx: Hopscotch.circlePosition.x, cy: Hopscotch.circlePosition.y}, 0, 'linear')
     _.each($("#command-list > .command"), function(command) {
       command = $(command);
       if(command.hasClass("loop")) {
