@@ -13,6 +13,8 @@ get '/app' do
 end
 
 get '/jocelyn' do
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <script src="javascripts/vendor/raphael.js"></script>
@@ -36,4 +38,5 @@ get '/jocelyn' do
     margin-top: 130px;
     margin-left: 450px;
 "></iframe></body>
+</html>
 end
