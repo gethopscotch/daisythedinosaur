@@ -13,6 +13,7 @@ get '/app' do
 end
 
 get '/jocelyn' do
+<<END
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,4 +40,5 @@ get '/jocelyn' do
     margin-left: 450px;
 "></iframe></body>
 </html>
+END
 end
