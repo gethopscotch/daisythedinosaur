@@ -38,7 +38,7 @@ body {
 }
 #command-list {
   min-height: 200px;
-  min-width: 200px;
+  min-width: 400px;
   background: lightgray;
 }
 
@@ -53,9 +53,16 @@ body {
   z-index: 999;
 }
 
+li {
+  list-style: none;
+}
+
+.command {
+  width: 200px;
+}
+
 .loop {
   width: 200px;
-  min-height: 40px;
 }
 
 #command-library {
@@ -64,4 +71,24 @@ body {
   height: 300px;
   width: 300px;
   float: right;
+}
+
+.loop-commands {
+  background: yellow;
+  min-height: 40px;
+  padding: 20px 0;
+}
+
+.ui-state-highlight {
+  height: 20px;
+  background-color: red;
+}
+.trash-highlight {
+  border: 1px solid red;
+}
+
+.handle {
+  height: 20px;
+  width: 20px;
+  background-color: blue;
 }

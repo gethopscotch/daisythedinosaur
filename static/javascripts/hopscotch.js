@@ -32,8 +32,7 @@ var Hopscotch = {
       Hopscotch.upCallbackCommandList($self, e);
     });
   },
-
-  listDownCallback: function() {
+listDownCallback: function() {
     var $self = $(this);
     var oldOffset = $(this).offset();
     $self.css("position", "absolute");
