@@ -73,6 +73,10 @@ li {
   float: right;
 }
 
+#command-library .args {
+  display: none;
+}
+
 .loop-commands {
   background: yellow;
   min-height: 40px;

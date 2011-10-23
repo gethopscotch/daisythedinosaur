@@ -1,17 +1,20 @@
 $(function() {
   Hopscotch.init();
 
-  var loop = $("<li class='loop command'>Loop</li>").append($("<span class='times'> 5</span>")).append("<ul class='loop-commands'></ul>");
-
-  var command = function(command) {
-    return $("<li class='command'><span class='name'>" + command + "</span></li>").append("<div class='handle'></div>");
-  };
-
   _.each(_.keys(Methods), function(method) {
     if (method == "loop") {
-      loop.appendTo("#methods");
+      $("<li class='loop command'><span class='name'>Loop</span></li>").append(
+        $("<span class='times'> 5</span>")).append("<ul class='loop-commands'></ul>").append(
+        "<div class='handle'></div>").appendTo("#methods");
     } else {
-      $('#methods').append(command(method));
+      var command = $("<li class='command'><span class='name'>"
+        + method + "</span></li>").append("<div class='handle'></div>");
+      if (Methods[method].args.length > 0) {
+        command.append('<select class="args">'+
+          _.foldl(Methods[method].args,function(memo, option){
+            return memo+"<option>"+option+"</option>" }, '')+"</select></form>");
+      }
+      $('#methods').append(command)
     }
   });
 
@@ -22,14 +25,14 @@ $(function() {
       command = $(command);
       if(command.hasClass("loop")) {
         _.times(command.find("span.times").html(), function() {
-          command.find(".command .name").each(function() {
+          command.find(".command").each(function() {
             var that = $(this)
-            setTimeout(function() {eval('Methods.' + that.html() + '()')}, 500*(index));
+            setTimeout(function() {eval('Methods.' + that.find('.name').html() + '.call("'+ that.find('.args').val() +'")')}, 500*index);
             index++;
           });
         });
       } else {
-        setTimeout(function() {eval('Methods.' + command.find('.name').html() + '()')}, 500*index);
+        setTimeout(function() {eval('Methods.' + command.find('.name').html() + '.call("'+ command.find('.args').val() +'")')}, 500*index);
         index++;
       }
     });
@@ -38,12 +41,12 @@ $(function() {
   $("#command-list").sortable({ connectWith: '.loop-commands',
     placeholder: "ui-state-highlight",
     receive: function(e, ui) {
-    if ($(ui.item).attr("class") == "loop command ui-draggable") {
-      $("#command-list .loop-commands").sortable({ connectWith: '#command-list',
-        placeholder: "ui-state-highlight",
-        tolerance: 'pointer',
-        handle: '.handle'});
-    }
+      if ($(ui.item).attr("class") == "loop command ui-draggable") {
+        $("#command-list .loop-commands").sortable({ connectWith: '#command-list',
+          placeholder: "ui-state-highlight",
+          tolerance: 'pointer'
+        });
+      }
   }});
 
 
