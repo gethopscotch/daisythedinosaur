@@ -42,17 +42,17 @@ get '/chiara' do
 <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
   </head>
 <body style="
-    background: transparent url(/images/bg-image.png) no-repeat 0 0;
+    background: #4E9CB5;
 "><div class="username" style="
     text-align: center;
     color: white;
     font-family: sans-serif;
     text-transform: uppercase;
+    margin-left: 440px;
 "><h1>Chiara's Alice Animation</h1></div>
-<iframe width="420" height="315" src="http://www.youtube.com/embed/V5CPZm5tf1o"frameborder="0" allowfullscreen="" style="
+<iframe width="920" height="760" src="http://www.youtube.com/embed/V5CPZm5tf1o?rel=0" frameborder="0" allowfullscreen="" style="
     border: 6px solid white;
-    margin-top: 130px;
-    margin-left: 450px;
+    margin-left: 220px;
 "></iframe>
 
 <script type="text/javascript">
