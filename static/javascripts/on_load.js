@@ -27,15 +27,26 @@ $(function() {
         _.times(command.find("span.times").html(), function() {
           command.find(".command").each(function() {
             var that = $(this)
-            setTimeout(function() {eval('Methods.' + that.find('.name').html() + '.call("'+ that.find('.args').val() +'")')}, 500*index);
+            setTimeout(function() {
+              $(".command").removeClass("active");
+              that.addClass("active");
+              eval('Methods.' + that.find('.name').html() + '.call("'+ that.find('.args').val() +'")');
+            }, 500*index);
             index++;
           });
         });
       } else {
-        setTimeout(function() {eval('Methods.' + command.find('.name').html() + '.call("'+ command.find('.args').val() +'")')}, 500*index);
+        setTimeout(function() {
+          $(".command").removeClass("active");
+          command.addClass("active");
+          eval('Methods.' + command.find('.name').html() + '.call("'+ command.find('.args').val() +'")');
+        }, 500*index);
         index++;
       }
     });
+    setTimeout(function() {
+      $('.command').removeClass("active");
+    }, 500*(index));
   });
 
   $("#command-list").sortable({ connectWith: '.loop-commands',

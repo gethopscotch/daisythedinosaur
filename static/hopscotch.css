@@ -52,6 +52,9 @@ body {
   background: white;
   z-index: 999;
 }
+.command.active {
+  background: #4E9CB5;
+}
 
 li {
   list-style: none;
