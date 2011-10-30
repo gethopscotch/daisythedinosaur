@@ -20,33 +20,37 @@ $(function() {
 
   $("#play").click(function(){
     var index = 0;
-    Hopscotch.circle.animate({cx: Hopscotch.circlePosition.x, cy: Hopscotch.circlePosition.y}, 0, 'linear')
-    _.each($("#command-list > .command"), function(command) {
-      command = $(command);
-      if(command.hasClass("loop")) {
-        _.times(command.find("span.times").html(), function() {
-          command.find(".command").each(function() {
-            var that = $(this)
+    console.log(Hopscotch.circle);
+    Hopscotch.circle.animate({cx: Hopscotch.circlePosition.x, cy: Hopscotch.circlePosition.y}, 0, 'linear',
+      function(){
+        _.each($("#command-list > .command"), function(command) {
+          command = $(command);
+          if(command.hasClass("loop")) {
+            _.times(command.find("span.times").html(), function() {
+              command.find(".command").each(function() {
+                var that = $(this)
+                setTimeout(function() {
+                  $(".command").removeClass("active");
+                  that.addClass("active");
+                  eval('Methods.' + that.find('.name').html() + '.call("'+ that.find('.args').val() +'")');
+                }, 500*index);
+                index++;
+              });
+            });
+          } else {
             setTimeout(function() {
               $(".command").removeClass("active");
-              that.addClass("active");
-              eval('Methods.' + that.find('.name').html() + '.call("'+ that.find('.args').val() +'")');
+              command.addClass("active");
+              eval('Methods.' + command.find('.name').html() + '.call("'+ command.find('.args').val() +'")');
             }, 500*index);
             index++;
-          });
+          }
         });
-      } else {
         setTimeout(function() {
-          $(".command").removeClass("active");
-          command.addClass("active");
-          eval('Methods.' + command.find('.name').html() + '.call("'+ command.find('.args').val() +'")');
-        }, 500*index);
-        index++;
+          $('.command').removeClass("active");
+        }, 500*(index));
       }
-    });
-    setTimeout(function() {
-      $('.command').removeClass("active");
-    }, 500*(index));
+    );
   });
 
   $("#command-list").sortable({ connectWith: '.loop-commands',
