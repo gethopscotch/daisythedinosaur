@@ -11,7 +11,7 @@
     %script{src: 'javascripts/hopscotch.js'}
     %script{src: 'javascripts/on_load.js'}
     -if params[:debug]
-      %script{src: "http://#{request.env['REMOTE_ADDR']}:8080/target/target-script-min.js"}
+      %script{src: "http://#{request.env['SERVER_NAME']}:8080/target/target-script-min.js"}
 
     %link{type: 'text/css', rel: 'stylesheet', href: 'reset.css'}
     %link{type: 'text/css', rel: 'stylesheet', href: 'hopscotch.css'}
