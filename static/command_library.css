@@ -1,0 +1,23 @@
+#command-library {
+  margin-top: 10px;
+  border: 2px solid gray;
+  height: 300px;
+  width: 300px;
+  float: right;
+}
+
+#command-library #methods {
+  margin: auto;
+  border-bottom: 2px solid lightgray;
+  padding: 6px 20px;
+}
+
+#command-library .loops {
+  padding: 6px 20px;
+}
+
+#command-library .args {
+  display: none;
+}
+
+

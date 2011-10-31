@@ -10,12 +10,14 @@
     %script{src: 'javascripts/methods.js'}
     %script{src: 'javascripts/hopscotch.js'}
     %script{src: 'javascripts/on_load.js'}
-    -if params[:debug]
-      %script{src: "http://#{request.env['SERVER_NAME']}:8080/target/target-script-min.js"}
-
     %link{type: 'text/css', rel: 'stylesheet', href: 'reset.css'}
     %link{type: 'text/css', rel: 'stylesheet', href: 'hopscotch.css'}
+    %link{type: 'text/css', rel: 'stylesheet', href: 'command_library.css'}
+    %link{type: 'text/css', rel: 'stylesheet', href: 'command_area.css'}
+    %link{type: 'text/css', rel: 'stylesheet', href: 'jquery-ui.css'}
     %title Hopscotch
+    -if params[:debug]
+      %script{src: "http://#{request.env['SERVER_NAME']}:8080/target/target-script-min.js"}
   %body
     #controls
       %a{href: "#", id: 'play'} Play

@@ -1,10 +1,12 @@
 body {
   width: 900px;
-  -webkit-user-select: none
+  margin-left: 30px;
+  font-family: sans-serif;
 }
 #controls {
   float: right;
 }
+
 #controls a {
   display: block;
   height: 50px;
@@ -20,81 +22,46 @@ body {
   background: url(/images/trash.png) no-repeat center center;
 }
 
+.trash-highlight {
+  border: 1px solid red;
+}
+
 #print-area {
   border: 2px solid gray;
   height: 200px;
   width: 500px;
 }
-#command-area {
-  margin-top: 10px;
-  border: 2px solid gray;
-  height: 300px;
-  width: 500px;
-  float: left;
-}
+
 .title {
   text-align: center;
   padding: 2px;
 }
-#command-list {
-  min-height: 200px;
-  min-width: 400px;
-  background: lightgray;
+
+li.loop {
+  width: 100px;
+  height: 50px;
+  background: lightyellow;
+  border: 2px solid lightgray;
+  line-height: 40px;
 }
 
 .command {
   border: 2px solid gray;
-  margin: 6px 20px;
   width: 100px;
+  height: 50px;
   padding: 2px;
   border-radius: 8px;
   text-align: center;
   background: white;
   z-index: 999;
 }
+
 .command.active {
   background: #4E9CB5;
 }
 
 li {
   list-style: none;
-  border: 1px solid 
+  border: 1px solid
 }
 
-.command {
-  width: 100px;
-}
-
-.loop {
-  width: 200px;
-}
-
-#command-library {
-  margin-top: 10px;
-  border: 2px solid gray;
-  height: 300px;
-  width: 300px;
-  float: right;
-}
-
-#command-library #methods {
-  padding-left: 0px;
-  margin: auto;
-}
-
-#command-library .args {
-  display: none;
-}
-
-.loop-commands {
-  background: yellow;
-  min-height: 80px;
-}
-
-.ui-state-highlight {
-  height: 20px;
-  background-color: red;
-}
-.trash-highlight {
-  border: 1px solid red;
-}

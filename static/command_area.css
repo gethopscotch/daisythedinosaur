@@ -1,0 +1,41 @@
+#command-area {
+  margin-top: 10px;
+  border: 2px solid gray;
+  height: 300px;
+  width: 500px;
+  float: left;
+}
+
+#command-list {
+  min-height: 200px;
+  min-width: 390px;
+  background: lightgray;
+  float: right;
+}
+
+#command-area .loops.loops-highlight {
+  background-color: pink;
+  height: 50px;
+  width: 100px;
+}
+
+#command-area .loops {
+  min-height: 200px;
+  min-width: 110px;
+  background: whitesmoke;
+  float: left;
+}
+
+.ui-resizable {
+  position: relative;
+}
+
+.loop-commands {
+  background: lightyellow;
+  min-height: 80px;
+}
+
+.ui-state-highlight {
+  height: 40px;
+  background-color: pink;
+}
