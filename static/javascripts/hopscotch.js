@@ -1,9 +1,8 @@
 var Hopscotch = {
-  circlePosition: {x: 50, y: 40},
+  position: {x: 50, y: 40},
   init: function() {
     this.paper = Raphael("print-area", 500, 200);
-    this.circle = this.paper.circle(this.circlePosition.x, this.circlePosition.y, 10);
-    this.circle.attr("fill", "#f6498a");
+    this.dino = this.paper.image("images/sprites/1.png", this.position.x, this.position.y, 70, 80);
 
   },
 
