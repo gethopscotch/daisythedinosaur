@@ -4,10 +4,10 @@ $(function() {
   _.each(_.keys(Methods), function(method) {
     if (method == "loop") {
       $("<li class='loop command'><span class='name'>Loop</span></li>").append(
-        $("<span class='times'> 5</span>")).append("<ul class='loop-commands'></ul>").appendTo("#methods");
+        $("<span class='times'> 5</span>")).appendTo("#methods");
     } else {
       var command = $("<li class='command'><span class='name'>"
-        + method + "</span></li>").append("<div class='handle'></div>");
+        + method + "</span></li>");
       if (Methods[method].args.length > 0) {
         command.append('<select class="args">'+
           _.foldl(Methods[method].args,function(memo, option){

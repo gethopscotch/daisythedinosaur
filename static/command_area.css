@@ -1,41 +1,25 @@
 #command-area {
-  margin-top: 10px;
-  border: 2px solid gray;
-  height: 300px;
-  width: 500px;
+  border-top: 8px solid #c9d970;
+  height: 295px;
+  width: 532px;
   float: left;
 }
 
 #command-list {
-  min-height: 200px;
-  min-width: 390px;
-  background: lightgray;
+  margin-top: 3px;
+  height: 292px;
+  width: 532px;
   float: right;
-}
-
-#command-area .loops.loops-highlight {
-  background-color: pink;
-  height: 50px;
-  width: 100px;
-}
-
-#command-area .loops {
-  min-height: 200px;
-  min-width: 110px;
-  background: whitesmoke;
-  float: left;
-}
-
-.ui-resizable {
-  position: relative;
-}
-
-.loop-commands {
-  background: lightyellow;
-  min-height: 80px;
+  background: #cccaca;
 }
 
 .ui-state-highlight {
   height: 40px;
-  background-color: pink;
+  background-color: #c9d970;
+}
+
+.args {
+  position: relative;
+  top: -4px;
+  left: 3px;
 }

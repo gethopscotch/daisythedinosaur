@@ -1,59 +1,96 @@
 body {
-  width: 900px;
-  margin-left: 30px;
-  font-family: sans-serif;
-}
-#controls {
-  float: right;
+  width: 1024px;
+  margin-left: 100px;
+  margin-right: 100px;
+  font-family: Nilland-black;
+  padding: 20px 0;
 }
 
-#controls a {
+#controls {
+  width: 265px;
+}
+
+#controls a{
   display: block;
-  height: 50px;
-  width: 50px;
-  background: url(/images/play_button.png) no-repeat;
-  text-indent: -9999px;
-  position: absolute;
+  height: 0px;
+  width: 87px;
+  padding-top: 87px;
+  font-family: Geneva, Helvetica;
+  font-size: 26px;
+  color: #f6498a;
+  text-decoration: none;
+  text-align: center;
+  float: left;
+}
+
+a#play {
+  background: url(/images/play.png) no-repeat;
+}
+
+a#play:active {
+  background: url(/images/play-active.png) no-repeat;
+}
+a#share {
+  background: url(/images/share.png) no-repeat;
+}
+a#share:active {
+  background: url(/images/share-active.png) no-repeat;
+}
+a#help {
+  background: url(/images/help.png) no-repeat;
+}
+a#help:active {
+  background: url(/images/help-active.png) no-repeat;
 }
 
 #trash-bin {
   width: 228px;
-  height: 200px;
+  margin-top: 33px;
   background: url(/images/trash.png) no-repeat center center;
+  float: left;
+  text-align: center;
+  padding-top: 137px;
+  font-family: Geneva, Helvetica;
+  font-size: 26px;
+  color: #f6498a;
 }
 
 .trash-highlight {
-  border: 1px solid red;
+  border: 4px solid #f6498a;
 }
 
 #print-area {
-  border: 2px solid gray;
-  height: 200px;
-  width: 500px;
+  border: 8px solid #c9d970;
+  height: 239px;
+  width: 516px;
+  margin-bottom: 25px;
 }
 
 .title {
-  text-align: center;
+  text-align: left;
   padding: 2px;
+  font-size: 31px;
+  color: #828282;
 }
 
-li.loop {
-  width: 100px;
-  height: 50px;
-  background: lightyellow;
-  border: 2px solid lightgray;
-  line-height: 40px;
+li.loop.command {
+  background: #f6498a;
+  box-shadow: inset -5px -5px 5px #d23e76;
 }
 
 .command {
-  border: 2px solid gray;
-  width: 100px;
-  height: 50px;
-  padding: 2px;
-  border-radius: 8px;
+  width: 168px;
+  height: 47px;
+  line-height: 47px;
+  border-radius: 16px;
   text-align: center;
-  background: white;
+  background: #4daddc;
+  color: white;
   z-index: 999;
+  font-family: Geneva, Helvetica;
+  font-size: 26px;
+  margin: 6px;
+  box-shadow: inset -5px -5px 5px #4397c0;
 }
 
 .command.active {
@@ -62,6 +99,13 @@ li.loop {
 
 li {
   list-style: none;
-  border: 1px solid
 }
 
+#controls, .stage, .library, .program {
+  overflow: hidden;
+  float: left;
+}
+
+.library, #controls {
+  margin-left: 60px;
+}

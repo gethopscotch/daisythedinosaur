@@ -14,18 +14,23 @@
     %link{type: 'text/css', rel: 'stylesheet', href: 'hopscotch.css'}
     %link{type: 'text/css', rel: 'stylesheet', href: 'command_library.css'}
     %link{type: 'text/css', rel: 'stylesheet', href: 'command_area.css'}
-    %link{type: 'text/css', rel: 'stylesheet', href: 'jquery-ui.css'}
     %title Hopscotch
     -if params[:debug]
       %script{src: "http://#{request.env['SERVER_NAME']}:8080/target/target-script-min.js"}
   %body
+    .stage
+      .title stage
+      #print-area
     #controls
       %a{href: "#", id: 'play'} Play
-      #trash-bin
-    #print-area
-    #command-area
-      .title Commands
-      %ul#command-list
-    #command-library
-      .title Command Library
-      %ul#methods
+      %a{href: "#", id: 'help'} Help
+      %a{href: "#", id: 'share'} Share
+      #trash-bin Trash
+    .program
+      .title program
+      #command-area
+        %ul#command-list
+    .library
+      .title library
+      #command-library
+        %ul#methods
