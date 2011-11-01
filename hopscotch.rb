@@ -29,7 +29,7 @@ get '/alex' do
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-26590397-1']);
+ _gaq.push(['_setAccount', 'UA-26599714-1']);
   _gaq.push(['_trackPageview']);
 
   (function() {
@@ -97,7 +97,7 @@ get '/chiara' do
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-26590397-1']);
+ _gaq.push(['_setAccount', 'UA-26599714-1']);
   _gaq.push(['_trackPageview']);
 
   (function() {
