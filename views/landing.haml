@@ -47,31 +47,33 @@
       }
     :css
       body {
-        background-color: black;
         width: 100%;
+        background: black url(/images/bg-image.png) no-repeat -238px -521px;
       }
       #content {
         width: 960px;
-        height: 960px;
+        height: 900px;
         margin: 0px auto;
-        background: transparent url(/images/bg-image.png) no-repeat 0 0;
       }
       #about, #signup {
         color: #F6F3F3;
         font-family: "Baskerville","Georgia", serif;
       }
       #about {
-        line-height: 29px;
-        font-size: 24px;
+        line-height: 35px;
+        font-size: 35px;
         position: relative;
-        left: 250px;
-        top: 20px;
-        width: 300px;
+        left: 100px;
+        top: 215px;
       }
+      #about .we{ padding-left: 46px; }
+      #about .line1{ padding-left: 198px; }
+      #about .line2{ padding-left: 100px; }
+      #about .line3{ padding-left: 250px; }
       #signup {
         margin-left: 25px;
-        position: relative;
-        top: 180px;
+        position: absolute;
+        top: 500px;
       }
       #signup label {
         font-size: 22px;
@@ -95,19 +97,18 @@
         padding: 5px;
       }
       #logo {
-        position: relative;
-        top: 20px;
-        left: 55px;
-        width: 573px;
-        height: 120px;
+        width: 559px;
+        height: 108px;
         background: transparent url(/images/logo.png) no-repeat 0 0;
       }
       #contact {
-        color: #614D4D;
-        float: right;
-        position: relative;
-        top: 350px;
-
+        color: #e6dfdf;
+      }
+      html {
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
       }
       /* input inner #B7F1DB */
       /* input border #A8D5C3*/
@@ -118,23 +119,21 @@
     %title Hopscotch
   %body
     #content
-      #logo
       #about
-        we&rsquo;re hopscotch, a
-        %br
-        development environment
-        %br
-        focused on teaching
-        %br
-        kids to program
+        .we We&rsquo;re
+        #logo
+        .line1 a development environment
+        .line2 focused on teaching kids
+        .line3 to program.
       #signup
         %label
           sign up for pre-release versions and updates
-        %form
-          %input{value: 'email address', class: 'email'}
-          %input{type: 'submit', value: 'sign up', class: 'submit'}
-
+        <form action="https://docs.google.com/spreadsheet/formResponse?formkey=dE5uREFwbkYxOWZNNGVieEhVZGdwd1E6MQ&amp;embedded=true&amp;ifq" method="POST" id="ss-form">
+        <input type="text" name="entry.0.single" value="" class="email" id="entry_0">
+        <input type="hidden" name="pageNumber" value="0">
+        <input type="hidden" name="backupCache" value="">
+        <input type="submit" name="submit" value="Submit"></form>
         .fineprint
           (We will not share your email with anyone or use it for anything other than updates abour out beta release, scout&rsquo;s honor.)
-      #contact
-        email us: info@gethopscotch.com
+        #contact
+          email us: info@gethopscotch.com
