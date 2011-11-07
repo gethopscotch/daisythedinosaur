@@ -1,7 +1,36 @@
 var Hopscotch = {
-  position: {x: 50, y: 40},
+  position: {x: 50, y: 60},
   init: function() {
-    this.paper = Raphael("print-area", 500, 200);
+    this.paper = Raphael("print-area", 516, 239);
+    this.paper.safari()
+    var grass = this.paper.rect(0, 139, 516, 99);
+    grass.attr({
+      "fill" : "#95a640",
+      "stroke-opacity": 0
+    });
+    var sky = this.paper.rect(0, 0, 516, 140);
+    sky.attr({
+      'fill': "#b3ffff",
+      "stroke-opacity": 0,
+      "opacity" : 0.3
+    });
+    grass.glow({
+      color: "#C9D970",
+      width: 15,
+      opacity: 0.7
+    });
+
+    var sun = this.paper.circle(516, 0, 50, 50);
+    sun.attr({
+      'fill' : "#ffe500",
+      'stroke-opacity' : 0
+    });
+
+    sun.glow({
+      color: "#ffa316",
+      opacity: 0.8,
+      width: 30
+    });
     this.dino = this.paper.image("images/sprites/1.png", this.position.x, this.position.y, 70, 80);
 
   },
