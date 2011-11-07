@@ -22,6 +22,8 @@ $(function() {
     var index = 0;
     Hopscotch.dino.animate({x: Hopscotch.position.x, y: Hopscotch.position.y}, 0, 'linear',
       function(){
+        Hopscotch.dino.attr({"src" : "/images/sprites/1.png"});
+        var runTime = 0;
         _.each($("#command-list > .command"), function(command) {
           command = $(command);
           if(command.hasClass("loop")) {
@@ -32,22 +34,27 @@ $(function() {
                   $(".command").removeClass("active");
                   that.addClass("active");
                   eval('Methods.' + that.find('.name').html() + '.call("'+ that.find('.args').val() +'")');
-                }, 500*index);
+                }, runTime);
+                runTime += Timeouts[that];
                 index++;
               });
             });
           } else {
+            var name = command.find('.name').html();
             setTimeout(function() {
               $(".command").removeClass("active");
               command.addClass("active");
-              eval('Methods.' + command.find('.name').html() + '.call("'+ command.find('.args').val() +'")');
-            }, 500*index);
+              console.log(runTime);
+              console.log(Timeouts[name]);
+              eval('Methods.' + name + '.call("'+ command.find('.args').val() +'")');
+            }, runTime);
+            runTime += Timeouts[name];
             index++;
           }
         });
         setTimeout(function() {
           $('.command').removeClass("active");
-        }, 500*(index));
+        }, runTime);
       }
     );
   });
