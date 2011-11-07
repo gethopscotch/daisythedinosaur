@@ -9,7 +9,13 @@ var Methods = {
     eval("PrivateMethods.move"+ arg + "()");
   }}),
 
-  loop: Method
+  loop: Method,
+
+  roll: $.extend({}, Method, {call: function() {
+    var anim = Hopscotch.dino.animate(
+      {transform: "r360,"+(Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
+      500, 'linear', function(){ Hopscotch.dino.transform("r0") });
+  }})
 };
 
 var PrivateMethods = {
