@@ -15,7 +15,17 @@ var Methods = {
     var anim = Hopscotch.dino.animate(
       {transform: "r360,"+(Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
       500, 'linear', function(){ Hopscotch.dino.transform("r0") });
+  }}),
+
+  jump: $.extend({}, Method, {call: function() {
+    setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/3.png')  }, 10)
+    setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/4.png')  }, 250)
+    setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/1.png')  }, 500)
+    Hopscotch.dino.animate(
+      {y: Hopscotch.dino.attr('y') - 50}, 250, 'linear',
+      function(){ Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear') });
   }})
+
 };
 
 var PrivateMethods = {
@@ -27,21 +37,6 @@ var PrivateMethods = {
     _.times(9, function(index) {
       setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/'+(index+1)+'.png')  }, index*100)
     });
-
-    // index = 1;
-    // _.times(10, function(index) {
-      // x += 10;
-      // Hopscotch.dino.animate({x: x+30}, 200, 'linear', function() {
-        // Hopscotch.dino.attr('src', 'images/sprites/3.png');
-        // Hopscotch.dino.animate({x: x+60}, 200, "linear", function() {
-          // Hopscotch.dino.attr('src', 'images/sprites/5.png');
-          // Hopscotch.dino.animate({x: x+90}, 200, "linear", function() {
-            // Hopscotch.dino.attr('src', 'images/sprites/7.png');
-            // Hopscotch.dino.animate({x: x+120}, 200, "linear", function() { })
-          // })
-        // })
-      // });
-    // })
   },
 
   moveLeft: function() {
