@@ -1,12 +1,5 @@
 $(function() {
-  var img1 = new Image();
-  img1.src = "images/sprites/1.png";
-  var img3 = new Image();
-  img3.src = "images/sprites/3.png";
-  var img5 = new Image();
-  img5.src = "images/sprites/5.png";
-  var img7 = new Image();
-  img7.src = "images/sprites/7.png";
+
   Hopscotch.init();
 
   _.each(_.keys(Methods), function(method) {
