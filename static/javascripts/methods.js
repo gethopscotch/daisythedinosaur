@@ -5,10 +5,10 @@ var Method = {
 
 var Timeouts = {
   none: 0,
-  move: 1300,
-  jump: 530,
-  roll: 530,
-  turn: 350
+  move: 1400,
+  jump: 650,
+  roll: 650,
+  turn: 450
 };
 
 var Methods = {
