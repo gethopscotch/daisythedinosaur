@@ -95,7 +95,7 @@ var PrivateMethods = {
         Hopscotch.dino.attr('src', '/images/sprites/1.png');
       });
     } else {
-      Hopscotch.dino.attr('src', '/images/sprites/1.png');
+      PrivateMethods.animateRight(index, x, offset);
     }
 
   },
@@ -114,7 +114,7 @@ var PrivateMethods = {
         Hopscotch.dino.attr('src', '/images/sprites/l1.png');
       });
     } else {
-      Hopscotch.dino.attr('src', '/images/sprites/l1.png');
+      PrivateMethods.animateLeft(index, x, offset);
     }
 
   }
