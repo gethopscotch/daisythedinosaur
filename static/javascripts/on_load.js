@@ -22,7 +22,7 @@ $(function() {
     var index = 0;
     Hopscotch.dino.animate({x: Hopscotch.position.x, y: Hopscotch.position.y}, 0, 'linear',
       function(){
-        Hopscotch.dino.attr({"src" : "/images/sprites/1.png"});
+        Hopscotch.dino.attr({"src" : "/images/sprites/1.png"})
         var runTime = 0;
         _.each($("#command-list > .command"), function(command) {
           command = $(command);
@@ -44,8 +44,6 @@ $(function() {
             setTimeout(function() {
               $(".command").removeClass("active");
               command.addClass("active");
-              console.log(runTime);
-              console.log(Timeouts[name]);
               eval('Methods.' + name + '.call("'+ command.find('.args').val() +'")');
             }, runTime);
             runTime += Timeouts[name];

@@ -18,19 +18,36 @@ var Methods = {
   }}),
 
   roll: $.extend({}, Method, {call: function() {
-    var anim = Hopscotch.dino.animate(
-      {transform: "r360,"+(Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
-      500, 'linear', function(){ Hopscotch.dino.transform("r0") });
+    if  (Hopscotch.dino.attr('src') == "/images/sprites/1.png") {
+      var anim = Hopscotch.dino.animate(
+        {transform: "r360,"+(Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
+        500, 'linear', function(){ Hopscotch.dino.transform("r0") });
+    } else if (Hopscotch.dino.attr("src") == "/images/sprites/l1.png") {
+      var anim = Hopscotch.dino.animate(
+        {transform: "r-360,"+(-Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
+        500, 'linear', function(){ Hopscotch.dino.transform("r0") });
+    }
   }}),
 
-  jump: $.extend({}, Method, {call: function() {
-    setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/3.png')  }, 10);
-    setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/4.png')  }, 250);
-    setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/1.png')  }, 500);
-    Hopscotch.dino.animate(
-      {y: Hopscotch.dino.attr('y') - 50}, 250, 'linear',
-      function(){ Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear') });
-  }}),
+  jump: $.extend({}, Method, {call:
+   function() {
+      if  (Hopscotch.dino.attr('src') == "/images/sprites/1.png") {
+        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/3.png')  }, 10);
+        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/4.png')  }, 250);
+        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/1.png')  }, 500);
+        Hopscotch.dino.animate(
+          {y: Hopscotch.dino.attr('y') - 50}, 250, 'linear',
+          function(){ Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear') });
+      } else if (Hopscotch.dino.attr('src') == "/images/sprites/l1.png") {
+        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/l3.png')  }, 10);
+        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/l4.png')  }, 250);
+        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/l1.png')  }, 500);
+        Hopscotch.dino.animate(
+          {y: Hopscotch.dino.attr('y') - 50}, 250, 'linear',
+          function(){ Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear') });
+      }
+    }
+  }),
 
   turn: $.extend({}, Method, {call: function() {
     if (Hopscotch.dino.attr('src') == "/images/sprites/l1.png") {
