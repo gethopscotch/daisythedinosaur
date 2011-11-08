@@ -73,6 +73,10 @@ a#help:active {
   color: #828282;
 }
 
+.title .help {
+  font-size: 13px;
+}
+
 li.loop.command {
   background: #f6498a;
   box-shadow: inset -5px -5px 5px #d23e76;
