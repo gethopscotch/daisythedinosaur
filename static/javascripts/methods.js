@@ -6,8 +6,8 @@ var Method = {
 var Timeouts = {
   none: 0,
   move: 1300,
-  jump: 500,
-  roll: 500,
+  jump: 530,
+  roll: 530,
   turn: 350
 };
 
