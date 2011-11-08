@@ -1,13 +1,15 @@
 #command-area {
   border-top: 8px solid #c9d970;
-  height: 295px;
+  min-height: 295px;
+  height: auto;
   width: 532px;
   float: left;
 }
 
 #command-list {
   margin-top: 3px;
-  height: 292px;
+  min-height: 292px;
+  height: auto;
   width: 532px;
   float: right;
   background: #cccaca;
