@@ -82,6 +82,9 @@ var PrivateMethods = {
   },
 
   animateRight: function(index, x, offset) {
+    if (x + offset > 444 || x + offset < 0) {
+      offset = 0;
+    }
     if (index < 10) {
       Hopscotch.dino.animate({x: x+offset}, 100, 'linear', function() {
         Hopscotch.dino.attr('src', '/images/sprites/' + index + '.png');
@@ -98,6 +101,9 @@ var PrivateMethods = {
   },
 
   animateLeft: function(index, x, offset) {
+    if (x + offset > 444 || x + offset < 0) {
+      offset = 0;
+    }
     if (index < 10) {
       Hopscotch.dino.animate({x: x + offset}, 100, 'linear', function() {
         Hopscotch.dino.attr('src', '/images/sprites/l' + index + '.png');
