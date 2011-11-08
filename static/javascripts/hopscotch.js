@@ -1,14 +1,14 @@
 var Hopscotch = {
-  position: {x: 50, y: 60},
+  position: {x: 50, y: 100},
   init: function() {
     this.paper = Raphael("print-area", 516, 239);
     this.paper.safari()
-    var grass = this.paper.rect(0, 139, 516, 99);
+    var grass = this.paper.rect(0, 179, 516, 59);
     grass.attr({
       "fill" : "#95a640",
       "stroke-opacity": 0
     });
-    var sky = this.paper.rect(0, 0, 516, 140);
+    var sky = this.paper.rect(0, 0, 516, 180);
     sky.attr({
       'fill': "#b3ffff",
       "stroke-opacity": 0,
