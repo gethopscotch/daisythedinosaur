@@ -17,8 +17,6 @@ var Methods = {
     eval("PrivateMethods.move"+ arg + "()");
   }}),
 
-  loop: Method,
-
   roll: $.extend({}, Method, {call: function() {
     var anim = Hopscotch.dino.animate(
       {transform: "r360,"+(Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
