@@ -18,43 +18,69 @@ $(function() {
     }
   });
 
-  $("#play").click(function(){
-    var index = 0;
-    Hopscotch.dino.animate({x: Hopscotch.position.x, y: Hopscotch.position.y}, 0, 'linear',
-      function(){
-        Hopscotch.dino.attr({"src" : "/images/sprites/1.png"})
-        var runTime = 0;
-        _.each($("#command-list > .command"), function(command) {
-          command = $(command);
-          if(command.hasClass("loop")) {
-            _.times(command.find("span.times").html(), function() {
-              command.find(".command").each(function() {
-                var that = $(this)
-                setTimeout(function() {
-                  $(".command").removeClass("active");
-                  that.addClass("active");
-                  eval('Methods.' + that.find('.name').html() + '.call("'+ that.find('.args').val() +'")');
-                }, runTime);
-                runTime += Timeouts[that];
-                index++;
+  $("#share").click(function(e) {
+    e.preventDefault();
+    $("#share-dialog").dialog({
+      title: $("#share-dialog").data("title"),
+      resizable: false
+    });
+  });
+
+  $("#help").click(function(e) {
+    e.preventDefault();
+    $("#help-dialog").dialog({
+      title: $("#help-dialog").data("title"),
+      resizable: false
+    });
+  });
+
+  $("#play").click(function(e){
+    e.preventDefault();
+    if( $("#command-list > .command").length == 0 ) {
+      $("#play-dialog").dialog({
+        title: $("#play-dialog").data('title'),
+        resizable: false
+      });
+
+    }
+    else {
+      var index = 0;
+      Hopscotch.dino.animate({x: Hopscotch.position.x, y: Hopscotch.position.y}, 0, 'linear',
+        function(){
+          Hopscotch.dino.attr({"src" : "/images/sprites/1.png"})
+          var runTime = 0;
+          _.each($("#command-list > .command"), function(command) {
+            command = $(command);
+            if(command.hasClass("loop")) {
+              _.times(command.find("span.times").html(), function() {
+                command.find(".command").each(function() {
+                  var that = $(this)
+                  setTimeout(function() {
+                    $(".command").removeClass("active");
+                    that.addClass("active");
+                    eval('Methods.' + that.find('.name').html() + '.call("'+ that.find('.args').val() +'")');
+                  }, runTime);
+                  runTime += Timeouts[that];
+                  index++;
+                });
               });
-            });
-          } else {
-            var name = command.find('.name').html();
-            setTimeout(function() {
-              $(".command").removeClass("active");
-              command.addClass("active");
-              eval('Methods.' + name + '.call("'+ command.find('.args').val() +'")');
-            }, runTime);
-            runTime += Timeouts[name];
-            index++;
-          }
-        });
-        setTimeout(function() {
-          $('.command').removeClass("active");
-        }, runTime);
-      }
-    );
+            } else {
+              var name = command.find('.name').html();
+              setTimeout(function() {
+                $(".command").removeClass("active");
+                command.addClass("active");
+                eval('Methods.' + name + '.call("'+ command.find('.args').val() +'")');
+              }, runTime);
+              runTime += Timeouts[name];
+              index++;
+            }
+          });
+          setTimeout(function() {
+            $('.command').removeClass("active");
+          }, runTime);
+        }
+      );
+    }
   });
 
   $("#command-list").sortable({ connectWith: '.loop-commands',

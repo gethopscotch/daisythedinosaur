@@ -98,7 +98,8 @@ li.loop.command {
 }
 
 .command.active {
-  background: #4E9CB5;
+  background: #f6498a;
+  box-shadow: inset -5px -5px 5px #d23e76;
 }
 
 li {
@@ -113,3 +114,9 @@ li {
 .library, #controls {
   margin-left: 60px;
 }
+
+#play-dialog, #help-dialog, #share-dialog {
+  display: none;
+}
+
+
