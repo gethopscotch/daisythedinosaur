@@ -100,7 +100,7 @@ $(function() {
     helper: 'clone',
     connectToSortable: '#command-list'});
 
-  $("#trash-bin").droppable({ accept: "#command-list .command",
+  $("#trash-bin, #command-library").droppable({ accept: "#command-list .command",
     activeClass: 'trash-highlight',
     drop: function(event, ui) {
       ui.draggable.remove();
