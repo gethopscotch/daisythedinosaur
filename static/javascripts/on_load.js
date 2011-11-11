@@ -3,9 +3,13 @@ var CommandList = {
   command: "",
   executeMethods: function() {
     if (CommandList.commands.length == 0) {
+      CommandList.command.removeClass("active");
       return;
     } else {
+      CommandList.command.removeClass("active");
       CommandList.command = _.first(CommandList.commands);
+      CommandList.command.addClass("active");
+
       var name = CommandList.command.find('.name').html();
       CommandList.commands = _.rest(CommandList.commands, 1);
       eval('Methods.' + name + '.call("'+ CommandList.command.find('.args').val() +'", CommandList.executeMethods)');
