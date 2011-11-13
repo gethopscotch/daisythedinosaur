@@ -6,6 +6,10 @@
   float: left;
 }
 
+#command-list.highlight {
+  background-color: #eee;
+}
+
 #command-list {
   margin-top: 3px;
   min-height: 292px;

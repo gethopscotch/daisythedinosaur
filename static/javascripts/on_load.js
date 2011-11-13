@@ -41,9 +41,15 @@ $(function() {
 
   $("#share").click(function(e) {
     e.preventDefault();
-    $("#share-dialog").dialog({
+    var dialog = $("#share-dialog").dialog({
       title: $("#share-dialog").data("title"),
-      resizable: false
+      resizable: false,
+      close: function(){
+        $('body').unbind('touchstart')
+      }
+    });
+    $('body').bind("touchstart", function() {
+        dialog.dialog("close");
     });
   });
 
@@ -51,7 +57,13 @@ $(function() {
     e.preventDefault();
     $("#help-dialog").dialog({
       title: $("#help-dialog").data("title"),
-      resizable: false
+      resizable: false,
+      close: function(){
+        $('body').unbind('touchstart')
+      }
+    });
+    $('body').bind("touchstart", function() {
+        dialog.dialog("close");
     });
   });
 
@@ -60,7 +72,13 @@ $(function() {
     if( $("#command-list > .command").length == 0 ) {
       $("#play-dialog").dialog({
         title: $("#play-dialog").data('title'),
-        resizable: false
+        resizable: false,
+        close: function(){
+          $('body').unbind('touchstart')
+        }
+      });
+      $('body').bind("touchstart", function() {
+          dialog.dialog("close");
       });
 
     }
@@ -84,6 +102,16 @@ $(function() {
         });
       }
   }});
+
+ $("#methods .command").bind("touchend", function() {
+    $("#command-list").removeClass("highlight");
+  });
+
+  $("#methods .command").bind("touchstart", function() {
+    $("#command-list").addClass("highlight");
+  });
+
+
 
 
   $("#methods .command").draggable({ revert: true,
