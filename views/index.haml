@@ -21,6 +21,16 @@
     -if params[:debug]
       %script{src: "http://#{request.env['SERVER_NAME']}:8080/target/target-script-min.js"}
   %body
+    .program
+      .title
+        program
+      #command-area
+        %ul#command-list
+    .library
+      .title
+        commands
+      #command-library
+        %ul#methods
     .stage
       .title stage
       #print-area
@@ -29,18 +39,6 @@
       %a{href: "#", id: 'help'} Help
       %a{href: "#", id: 'share'} Share
       #trash-bin Trash
-    .program
-      .title
-        program
-        %span.help theses methods will be executed when you press Play
-      #command-area
-        %ul#command-list
-    .library
-      .title
-        library
-        %span.help drag methods into the program area
-      #command-library
-        %ul#methods
 
     #play-dialog{"data-title" => "You need to choose some commands!"}
       %p Try dragging a method from the library area over to the program area
