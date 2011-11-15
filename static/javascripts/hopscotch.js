@@ -1,7 +1,7 @@
 var Hopscotch = {
   position: {x: 50, y: 100},
   height: 305,
-  width: 754,
+  width: 804,
   init: function() {
     this.paper = Raphael("print-area", Hopscotch.width, Hopscotch.height);
     this.paper.safari()

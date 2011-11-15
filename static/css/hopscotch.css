@@ -1,9 +1,7 @@
 body {
-  width: 920px;
-  margin-left: 100px;
-  margin-right: 100px;
+  width: 970px;
   font-family: Nilland-black;
-  padding: 20px 0;
+  padding: 20px;
 }
 
 #controls {
@@ -55,7 +53,7 @@ a#help:active {
 #print-area {
   border: 8px solid #c9d970;
   height: 305px;
-  width: 754px;
+  width: 804px;
   margin-bottom: 25px;
 }
 
