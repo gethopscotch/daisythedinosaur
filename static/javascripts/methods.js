@@ -18,14 +18,14 @@ var Methods = {
   }}),
 
   roll: $.extend({}, Method, {call: function(arg, callback) {
-    if  (Hopscotch.dino.attr('src') == "/images/sprites/1.png") {
+    if  (Hopscotch.dino.attr('src') == "images/sprites/1.png") {
       var anim = Hopscotch.dino.animate(
         {transform: "r360,"+(Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
         500, 'linear', function(){
           Hopscotch.dino.transform("r0");
           callback();
         });
-    } else if (Hopscotch.dino.attr("src") == "/images/sprites/l1.png") {
+    } else if (Hopscotch.dino.attr("src") == "images/sprites/l1.png") {
       var anim = Hopscotch.dino.animate(
         {transform: "r-360,"+(-Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
         500, 'linear', function(){
@@ -37,19 +37,19 @@ var Methods = {
 
   jump: $.extend({}, Method, {call:
    function(args, callback) {
-      if  (Hopscotch.dino.attr('src') == "/images/sprites/1.png") {
-        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/3.png')  }, 10);
-        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/4.png')  }, 250);
-        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/1.png')  }, 500);
+      if  (Hopscotch.dino.attr('src') == "images/sprites/1.png") {
+        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/3.png')  }, 10);
+        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/4.png')  }, 250);
+        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/1.png')  }, 500);
         Hopscotch.dino.animate(
           {y: Hopscotch.dino.attr('y') - 50}, 250, 'linear',
           function(){
             Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear', callback)
         });
-      } else if (Hopscotch.dino.attr('src') == "/images/sprites/l1.png") {
-        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/l3.png')  }, 10);
-        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/l4.png')  }, 250);
-        setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/l1.png')  }, 500);
+      } else if (Hopscotch.dino.attr('src') == "images/sprites/l1.png") {
+        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/l3.png')  }, 10);
+        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/l4.png')  }, 250);
+        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/l1.png')  }, 500);
         Hopscotch.dino.animate(
           {y: Hopscotch.dino.attr('y') - 50}, 250, 'linear',
           function(){ Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear', callback) });
@@ -58,12 +58,12 @@ var Methods = {
   }),
 
   turn: $.extend({}, Method, {call: function(args, callback) {
-    if (Hopscotch.dino.attr('src') == "/images/sprites/l1.png") {
-      setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/back.png')  }, 150)
-      setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/1.png'); callback(); }, 300)
+    if (Hopscotch.dino.attr('src') == "images/sprites/l1.png") {
+      setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/back.png')  }, 150)
+      setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/1.png'); callback(); }, 300)
     } else {
-      setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/front.png')  }, 150)
-      setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/l1.png'); callback(); }, 300)
+      setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/front.png')  }, 150)
+      setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/l1.png'); callback(); }, 300)
     };
   }})
 };
@@ -71,9 +71,9 @@ var Methods = {
 var PrivateMethods = {
   moveForward: function(callback) {
     var x = Hopscotch.dino.attr('x');
-    if  (Hopscotch.dino.attr('src') == "/images/sprites/l1.png") {
+    if  (Hopscotch.dino.attr('src') == "images/sprites/l1.png") {
       PrivateMethods.animateLeft(1, x, -10, callback);
-    } else if (Hopscotch.dino.attr('src') == "/images/sprites/1.png") {
+    } else if (Hopscotch.dino.attr('src') == "images/sprites/1.png") {
       PrivateMethods.animateRight(1, x, 10, callback);
     }
 
@@ -81,9 +81,9 @@ var PrivateMethods = {
 
   moveBackward: function(callback) {
     var x = Hopscotch.dino.attr('x');
-    if  (Hopscotch.dino.attr('src') == "/images/sprites/l1.png") {
+    if  (Hopscotch.dino.attr('src') == "images/sprites/l1.png") {
       PrivateMethods.animateLeft(1, x, 10, callback);
-    } else if (Hopscotch.dino.attr('src') == "/images/sprites/1.png") {
+    } else if (Hopscotch.dino.attr('src') == "images/sprites/1.png") {
       PrivateMethods.animateRight(1, x, -10, callback);
     }
   },
@@ -94,12 +94,12 @@ var PrivateMethods = {
     }
     if (index < 10) {
       Hopscotch.dino.animate({x: x+offset}, 100, 'linear', function() {
-        Hopscotch.dino.attr('src', '/images/sprites/' + index + '.png');
+        Hopscotch.dino.attr('src', 'images/sprites/' + index + '.png');
         PrivateMethods.animateRight(index + 1, x + offset, offset, callback);
       });
     } else if (index == 10) {
       Hopscotch.dino.animate({x: x + offset}, 100, 'linear', function() {
-        Hopscotch.dino.attr('src', '/images/sprites/1.png');
+        Hopscotch.dino.attr('src', 'images/sprites/1.png');
         callback();
       });
     }
@@ -112,12 +112,12 @@ var PrivateMethods = {
     }
     if (index < 10) {
       Hopscotch.dino.animate({x: x + offset}, 100, 'linear', function() {
-        Hopscotch.dino.attr('src', '/images/sprites/l' + index + '.png');
+        Hopscotch.dino.attr('src', 'images/sprites/l' + index + '.png');
         PrivateMethods.animateLeft(index + 1, x + offset, offset, callback);
       });
     } else if (index == 10) {
       Hopscotch.dino.animate({x: x + offset}, 100, 'linear', function() {
-        Hopscotch.dino.attr('src', '/images/sprites/l1.png');
+        Hopscotch.dino.attr('src', 'images/sprites/l1.png');
         callback();
       });
     }

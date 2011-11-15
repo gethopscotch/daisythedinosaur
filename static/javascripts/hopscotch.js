@@ -1,16 +1,16 @@
 var Hopscotch = {
   position: {x: 50, y: 100},
   height: 305,
-  width: 734,
+  width: 754,
   init: function() {
-    this.paper = Raphael("print-area", 734, 305);
+    this.paper = Raphael("print-area", Hopscotch.width, Hopscotch.height);
     this.paper.safari()
-    var grass = this.paper.rect(0, 206, 734, 99);
+    var grass = this.paper.rect(0, 206, Hopscotch.width, 99);
     grass.attr({
       "fill" : "#95a640",
       "stroke-opacity": 0
     });
-    var sky = this.paper.rect(0, 0, 734, 206);
+    var sky = this.paper.rect(0, 0, Hopscotch.width, 206);
     sky.attr({
       'fill': "#b3ffff",
       "stroke-opacity": 0,
@@ -22,7 +22,7 @@ var Hopscotch = {
       opacity: 0.7
     });
 
-    var sun = this.paper.circle(734, 0, 80, 80);
+    var sun = this.paper.circle(Hopscotch.width, 0, 80, 80);
     sun.attr({
       'fill' : "#ffe500",
       'stroke-opacity' : 0
@@ -33,7 +33,7 @@ var Hopscotch = {
       opacity: 0.8,
       width: 30
     });
-    this.dino = this.paper.image("/images/sprites/1.png", this.position.x, this.position.y, 100, 120);
+    this.dino = this.paper.image("images/sprites/1.png", this.position.x, this.position.y, 100, 120);
 
   },
 

@@ -1,5 +1,5 @@
 body {
-  width: 900px;
+  width: 920px;
   margin-left: 100px;
   margin-right: 100px;
   font-family: Nilland-black;
@@ -55,7 +55,7 @@ a#help:active {
 #print-area {
   border: 8px solid #c9d970;
   height: 305px;
-  width: 734px;
+  width: 754px;
   margin-bottom: 25px;
 }
 

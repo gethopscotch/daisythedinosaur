@@ -89,7 +89,7 @@ $(function() {
       CommandList.commands = _.map($("#command-list .command"), function(command) {return $(command)});
       CommandList.command = _.first(CommandList.commands);
       Hopscotch.dino.animate({x: Hopscotch.position.x, y: Hopscotch.position.y}, 0, 'linear', function() {
-        Hopscotch.dino.attr({"src" : "/images/sprites/1.png"});
+        Hopscotch.dino.attr({"src" : "images/sprites/1.png"});
         CommandList.executeMethods();
       });
     }
