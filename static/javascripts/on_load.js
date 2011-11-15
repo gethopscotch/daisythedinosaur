@@ -22,6 +22,9 @@ var CommandList = {
 $(function() {
 
   Hopscotch.init();
+  $('head meta[name=viewport]').remove();
+  $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />');
+  
 
   _.each(_.keys(Methods), function(method) {
     if (method == "loop") {

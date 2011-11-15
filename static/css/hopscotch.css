@@ -1,5 +1,5 @@
 body {
-  width: 1024px;
+  width: 900px;
   margin-left: 100px;
   margin-right: 100px;
   font-family: Nilland-black;
@@ -7,52 +7,45 @@ body {
 }
 
 #controls {
-  width: 265px;
+  width: 150px;
 }
 
-#controls a{
+#controls a, #trash-bin {
   display: block;
-  height: 0px;
-  width: 87px;
-  padding-top: 87px;
+  height: 70px;
+  width: 140px;
+  background-position: top right;
+  background-repeat: no-repeat;
   font-family: Geneva, Helvetica;
   font-size: 26px;
-  color: #f6498a;
+  color: #F6498A;
   text-decoration: none;
-  text-align: center;
-  float: left;
+  text-align: left;
+  line-height: 64px;
 }
 
 a#play {
-  background: url(/images/play.png) no-repeat;
+  background-image: url(/images/play.png);
 }
 
 a#play:active {
-  background: url(/images/play-active.png) no-repeat;
+  background-image: url(/images/play-active.png);
 }
 a#share {
-  background: url(/images/share.png) no-repeat;
+  background-image: url(/images/share.png);
 }
 a#share:active {
-  background: url(/images/share-active.png) no-repeat;
+  background-image: url(/images/share-active.png);
 }
 a#help {
-  background: url(/images/help.png) no-repeat;
+  background-image: url(/images/help.png);
 }
 a#help:active {
-  background: url(/images/help-active.png) no-repeat;
+  background-image: url(/images/help-active.png);
 }
 
 #trash-bin {
-  width: 228px;
-  margin-top: 33px;
-  background: url(/images/trash.png) no-repeat center center;
-  float: left;
-  text-align: center;
-  padding-top: 137px;
-  font-family: Geneva, Helvetica;
-  font-size: 26px;
-  color: #f6498a;
+  background-image: url(/images/trash.png);
 }
 
 .trash-highlight {
@@ -61,8 +54,8 @@ a#help:active {
 
 #print-area {
   border: 8px solid #c9d970;
-  height: 239px;
-  width: 516px;
+  height: 305px;
+  width: 734px;
   margin-bottom: 25px;
 }
 
@@ -111,8 +104,11 @@ li {
   float: left;
 }
 
-.library, #controls {
-  margin-left: 60px;
+.library {
+  margin-right: 60px;
+}
+#controls {
+  padding-top: 36px;
 }
 
 #play-dialog, #help-dialog, #share-dialog {

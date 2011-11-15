@@ -21,14 +21,14 @@ var Methods = {
     if  (Hopscotch.dino.attr('src') == "/images/sprites/1.png") {
       var anim = Hopscotch.dino.animate(
         {transform: "r360,"+(Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
-        500, 'linear', function(){ 
-          Hopscotch.dino.transform("r0"); 
+        500, 'linear', function(){
+          Hopscotch.dino.transform("r0");
           callback();
         });
     } else if (Hopscotch.dino.attr("src") == "/images/sprites/l1.png") {
       var anim = Hopscotch.dino.animate(
         {transform: "r-360,"+(-Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
-        500, 'linear', function(){ 
+        500, 'linear', function(){
           Hopscotch.dino.transform("r0");
           callback();
         } );
@@ -43,8 +43,8 @@ var Methods = {
         setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/1.png')  }, 500);
         Hopscotch.dino.animate(
           {y: Hopscotch.dino.attr('y') - 50}, 250, 'linear',
-          function(){ 
-            Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear', callback) 
+          function(){
+            Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear', callback)
         });
       } else if (Hopscotch.dino.attr('src') == "/images/sprites/l1.png") {
         setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/l3.png')  }, 10);
@@ -66,7 +66,6 @@ var Methods = {
       setTimeout(function(){ Hopscotch.dino.attr('src', '/images/sprites/l1.png'); callback(); }, 300)
     };
   }})
-
 };
 
 var PrivateMethods = {
@@ -90,7 +89,7 @@ var PrivateMethods = {
   },
 
   animateRight: function(index, x, offset, callback) {
-    if (x + offset > 444 || x + offset < 0) {
+    if (x + offset > Hopscotch.width - 99  || x + offset < 0) {
       offset = 0;
     }
     if (index < 10) {
@@ -108,7 +107,7 @@ var PrivateMethods = {
   },
 
   animateLeft: function(index, x, offset, callback) {
-    if (x + offset > 444 || x + offset < 0) {
+    if (x + offset > Hopscotch.width - 97  || x + offset < 0) {
       offset = 0;
     }
     if (index < 10) {
