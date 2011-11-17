@@ -23,27 +23,27 @@ body {
 }
 
 a#play {
-  background-image: url(/images/play.png);
+  background-image: url(images/play.png);
 }
 
 a#play:active {
-  background-image: url(/images/play-active.png);
+  background-image: url(images/play-active.png);
 }
 a#share {
-  background-image: url(/images/share.png);
+  background-image: url(images/share.png);
 }
 a#share:active {
-  background-image: url(/images/share-active.png);
+  background-image: url(images/share-active.png);
 }
 a#help {
-  background-image: url(/images/help.png);
+  background-image: url(images/help.png);
 }
 a#help:active {
-  background-image: url(/images/help-active.png);
+  background-image: url(images/help-active.png);
 }
 
 #trash-bin {
-  background-image: url(/images/trash.png);
+  background-image: url(images/trash.png);
 }
 
 .trash-highlight {
