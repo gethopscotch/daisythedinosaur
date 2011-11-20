@@ -12,11 +12,11 @@
 
 #command-list {
   margin-top: 3px;
-  min-height: 292px;
-  height: auto;
+  height: 292px;
   width: 680px;
   float: right;
   background: #cccaca;
+  overflow-y: scroll;
 }
 
 .ui-state-highlight {
