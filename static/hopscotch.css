@@ -46,10 +46,6 @@ a#help:active {
   background-image: url(images/trash.png);
 }
 
-.trash-highlight {
-  border: 4px solid #f6498a;
-}
-
 #print-area {
   border: 8px solid #c9d970;
   height: 305px;
@@ -73,6 +69,26 @@ li.loop.command {
   box-shadow: inset -5px -5px 5px #d23e76;
 }
 
+.loop-commands {
+  display: none;
+  overflow: visible !important;
+}
+
+.nestedCommands {
+  display: none;
+  overflow: visible;
+}
+
+.loop-commands ul {
+  min-height: 200px;
+  height: auto;
+}
+
+.ui-dialog {
+  overflow: visible !important;
+  height: auto;
+}
+
 .command {
   width: 168px;
   height: 47px;
@@ -81,7 +97,7 @@ li.loop.command {
   text-align: center;
   background: #4daddc;
   color: white;
-  z-index: 999;
+  z-index: 999999;
   font-family: Geneva, Helvetica;
   font-size: 26px;
   margin: 6px;

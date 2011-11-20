@@ -1,5 +1,5 @@
 var Hopscotch = {
-  position: {x: 50, y: 100},
+  position: {x: 50, y: 140},
   height: 305,
   width: 804,
   init: function() {

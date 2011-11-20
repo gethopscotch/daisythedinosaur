@@ -65,7 +65,9 @@ var Methods = {
       setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/front.png')  }, 150)
       setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/l1.png'); callback(); }, 300)
     };
-  }})
+  }}),
+
+  loop: $.extend({}, Method, {call: function(args, callback) {}})
 };
 
 var PrivateMethods = {
