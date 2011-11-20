@@ -9,7 +9,7 @@ end
 
 
 get '/app' do
-  haml :index
+  File.read(File.join('views', 'index.html'))
 end
 
 get '/alex' do
