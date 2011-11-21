@@ -116,13 +116,13 @@ $(function() {
         $('#command-list .loop').doubletap(
             /** doubletap-dblclick callback */
             function(event){
-              var loopCommands = $(event.target).parents("li").find(".loop-commands").first();
+              var loopCommands = $(event.target).parents("li.loop").find(".loop-commands").first();
               var dialog = loopCommands.dialog({
                 title: "Drag commands here to add them to the loop",
                 zIndex: 99,
                 close: function() {
-                  $(event.target).parents("li").find('.nestedCommands').html("");
-                  loopCommands.clone(true).appendTo($(event.target).parents("li").find('.nestedCommands'));
+                  $(event.target).parents("li.loop").find('.nestedCommands').html("");
+                  loopCommands.clone(true).appendTo($(event.target).parents("li.loop").find('.nestedCommands'));
                   $("#methods .command").draggable({ revert: true,
                     revertDuration: 0,
                     helper: 'clone',
