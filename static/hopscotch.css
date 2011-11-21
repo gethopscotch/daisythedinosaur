@@ -67,19 +67,45 @@ a#help:active {
 li.loop.command {
   background: #f6498a;
   box-shadow: inset -5px -5px 5px #d23e76;
+  overflow: hidden;
+  height: auto;
 }
 
-.loop-commands {
-  display: none;
+.ui-dialog .loop-commands {
   overflow: visible !important;
+}
+.program .loop-commands {
+  display: block;
+  width: auto;
+  min-height: 0px;
+  height: auto;
+  background: transparent;
+  border: none;
+}
+.loop-commands ul {
+  min-height: 0px;
+  height: auto;
 }
 
 .nestedCommands {
-  display: none;
+  display: block;
   overflow: visible;
 }
 
-.loop-commands ul {
+.nestedCommands .command {
+  display: inline;
+  font-size: 16px;
+  line-height: 17px;
+  border: none;
+  font-size: 12px;
+  line-height: 13px;
+  border: none;
+  background: transparent;
+  height: auto;
+  box-shadow: none;
+}
+
+.ui-dialog .loop-commands ul {
   min-height: 200px;
   height: auto;
 }

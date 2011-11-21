@@ -116,12 +116,13 @@ $(function() {
         $('#command-list .loop').doubletap(
             /** doubletap-dblclick callback */
             function(event){
-              var loopCommands = $(event.target).parents("li").find(".loop-commands")
+              var loopCommands = $(event.target).parents("li").find(".loop-commands").first();
               var dialog = loopCommands.dialog({
                 title: "Drag commands here to add them to the loop",
                 zIndex: 99,
                 close: function() {
-                  loopCommands.clone().appendTo($(event.target).parents("li").find('.nestedCommands'))
+                  $(event.target).parents("li").find('.nestedCommands').html("");
+                  loopCommands.clone(true).appendTo($(event.target).parents("li").find('.nestedCommands'));
                   $("#methods .command").draggable({ revert: true,
                     revertDuration: 0,
                     helper: 'clone',
@@ -129,7 +130,7 @@ $(function() {
                   });
                 }
               });
-              $(dialog).find('ul').sortable({ placeholder: 'ui-state-highlight'});
+              $(dialog).find('ul').first().sortable({ placeholder: 'ui-state-highlight'});
               $("#methods .command").draggable({
                 revert: true,
                 revertDuration: 0,
@@ -164,11 +165,18 @@ $(function() {
     helper: 'clone',
     connectToSortable: '#command-list'});
 
-  $("#trash-bin, #command-library").droppable({ 
+  $("#trash-bin, #command-library").droppable({
     accept: "#command-list .command, .loop-commands .command",
     activeClass: 'trash-highlight',
     drop: function(event, ui) {
       ui.draggable.remove();
   }});
 
+  $('select').live('change', function(){
+    var selected = $(this).find('option:selected');
+    $(this).find('option').attr('selected', false);
+    selected.attr('selected', 'selected');
+  });
+
 });
+
