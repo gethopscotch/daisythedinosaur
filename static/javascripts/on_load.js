@@ -17,20 +17,18 @@ var CommandList = {
   }
 };
 
-
-
-
 var Onload = {
   init: function() {
-    Onload.showMethods();
-    Onload.share();
-    Onload.play();
-    Onload.help();
+    Onload.displayMethods();
+    Onload.bindShare();
+    Onload.bindPlay();
+    Onload.bindHelp();
     Onload.createSortable();
-    Onload.bindEvents();
+    Onload.bindTrash();
+    Onload.bindOthers();
   },
 
-  showMethods: function() {
+  displayMethods: function() {
     _.each(_.keys(Methods), function(method) {
       if (method == "loop") {
         var loopCommands = "<div class='nestedCommands'><div class='loop-commands'> <ul> </ul> </div></div>"
@@ -49,7 +47,7 @@ var Onload = {
     });
   },
 
-  share: function() {
+  bindShare: function() {
     $("#share").click(function(e) {
       e.preventDefault();
       var dialog = $("#share-dialog").dialog({
@@ -65,7 +63,7 @@ var Onload = {
     });
   },
 
-  help: function() {
+  bindHelp: function() {
     $("#help").click(function(e) {
       e.preventDefault();
       $("#help-dialog").dialog({
@@ -81,7 +79,7 @@ var Onload = {
     });
   },
 
-  play: function() {
+  bindPlay: function() {
     $("#play").click(function(e){
       e.preventDefault();
       if( $("#command-list > .command").length == 0 ) {
@@ -98,25 +96,38 @@ var Onload = {
 
       }
       else {
-        CommandList.commands = _.flatten(_.map($("#command-list > .command"), function(command) {
-          if ($(command).find(".name").html() == "loop") {
-            var range = $(command).find(".times").html();
-            var array = _.map(_.range(range), function() {
-              return _.map($(command).find(".command"), function(command) {
-                return $(command);
-              });
-            });
-            return array;
-          } else {
-            return $(command);
-          }
-        }));
-        CommandList.command = _.first(CommandList.commands);
-        Hopscotch.dino.animate({x: Hopscotch.position.x, y: Hopscotch.position.y}, 0, 'linear', function() {
-          Hopscotch.dino.attr({"src" : "images/sprites/1.png"});
-          CommandList.executeMethods();
-        });
+        Onload.createCommandList();
       }
+    });
+  },
+
+  createCommandList: function() {
+    var flattenCommand = function(command) {
+      if ($(command).find(".name").html() == "loop") {
+        var range = $(command).find(".times").html();
+        var array = _.map(_.range(range), function() {
+          return _.map($(command).find(".command"), function(commandInner) {
+            if ($(commandInner).find(".name").html() == "loop") {
+              flattenCommand(commandInner)
+            } else {
+              return $(commandInner);
+            }
+          });
+        });
+        return array;
+      } else {
+        return $(command);
+      }
+    };
+    CommandList.commands = _.flatten(_.map($("#command-list > .command"), function(command) {
+      return flattenCommand(command);
+    }));
+    console.log(CommandList.commands);
+
+    CommandList.command = _.first(CommandList.commands);
+    Hopscotch.dino.animate({x: Hopscotch.position.x, y: Hopscotch.position.y}, 0, 'linear', function() {
+      Hopscotch.dino.attr({"src" : "images/sprites/1.png"});
+      CommandList.executeMethods();
     });
   },
 
@@ -125,45 +136,57 @@ var Onload = {
       placeholder: "ui-state-highlight",
       receive: function(e, ui) {
         if ($(ui.item).attr("class") == "loop command ui-draggable") {
-
-          $('#command-list .loop').doubletap(
-              /** doubletap-dblclick callback */
-              function(event){
-                var loopCommands = $(event.target).parents(".loop").find(".loop-commands").first();
-                var dialog = loopCommands.dialog({
-                  title: "Drag commands here to add them to the loop",
-                  zIndex: 99,
-                  close: function() {
-                    $(event.target).parents("li").find('.nestedCommands').html("");
-                    loopCommands.clone(true).appendTo($(event.target).parents("li").find('.nestedCommands'));
-                    $("#methods .command").draggable({ revert: true,
-                      revertDuration: 0,
-                      helper: 'clone',
-                      connectToSortable: '#command-list'
-                    });
-                  }
-                });
-                $(dialog).find('ul').first().sortable({ placeholder: 'ui-state-highlight'});
-                $("#methods .command").draggable({
-                  revert: true,
-                  revertDuration: 0,
-                  helper: 'clone',
-                  connectToSortable: $(dialog).find('ul')
-                });
-
-              },
-              /** touch-click callback (touch) */
-              function(event){
-                  // alert('single-tap');
-              },
-              /** doubletap-dblclick delay (default is 500 ms) */
-              400
-          );
+          Onload.bindLoop();
         }
     }});
   },
 
-  bindEvents: function() {
+  bindLoop: function() {
+    $('#command-list .loop').doubletap(
+        /** doubletap-dblclick callback */
+        function(event){
+          var loopCommands = $(event.target).parents(".loop").find(".loop-commands").first();
+          var dialog = loopCommands.dialog({
+            title: "Drag commands here to add them to the loop",
+            zIndex: 99,
+            close: function() {
+              $(event.target).parents("li").find('.nestedCommands').html("");
+              loopCommands.clone(true).appendTo($(event.target).parents("li").find('.nestedCommands'));
+              $("#methods .command").draggable({ revert: true,
+                revertDuration: 0,
+                helper: 'clone',
+                connectToSortable: '#command-list'
+              });
+            }
+          });
+          $(dialog).find('ul').first().sortable({ placeholder: 'ui-state-highlight'});
+          $("#methods .command").draggable({
+            revert: true,
+            revertDuration: 0,
+            helper: 'clone',
+            connectToSortable: $(dialog).find('ul')
+          });
+
+        },
+        /** touch-click callback (touch) */
+        function(event){
+            // alert('single-tap');
+        },
+        /** doubletap-dblclick delay (default is 500 ms) */
+        400
+    );
+  },
+
+  bindTrash: function() {
+    $("#trash-bin, #command-library").droppable({
+      accept: "#command-list .command, .loop-commands .command",
+      activeClass: 'trash-highlight',
+      drop: function(event, ui) {
+        ui.draggable.remove();
+    }});
+  },
+
+  bindOthers: function() {
    $("#methods .command").bind("touchend", function() {
       $("#command-list").removeClass("highlight");
     });
@@ -176,13 +199,6 @@ var Onload = {
       revertDuration: 0,
       helper: 'clone',
       connectToSortable: '#command-list'});
-
-    $("#trash-bin, #command-library").droppable({
-      accept: "#command-list .command, .loop-commands .command",
-      activeClass: 'trash-highlight',
-      drop: function(event, ui) {
-        ui.draggable.remove();
-    }});
 
     $('select').live('change', function(){
       var selected = $(this).find('option:selected');
