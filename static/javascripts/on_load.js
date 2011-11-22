@@ -122,7 +122,6 @@ var Onload = {
     CommandList.commands = _.flatten(_.map($("#command-list > .command"), function(command) {
       return flattenCommand(command);
     }));
-    console.log(CommandList.commands);
 
     CommandList.command = _.first(CommandList.commands);
     Hopscotch.dino.animate({x: Hopscotch.position.x, y: Hopscotch.position.y}, 0, 'linear', function() {
@@ -152,6 +151,7 @@ var Onload = {
             close: function() {
               $(event.target).parents("li").find('.nestedCommands').html("");
               loopCommands.clone(true).appendTo($(event.target).parents("li").find('.nestedCommands'));
+              $(event.target).parents("li").find('.nestedCommands').append('<div class="bottom"></div>');
               $("#methods .command").draggable({ revert: true,
                 revertDuration: 0,
                 helper: 'clone',
