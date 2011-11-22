@@ -11,7 +11,9 @@
 #   - dist/**/*.js
 #
 src_files:
-    - public/javascripts/**/*.js
+    - static/javascripts/vendor/jquery.js
+    - static/javascripts/vendor/*.js
+    - static/javascripts/**/*.js
 
 # stylesheets
 #
