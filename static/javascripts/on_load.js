@@ -21,30 +21,35 @@ var CommandLibrary = {
 var Program = {
   commands: "",
   command: "",
+  attachNestedSortables: function (e, ui) {
+    $('.command-list > li').each(function(i, e){
+      if($(this).attr('id') == undefined) {
+        var id = Date.now();
+        $(this).attr('id', "command-"+id);
+        if ($(this).hasClass("loop")) {
+          var nestedID = 'loop-'+id
+          $('.program').append("<div class='nestedCommands' id='loop-"+id+"'>"+
+            "<div class='loop-commands'><ul class='command-list'>"+
+            "</li></ul></div><div class='bottom'></div></div>");
+          Program.init()
+        }
+      }
+    })
+    $('.nestedCommands').each(function(){
+      var id = _.last($(this).attr('id').split('-'))
+      if ($('#command-'+id).length > 0) {
+        var pos = $('#command-'+id).offset()
+        $('#loop-'+id).css({top: pos.top+15+'px', left: pos.left+153+'px'});
+      } else {
+        $(this).remove();
+      }
+    })
+  },
   init: function(){
     $(".command-list").sortable({
       placeholder: "ui-state-highlight",
-      receive: function(e, ui) {
-        $('.command-list > li').each(function(i, e){
-          if($(this).attr('id') == undefined) {
-            var id = Date.now();
-            $(this).attr('id', "command-"+id);
-            if ($(this).hasClass("loop")) {
-              var nestedID = 'loop-'+id
-              $('.program').append("<div class='nestedCommands' id='loop-"+id+"'>"+
-                "<div class='loop-commands'><ul class='command-list'>"+
-                "</li></ul></div><div class='bottom'></div></div>");
-
-              pos = $('#command-'+id).offset();
-              $('#loop-'+id).css({top: pos.top+15+'px', left: pos.left+153+'px'});
-              Program.init()
-            }
-          }
-        })
-        if ($(ui.item).attr("class") == "loop command ui-draggable") {
-          //$('.command-list .loop').doubletap(Program.expandLoop,function(event){},400);
-        }
-      },
+      stop: Program.attachNestedSortables,
+      receive: Program.attachNestedSortables,
       connectWith: '.command-list'
     });
   },
