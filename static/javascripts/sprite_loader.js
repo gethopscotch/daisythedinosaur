@@ -47,7 +47,7 @@ $(function() {
   imgl8.src = "images/sprites/l8.png";
   var imgl9 = new Image();
   imgl9.src = "images/sprites/l9.png";
-  (new Image()).src = 'loop-dialog-bottom.png';
-  (new Image()).src = 'loop-dialog-middle.png';
-  (new Image()).src = 'loop-dialog-top.png';
+  (new Image()).src = 'images/loop-dialog-bottom.png';
+  (new Image()).src = 'images/loop-dialog-middle.png';
+  (new Image()).src = 'images/loop-dialog-top.png';
 });

@@ -25,10 +25,9 @@ var Program = {
     $(".command-list").sortable({
       placeholder: "ui-state-highlight",
       receive: function(e, ui) {
-        $('#command-area > .command-list > li').each(function(i, e){
+        $('.command-list > li').each(function(i, e){
           if($(this).attr('id') == undefined) {
-            console.log(this);
-            var id = i;
+            var id = Date.now();
             $(this).attr('id', "command-"+id);
             if ($(this).hasClass("loop")) {
               var nestedID = 'loop-'+id
@@ -68,15 +67,11 @@ var Program = {
       if ($(command).find(".name").html() == "loop") {
         var range = $(command).find(".times").html();
         var loopBodyID = "#loop-"+_.last(command.id.split('-'));
-          console.log(loopBodyID)
         var array = _.map(_.range(range), function() {
           return _.map($(loopBodyID).find(".command"), function(commandInner) {
-            console.log('here')
             if ($(commandInner).find(".name").html() == "loop") {
-              console.log('there')
-              flattenCommand(commandInner)
+              return flattenCommand(commandInner);
             } else {
-              console.log('where')
               return $(commandInner);
             }
           });
