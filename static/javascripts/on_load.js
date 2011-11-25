@@ -66,11 +66,16 @@ var Program = {
     var flattenCommand = function(command) {
       if ($(command).find(".name").html() == "loop") {
         var range = $(command).find(".times").html();
+        var loopBodyID = "#loop-"+_.last(command.id.split('-'));
+          console.log(loopBodyID)
         var array = _.map(_.range(range), function() {
-          return _.map($(command).find(".command"), function(commandInner) {
+          return _.map($(loopBodyID).find(".command"), function(commandInner) {
+            console.log('here')
             if ($(commandInner).find(".name").html() == "loop") {
+              console.log('there')
               flattenCommand(commandInner)
             } else {
+              console.log('where')
               return $(commandInner);
             }
           });
@@ -80,7 +85,7 @@ var Program = {
         return $(command);
       }
     };
-    Program.commands = _.flatten(_.map($(".command-list > .command"), function(command) {
+    Program.commands = _.flatten(_.map($("#command-area > .command-list > .command"), function(command) {
       return flattenCommand(command);
     }));
 
