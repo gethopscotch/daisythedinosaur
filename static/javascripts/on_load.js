@@ -38,6 +38,7 @@ var Program = {
 
               pos = $('#command-'+id).offset();
               $('#loop-'+id).css({top: pos.top+15+'px', left: pos.left+153+'px'});
+              Program.init()
             }
           }
         })
