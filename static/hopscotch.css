@@ -114,7 +114,7 @@ li.loop.command {
   background: transparent url(images/loop-dialog-bottom.png) no-repeat top left;
   height: 20px;
   position: relative;
-  top: 33px;
+  top: 30px;
 }
 
 .nestedCommands ul {

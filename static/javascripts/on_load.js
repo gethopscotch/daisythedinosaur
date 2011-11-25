@@ -34,7 +34,7 @@ var Program = {
               var nestedID = 'loop-'+id
               $('.program').append("<div class='nestedCommands' id='loop-"+id+"'>"+
                 "<div class='loop-commands'><ul class='command-list'>"+
-                "<li class='command'><span class='name'>roll</span></li></ul></div><div class='bottom'></div></div>");
+                "</li></ul></div><div class='bottom'></div></div>");
 
               pos = $('#command-'+id).offset();
               $('#loop-'+id).css({top: pos.top+15+'px', left: pos.left+153+'px'});
