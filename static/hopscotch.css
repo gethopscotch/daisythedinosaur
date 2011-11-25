@@ -84,12 +84,14 @@ li.loop.command {
   height: auto;
 }
 
-.nestedCommands {
+.program .nestedCommands {
   display: block;
+}
+
+.nestedCommands {
+  display: none;
   overflow: visible;
-  position: relative;
-  left: 154px;
-  top: -33px;
+  position: absolute;
   background: transparent url(images/loop-dialog-top.png) no-repeat left top;
   width: 193px;
 }
@@ -102,11 +104,17 @@ li.loop.command {
   top: 36px;
 }
 
+.nestedCommands .command-list {
+  background: none;
+  float: none;
+  min-height: 40px
+}
+
 .nestedCommands .bottom {
   background: transparent url(images/loop-dialog-bottom.png) no-repeat top left;
   height: 20px;
   position: relative;
-  top: 20px;
+  top: 33px;
 }
 
 .nestedCommands ul {

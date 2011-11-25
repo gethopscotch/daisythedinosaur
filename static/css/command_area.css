@@ -6,17 +6,22 @@
   float: left;
 }
 
-#command-list.highlight {
+.command-list.highlight {
   background-color: #eee;
 }
 
-#command-list {
+.command-list {
   margin-top: 3px;
   height: 292px;
-  width: 680px;
-  float: right;
+  width: 166px;
+  float: left;
   background: #cccaca;
   overflow-y: scroll;
+  border-right: 3px dashed #555;
+}
+
+.command-list:last-child {
+  border-right: none;
 }
 
 .ui-state-highlight {

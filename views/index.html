@@ -51,11 +51,6 @@ function onBodyLoad()
 {
   document.addEventListener("deviceready", onDeviceReady, false);
 }
-
-/* When this function is called, PhoneGap has been initialized and is ready to roll */
-/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-   see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-   for more details -jm */
 function onDeviceReady()
 {
   $('head meta[name=viewport]').remove();
@@ -81,23 +76,20 @@ function onDeviceReady()
         program
       </div>
       <div id='command-area'>
-        <ul id='command-list'>
+        <ul class='command-list'>
         </ul>
       </div>
     </div>
 
     <div id='controls'>
-      <div id='trash-bin'>Trash</div>
       <a href='#' id='play'>Play</a>
       <a href='#' id='help'>Help</a>
       <a href='#' id='share'>Share</a>
-
     </div>
     <div class='stage'>
       <div class='title'>stage</div>
       <div id='print-area'></div>
     </div>
-
 
     <div data-title='You need to choose some commands!' id='play-dialog'>
       <p>Try dragging a method from the commands area over to the program area</p>
@@ -108,7 +100,6 @@ function onDeviceReady()
     <div data-title='So glad you like us!' id='share-dialog'>
       <p>We haven't made this functionality yet but it's coming soon.</p>
     </div>
-
   </body>
 </html>
 

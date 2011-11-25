@@ -12,24 +12,23 @@ var Timeouts = {
 };
 
 var Methods = {
-
   move: $.extend({}, Method, {args: ['Forward', 'Backward'], call: function(arg, callback) {
     eval("PrivateMethods.move"+ arg + "(" + callback + ")");
   }}),
 
   roll: $.extend({}, Method, {call: function(arg, callback) {
-    if  (Hopscotch.dino.attr('src') == "images/sprites/1.png") {
-      var anim = Hopscotch.dino.animate(
-        {transform: "r360,"+(Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
+    if  (Stage.dino.attr('src') == "images/sprites/1.png") {
+      var anim = Stage.dino.animate(
+        {transform: "r360,"+(Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
         500, 'linear', function(){
-          Hopscotch.dino.transform("r0");
+          Stage.dino.transform("r0");
           callback();
         });
-    } else if (Hopscotch.dino.attr("src") == "images/sprites/l1.png") {
-      var anim = Hopscotch.dino.animate(
-        {transform: "r-360,"+(-Hopscotch.dino.width / 2)+","+(Hopscotch.dino.height / 2)},
+    } else if (Stage.dino.attr("src") == "images/sprites/l1.png") {
+      var anim = Stage.dino.animate(
+        {transform: "r-360,"+(-Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
         500, 'linear', function(){
-          Hopscotch.dino.transform("r0");
+          Stage.dino.transform("r0");
           callback();
         } );
     }
@@ -37,33 +36,33 @@ var Methods = {
 
   jump: $.extend({}, Method, {call:
    function(args, callback) {
-      if  (Hopscotch.dino.attr('src') == "images/sprites/1.png") {
-        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/3.png')  }, 10);
-        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/4.png')  }, 250);
-        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/1.png')  }, 500);
-        Hopscotch.dino.animate(
-          {y: Hopscotch.dino.attr('y') - 50}, 250, 'linear',
+      if  (Stage.dino.attr('src') == "images/sprites/1.png") {
+        setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/3.png')  }, 10);
+        setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/4.png')  }, 250);
+        setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/1.png')  }, 500);
+        Stage.dino.animate(
+          {y: Stage.dino.attr('y') - 50}, 250, 'linear',
           function(){
-            Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear', callback)
+            Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', callback)
         });
-      } else if (Hopscotch.dino.attr('src') == "images/sprites/l1.png") {
-        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/l3.png')  }, 10);
-        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/l4.png')  }, 250);
-        setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/l1.png')  }, 500);
-        Hopscotch.dino.animate(
-          {y: Hopscotch.dino.attr('y') - 50}, 250, 'linear',
-          function(){ Hopscotch.dino.animate({y: Hopscotch.dino.attr('y') + 50}, 250, 'linear', callback) });
+      } else if (Stage.dino.attr('src') == "images/sprites/l1.png") {
+        setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l3.png')  }, 10);
+        setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l4.png')  }, 250);
+        setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l1.png')  }, 500);
+        Stage.dino.animate(
+          {y: Stage.dino.attr('y') - 50}, 250, 'linear',
+          function(){ Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', callback) });
       }
     }
   }),
 
   turn: $.extend({}, Method, {call: function(args, callback) {
-    if (Hopscotch.dino.attr('src') == "images/sprites/l1.png") {
-      setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/back.png')  }, 150)
-      setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/1.png'); callback(); }, 300)
+    if (Stage.dino.attr('src') == "images/sprites/l1.png") {
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/back.png')  }, 150)
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/1.png'); callback(); }, 300)
     } else {
-      setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/front.png')  }, 150)
-      setTimeout(function(){ Hopscotch.dino.attr('src', 'images/sprites/l1.png'); callback(); }, 300)
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/front.png')  }, 150)
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l1.png'); callback(); }, 300)
     };
   }}),
 
@@ -72,36 +71,36 @@ var Methods = {
 
 var PrivateMethods = {
   moveForward: function(callback) {
-    var x = Hopscotch.dino.attr('x');
-    if  (Hopscotch.dino.attr('src') == "images/sprites/l1.png") {
+    var x = Stage.dino.attr('x');
+    if  (Stage.dino.attr('src') == "images/sprites/l1.png") {
       PrivateMethods.animateLeft(1, x, -10, callback);
-    } else if (Hopscotch.dino.attr('src') == "images/sprites/1.png") {
+    } else if (Stage.dino.attr('src') == "images/sprites/1.png") {
       PrivateMethods.animateRight(1, x, 10, callback);
     }
 
   },
 
   moveBackward: function(callback) {
-    var x = Hopscotch.dino.attr('x');
-    if  (Hopscotch.dino.attr('src') == "images/sprites/l1.png") {
+    var x = Stage.dino.attr('x');
+    if  (Stage.dino.attr('src') == "images/sprites/l1.png") {
       PrivateMethods.animateLeft(1, x, 10, callback);
-    } else if (Hopscotch.dino.attr('src') == "images/sprites/1.png") {
+    } else if (Stage.dino.attr('src') == "images/sprites/1.png") {
       PrivateMethods.animateRight(1, x, -10, callback);
     }
   },
 
   animateRight: function(index, x, offset, callback) {
-    if (x + offset > Hopscotch.width - 99  || x + offset < 0) {
+    if (x + offset > Stage.width - 99  || x + offset < 0) {
       offset = 0;
     }
     if (index < 10) {
-      Hopscotch.dino.animate({x: x+offset}, 100, 'linear', function() {
-        Hopscotch.dino.attr('src', 'images/sprites/' + index + '.png');
+      Stage.dino.animate({x: x+offset}, 100, 'linear', function() {
+        Stage.dino.attr('src', 'images/sprites/' + index + '.png');
         PrivateMethods.animateRight(index + 1, x + offset, offset, callback);
       });
     } else if (index == 10) {
-      Hopscotch.dino.animate({x: x + offset}, 100, 'linear', function() {
-        Hopscotch.dino.attr('src', 'images/sprites/1.png');
+      Stage.dino.animate({x: x + offset}, 100, 'linear', function() {
+        Stage.dino.attr('src', 'images/sprites/1.png');
         callback();
       });
     }
@@ -109,21 +108,19 @@ var PrivateMethods = {
   },
 
   animateLeft: function(index, x, offset, callback) {
-    if (x + offset > Hopscotch.width - 97  || x + offset < 0) {
+    if (x + offset > Stage.width - 97  || x + offset < 0) {
       offset = 0;
     }
     if (index < 10) {
-      Hopscotch.dino.animate({x: x + offset}, 100, 'linear', function() {
-        Hopscotch.dino.attr('src', 'images/sprites/l' + index + '.png');
+      Stage.dino.animate({x: x + offset}, 100, 'linear', function() {
+        Stage.dino.attr('src', 'images/sprites/l' + index + '.png');
         PrivateMethods.animateLeft(index + 1, x + offset, offset, callback);
       });
     } else if (index == 10) {
-      Hopscotch.dino.animate({x: x + offset}, 100, 'linear', function() {
-        Hopscotch.dino.attr('src', 'images/sprites/l1.png');
+      Stage.dino.animate({x: x + offset}, 100, 'linear', function() {
+        Stage.dino.attr('src', 'images/sprites/l1.png');
         callback();
       });
     }
-
   }
-
 }
