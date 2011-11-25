@@ -33,7 +33,7 @@ var Hopscotch = {
       opacity: 0.8,
       width: 30
     });
-    this.dino = this.paper.image("images/sprites/1.png", this.position.x, this.position.y, 70, 80);
+    this.dino = this.paper.image("images/candycane.png", this.position.x, this.position.y, 70, 80);
 
   },
 

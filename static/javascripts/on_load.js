@@ -126,7 +126,7 @@ var Onload = {
 
     CommandList.command = _.first(CommandList.commands);
     Hopscotch.dino.animate({x: Hopscotch.position.x, y: Hopscotch.position.y}, 0, 'linear', function() {
-      Hopscotch.dino.attr({"src" : "images/sprites/1.png"});
+      Hopscotch.dino.attr({"src" : "images/candycane.png"});
       CommandList.executeMethods();
     });
   },
