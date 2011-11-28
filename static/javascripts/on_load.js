@@ -184,9 +184,13 @@ $(function() {
   $("#methods .command").bind("touchend", function() {
     $(".command-list").removeClass("highlight");
   });
-
   $("#methods .command").bind("touchstart", function() {
     $(".command-list").addClass("highlight");
+    if($('.command-list li').length == 0) {
+      var pos = $(this).offset()
+      $('.arrow').css({top: pos.top-30+'px', left: pos.left+50+'px'});
+      $('.arrow').animate({left:pos.left+150+'px', opacity: '1'},'slow','swing',function(){$('.arrow').animate({opacity:'0'},1500)})
+    }
   });
 
   $("#methods .command").draggable({

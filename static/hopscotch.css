@@ -172,3 +172,11 @@ li {
 #play-dialog, #help-dialog, #share-dialog {
   display: none;
 }
+
+.arrow {
+  width: 189px;
+  height: 109px;
+  background: transparent url(images/arrow.gif) no-repeat top left;
+  position: absolute;
+  opacity: 0.0;
+}
