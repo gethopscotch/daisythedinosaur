@@ -66,7 +66,10 @@ var Methods = {
     };
   }}),
 
-  loop: $.extend({}, Method, {call: function(args, callback) {}})
+  loop: $.extend({}, Method, {call: function(args, callback) {}}),
+  'when I': $.extend({}, Method, {args: ['shake', 'touch'], call: function(arg, callback) {
+    eval("PrivateMethods.move"+ arg + "(" + callback + ")");
+  }}),
 };
 
 var PrivateMethods = {

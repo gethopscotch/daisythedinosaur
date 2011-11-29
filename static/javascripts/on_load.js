@@ -5,7 +5,7 @@ var CommandLibrary = {
         $("<li class='loop command'><span class='name'>loop</span></li>").append(
           $("<span class='times'> 5</span>")).appendTo("#methods");
         } else {
-        var command = $("<li class='command'><span class='name'>"
+        var command = $("<li class='command "+method+"'><span class='name'>"
           + method + "</span></li>");
         if (Methods[method].args.length > 0) {
           command.append('<select class="args">'+
@@ -26,7 +26,7 @@ var Program = {
       if($(this).attr('id') == undefined) {
         var id = Date.now();
         $(this).attr('id', "command-"+id);
-        if ($(this).hasClass("loop")) {
+        if ($(this).hasClass("loop")||$(this).hasClass('when')) {
           var nestedID = 'loop-'+id
           $('.program').append("<div class='nestedCommands' id='loop-"+id+"'>"+
             "<div class='loop-commands'><ul class='command-list'>"+
@@ -39,7 +39,7 @@ var Program = {
       var id = _.last($(this).attr('id').split('-'))
       if ($('#command-'+id).length > 0) {
         var pos = $('#command-'+id).offset()
-        $('#loop-'+id).css({top: pos.top+15+'px', left: pos.left+153+'px'});
+        $('#loop-'+id).css({top: pos.top+12+'px', left: pos.left+138+'px'});
       } else {
         $(this).remove();
       }
@@ -187,9 +187,14 @@ $(function() {
   $("#methods .command").bind("touchstart", function() {
     $(".command-list").addClass("highlight");
     if($('.command-list li').length == 0) {
+      $('.arrow').show();
       var pos = $(this).offset()
       $('.arrow').css({top: pos.top-30+'px', left: pos.left+50+'px'});
-      $('.arrow').animate({left:pos.left+150+'px', opacity: '1'},'slow','swing',function(){$('.arrow').animate({opacity:'0'},1500)})
+      $('.arrow').animate({left:pos.left+150+'px', opacity: '1'},'slow','swing',function(){
+        $('.arrow').animate({opacity:'0'},1500,function(){
+          $('.arrow').hide();
+        });
+      });
     }
   });
 

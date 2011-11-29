@@ -64,7 +64,7 @@ a#help:active {
   font-size: 13px;
 }
 
-li.loop.command {
+li.loop.command, li.when.command {
   background: #f6498a;
   box-shadow: inset -5px -5px 5px #d23e76;
   position: relative;
@@ -122,6 +122,9 @@ li.loop.command {
   top: -30px;
 }
 
+.nestedCommands li {
+  margin-left: 14px;
+}
 
 .ui-dialog .loop-commands ul {
   min-height: 200px;
@@ -134,9 +137,9 @@ li.loop.command {
 }
 
 .command {
-  width: 154px;
-  height: 47px;
-  line-height: 47px;
+  width: 140px;
+  height: 40px;
+  line-height: 35px;
   border-radius: 16px;
   text-align: center;
   background: #4daddc;
@@ -163,7 +166,7 @@ li {
 }
 
 .library {
-  margin-right: 60px;
+  margin-right: 20px;
 }
 #controls {
   padding-top: 36px;
@@ -179,4 +182,5 @@ li {
   background: transparent url(images/arrow.gif) no-repeat top left;
   position: absolute;
   opacity: 0.0;
+  display: none;
 }
