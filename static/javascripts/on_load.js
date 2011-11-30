@@ -65,8 +65,10 @@ var Program = {
       Methods[name].call(command.find('.args').val(), Program.executeMethods, command, rest);
     }
   },
-  executeEvent: function() {
-    alert("shake!");
+  executeEvent: function(command) {
+    var id = command.attr("id").split("-")[1]; 
+    var nestedCommands = _.map($("#loop-" + id + " .command-list > .command"), function(command) { return $(command); });
+    Program.executeMethods(nestedCommands[0], nestedCommands);
   },
   parse: function() {
     var flattenCommand = function(command) {

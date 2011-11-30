@@ -76,7 +76,7 @@ var Methods = {
   when: $.extend({}, Method, {args: ['shake', 'touch'], call: function(arg, callback, command, commandList) {
     var prevX = 1.0;
     var axl = new Accelerometer();
-    var threshold = 1;
+    var threshold = 0.5;
     axl.watchAcceleration(
       function (Accel)
       {
@@ -87,8 +87,7 @@ var Methods = {
 
         if (diffX >= threshold)
         {
-        // The user has shaken their device. Do something
-          Program.executeEvent();
+          Program.executeEvent(command);
         }
         prevX = Math.abs(Accel.x);
       },
