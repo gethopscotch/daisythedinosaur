@@ -12,30 +12,30 @@ var Timeouts = {
 };
 
 var Methods = {
-  move: $.extend({}, Method, {args: ['Forward', 'Backward'], call: function(arg, callback) {
-    eval("PrivateMethods.move"+ arg + "(" + callback + ")");
+  move: $.extend({}, Method, {args: ['Forward', 'Backward'], call: function(arg, callback, command, commandList) {
+    PrivateMethods["move" + arg](function() {callback(command, commandList)});
   }}),
 
-  roll: $.extend({}, Method, {call: function(arg, callback) {
+  roll: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
     if  (Stage.dino.attr('src') == "images/sprites/1.png") {
       var anim = Stage.dino.animate(
         {transform: "r360,"+(Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
         500, 'linear', function(){
           Stage.dino.transform("r0");
-          callback();
+          callback(command, commandList);
         });
     } else if (Stage.dino.attr("src") == "images/sprites/l1.png") {
       var anim = Stage.dino.animate(
         {transform: "r-360,"+(-Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
         500, 'linear', function(){
           Stage.dino.transform("r0");
-          callback();
+          callback(command, commandList);
         } );
     }
   }}),
 
   jump: $.extend({}, Method, {call:
-                 function(args, callback) {
+                 function(args, callback, command, commandList) {
     if  (Stage.dino.attr('src') == "images/sprites/1.png") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/3.png')  }, 10);
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/4.png')  }, 250);
@@ -43,7 +43,7 @@ var Methods = {
       Stage.dino.animate(
         {y: Stage.dino.attr('y') - 50}, 250, 'linear',
         function(){
-          Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', callback)
+          Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', function() {callback(command, commandList)})
         });
     } else if (Stage.dino.attr('src') == "images/sprites/l1.png") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l3.png')  }, 10);
@@ -51,23 +51,29 @@ var Methods = {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l1.png')  }, 500);
       Stage.dino.animate(
         {y: Stage.dino.attr('y') - 50}, 250, 'linear',
-        function(){ Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', callback) });
+        function(){ Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', function() {callback(command, commandList)}) });
     }
   }
   }),
 
-  turn: $.extend({}, Method, {call: function(args, callback) {
+  turn: $.extend({}, Method, {call: function(args, callback, command, commandList) {
     if (Stage.dino.attr('src') == "images/sprites/l1.png") {
-      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/back.png')  }, 150)
-      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/1.png'); callback(); }, 300)
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/back.png')  }, 150);
+      setTimeout(function(){ 
+                  Stage.dino.attr('src', 'images/sprites/1.png'); 
+                  callback(command, commandList);
+      }, 300);
     } else {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/front.png')  }, 150)
-      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l1.png'); callback(); }, 300)
+      setTimeout(function(){ 
+        Stage.dino.attr('src', 'images/sprites/l1.png'); 
+        callback(command, commandList);
+      }, 300)
     };
   }}),
 
-  loop: $.extend({}, Method, {call: function(args, callback) {}}),
-  when: $.extend({}, Method, {args: ['shake', 'touch'], call: function(arg, callback) {
+  loop: $.extend({}, Method, {call: function(args, callback, command, commandList) {}}),
+  when: $.extend({}, Method, {args: ['shake', 'touch'], call: function(arg, callback, command, commandList) {
     var prevX = 1.0;
     var axl = new Accelerometer();
     var threshold = 1;
@@ -82,14 +88,14 @@ var Methods = {
         if (diffX >= threshold)
         {
         // The user has shaken their device. Do something
-          alert("You have made a milkshake!");
+          Program.executeEvent();
         }
         prevX = Math.abs(Accel.x);
       },
       function(){},
       {frequency : 100}
     );
-    callback();
+    callback(command, commandList);
   }}),
 };
 

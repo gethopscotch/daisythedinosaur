@@ -19,8 +19,6 @@ var CommandLibrary = {
 }
 
 var Program = {
-  commands: "",
-  command: "",
   attachNestedSortables: function (e, ui) {
     $('.command-list > li').each(function(i, e){
       if($(this).attr('id') == undefined) {
@@ -53,21 +51,22 @@ var Program = {
       connectWith: '.command-list'
     });
   },
-  executeMethods: function() {
-    if (Program.commands.length == 0) {
-      Program.command.removeClass("active");
+  executeMethods: function(command, rest) {
+    if (rest.length == 0) {
+      command.removeClass("active");
       return;
     } else {
-      Program.command.removeClass("active");
-      Program.command = _.first(Program.commands);
-      Program.command.addClass("active");
+      command.removeClass("active");
+      command = _.first(rest);
+      command.addClass("active");
 
-      var name = Program.command.find('.name').html();
-      Program.commands = _.rest(Program.commands, 1);
-      eval('Methods.' + name + '.call("'+ Program.command.find('.args').val() +'", Program.executeMethods)');
+      var name = command.find('.name').html();
+      rest = _.rest(rest, 1);
+      Methods[name].call(command.find('.args').val(), Program.executeMethods, command, rest);
     }
   },
   executeEvent: function() {
+    alert("shake!");
   },
   parse: function() {
     var flattenCommand = function(command) {
@@ -88,14 +87,14 @@ var Program = {
         return $(command);
       }
     };
-    Program.commands = _.flatten(_.map($("#command-area > .command-list > .command"), function(command) {
+    var commands = _.flatten(_.map($("#command-area > .command-list > .command"), function(command) {
       return flattenCommand(command);
     }));
 
-    Program.command = _.first(Program.commands);
+    var command = _.first(commands);
     Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
       Stage.dino.attr({"src" : "images/sprites/1.png"});
-      Program.executeMethods();
+      Program.executeMethods(command, commands);
     });
   },
   expandLoop: function(event) {
