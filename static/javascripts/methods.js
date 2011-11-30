@@ -9,14 +9,14 @@ var Methods = {
   }}),
 
   roll: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
-    if  (Stage.dino.attr('src') == "images/sprites/1.png") {
+    if  (Stage.dinoDirection == "right") {
       var anim = Stage.dino.animate(
         {transform: "r360,"+(Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
         500, 'linear', function(){
           Stage.dino.transform("r0");
           callback(command, commandList);
         });
-    } else if (Stage.dino.attr("src") == "images/sprites/l1.png") {
+    } else if (Stage.dinoDirection == "left") {
       var anim = Stage.dino.animate(
         {transform: "r-360,"+(-Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
         500, 'linear', function(){
@@ -28,7 +28,7 @@ var Methods = {
 
   jump: $.extend({}, Method, {call:
                  function(args, callback, command, commandList) {
-    if  (Stage.dino.attr('src') == "images/sprites/1.png") {
+    if  (Stage.dinoDirection == "right") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/3.png')  }, 10);
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/4.png')  }, 250);
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/1.png')  }, 500);
@@ -37,7 +37,7 @@ var Methods = {
         function(){
           Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', function() {callback(command, commandList)})
         });
-    } else if (Stage.dino.attr('src') == "images/sprites/l1.png") {
+    } else if (Stage.dinoDirection == "left") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l3.png')  }, 10);
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l4.png')  }, 250);
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l1.png')  }, 500);
@@ -49,23 +49,25 @@ var Methods = {
   }),
 
   turn: $.extend({}, Method, {call: function(args, callback, command, commandList) {
-    if (Stage.dino.attr('src') == "images/sprites/l1.png") {
+    if (Stage.dinoDirection == "left") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/back.png')  }, 150);
-      setTimeout(function(){ 
-                  Stage.dino.attr('src', 'images/sprites/1.png'); 
+      setTimeout(function(){
+                  Stage.dino.attr('src', 'images/sprites/1.png');
+                  Stage.dinoDirection = "right";
                   callback(command, commandList);
       }, 300);
-    } else {
+    } else if(Stage.dinoDirection == "right") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/front.png')  }, 150)
-      setTimeout(function(){ 
-        Stage.dino.attr('src', 'images/sprites/l1.png'); 
+      setTimeout(function(){
+        Stage.dinoDirection = "left"
+        Stage.dino.attr('src', 'images/sprites/l1.png');
         callback(command, commandList);
       }, 300)
     };
   }}),
 
   loop: $.extend({}, Method, {call: function(args, callback, command, commandList) {}}),
-  when: $.extend({}, Method, {args: ['shake', 'touch'], call: function(arg, callback, command, commandList) {
+  when: $.extend({}, Method, {args: ['shake'], call: function(arg, callback, command, commandList) {
     var prevX = 1.0;
     var axl = new Accelerometer();
     var threshold = 0.5;
@@ -93,9 +95,9 @@ var Methods = {
 var PrivateMethods = {
   moveForward: function(callback) {
     var x = Stage.dino.attr('x');
-    if  (Stage.dino.attr('src') == "images/sprites/l1.png") {
+    if  (Stage.dinoDirection == "left") {
       PrivateMethods.animateLeft(1, x, -10, callback);
-    } else if (Stage.dino.attr('src') == "images/sprites/1.png") {
+    } else if (Stage.dinoDirection == "right") {
       PrivateMethods.animateRight(1, x, 10, callback);
     }
 
@@ -103,9 +105,9 @@ var PrivateMethods = {
 
   moveBackward: function(callback) {
     var x = Stage.dino.attr('x');
-    if  (Stage.dino.attr('src') == "images/sprites/l1.png") {
+    if  (Stage.dinoDirection == "right") {
       PrivateMethods.animateLeft(1, x, 10, callback);
-    } else if (Stage.dino.attr('src') == "images/sprites/1.png") {
+    } else if (Stage.dinoDirection == "right") {
       PrivateMethods.animateRight(1, x, -10, callback);
     }
   },
