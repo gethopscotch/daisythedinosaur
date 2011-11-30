@@ -66,11 +66,10 @@ var Program = {
     }
   },
   executeEvent: function(command) {
-    var id = command.attr("id").split("-")[1]; 
-    var nestedCommands = _.map($("#loop-" + id + " .command-list > .command"), function(command) { return $(command); });
-    Program.executeMethods(nestedCommands[0], nestedCommands);
+    var id = command.attr("id").split("-")[1];
+    Program.parse("loop-" + id);
   },
-  parse: function() {
+  parse: function(id) {
     var flattenCommand = function(command) {
       if ($(command).find(".name").html() == "loop") {
         var range = $(command).find(".times").html();
@@ -89,15 +88,12 @@ var Program = {
         return $(command);
       }
     };
-    var commands = _.flatten(_.map($("#command-area > .command-list > .command"), function(command) {
+    var commands = _.flatten(_.map($("#" + id + " .command-list > .command"), function(command) {
       return flattenCommand(command);
     }));
 
     var command = _.first(commands);
-    Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
-      Stage.dino.attr({"src" : "images/sprites/1.png"});
-      Program.executeMethods(command, commands);
-    });
+    Program.executeMethods(command, commands);
   },
   expandLoop: function(event) {
     var loopCommands = $(event.target).parents(".loop").find(".loop-commands").first();
@@ -142,7 +138,10 @@ var Controls = {
 
     }
     else {
-      Program.parse();
+      Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
+        Stage.dino.attr({"src" : "images/sprites/1.png"});
+        Program.parse("command-area");
+      });
     }
   },
   share: function(e){

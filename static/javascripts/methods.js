@@ -3,14 +3,6 @@ var Method = {
   call: function() {}
 }
 
-var Timeouts = {
-  none: 0,
-  move: 1400,
-  jump: 650,
-  roll: 650,
-  turn: 450
-};
-
 var Methods = {
   move: $.extend({}, Method, {args: ['Forward', 'Backward'], call: function(arg, callback, command, commandList) {
     PrivateMethods["move" + arg](function() {callback(command, commandList)});
