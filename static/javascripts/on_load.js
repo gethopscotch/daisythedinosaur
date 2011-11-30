@@ -67,6 +67,8 @@ var Program = {
       eval('Methods.' + name + '.call("'+ Program.command.find('.args').val() +'", Program.executeMethods)');
     }
   },
+  executeEvent: function() {
+  },
   parse: function() {
     var flattenCommand = function(command) {
       if ($(command).find(".name").html() == "loop") {

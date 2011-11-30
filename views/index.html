@@ -28,6 +28,30 @@
     <script type="text/javascript">
 
 
+   var prevX = 1.0;
+        function watchForShake(threshold)
+        {
+          var axl = new Accelerometer();
+          axl.watchAcceleration(
+            function (Accel)
+            {
+              if (true === Accel.is_updating){
+                return;
+              }
+              var diffX = Math.abs(Accel.x) - prevX;
+
+              if (diffX >= threshold)
+              {
+              // The user has shaken their device. Do something
+                alert("You have made a milkshake!");
+              }
+              prevX = Math.abs(Accel.x);
+              },
+              function(){},
+              {frequency : 100}
+            );
+        }
+
       // If you want to prevent dragging, uncomment this section
     /*
        function preventBehavior(e)
