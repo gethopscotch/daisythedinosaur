@@ -24,13 +24,19 @@
 
 .ui-state-highlight {
   height: 40px;
+  width: 130px;
+  margin-left: 10px;
+  border-radius: 20px;
   background-color: #c9d970;
 }
 
 .args {
   position: relative;
-  top: -4px;
-  left: 3px;
+  top: -2px;
+  left: 2px;
+}
+.command-list .name {
+  font-size: 16px;
 }
 .ui-dialog .args {
   font-size: 10px;
