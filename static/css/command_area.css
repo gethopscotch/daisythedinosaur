@@ -12,8 +12,10 @@
   background: #cccaca;
 }
 
-.command-list.highlight {
+#command-area > .command-list.highlight {
   background-color: #eee;
+  border: none;
+  margin-left: 0;
 }
 
 .command-list {
