@@ -12,6 +12,7 @@
     <script src='javascripts/methods.js'></script>
     <script src='javascripts/stage.js'></script>
     <script src='javascripts/on_load.js'></script>
+
     <link href='css/reset.css' rel='stylesheet' type='text/css' />
     <link href='hopscotch.css' rel='stylesheet' type='text/css' />
     <link href='css/command_library.css' rel='stylesheet' type='text/css' />
@@ -28,60 +29,39 @@
     <script type="text/javascript">
 
 
-   var prevX = 1.0;
-        function watchForShake(threshold)
-        {
-          var axl = new Accelerometer();
-          axl.watchAcceleration(
-            function (Accel)
-            {
-              if (true === Accel.is_updating){
-                return;
-              }
-              var diffX = Math.abs(Accel.x) - prevX;
 
-              if (diffX >= threshold)
-              {
-              // The user has shaken their device. Do something
-                alert("You have made a milkshake!");
-              }
-              prevX = Math.abs(Accel.x);
-              },
-              function(){},
-              {frequency : 100}
-            );
-        }
+        // If you want to prevent dragging, uncomment this section
+      /*
+         function preventBehavior(e)
+         {
+         e.preventDefault();
+         };
+         document.addEventListener("touchmove", preventBehavior, false);
+       */
 
-      // If you want to prevent dragging, uncomment this section
-    /*
-       function preventBehavior(e)
-       {
-       e.preventDefault();
-       };
-       document.addEventListener("touchmove", preventBehavior, false);
-     */
+      /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+         see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+         for more details -jm */
+      /*
+         function handleOpenURL(url)
+         {
+      // TODO: do something with the url passed in.
+      }
+       */
 
-    /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-       see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-       for more details -jm */
-    /*
-       function handleOpenURL(url)
-       {
-    // TODO: do something with the url passed in.
-    }
-     */
+      function onBodyLoad()
+      {
+        document.addEventListener("deviceready", onDeviceReady, false);
+      }
+      function onDeviceReady()
+      {
+        $('head meta[name=viewport]').remove();
+        $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />');
 
-function onBodyLoad()
-{
-  document.addEventListener("deviceready", onDeviceReady, false);
-}
-function onDeviceReady()
-{
-  $('head meta[name=viewport]').remove();
-  $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />');
-}
 
-</script>
+      }
+
+    </script>
   </head>
   <body onload="onBodyLoad()">
 
