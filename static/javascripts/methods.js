@@ -105,7 +105,7 @@ var PrivateMethods = {
 
   moveBackward: function(callback) {
     var x = Stage.dino.attr('x');
-    if  (Stage.dinoDirection == "right") {
+    if  (Stage.dinoDirection == "left") {
       PrivateMethods.animateLeft(1, x, 10, callback);
     } else if (Stage.dinoDirection == "right") {
       PrivateMethods.animateRight(1, x, -10, callback);

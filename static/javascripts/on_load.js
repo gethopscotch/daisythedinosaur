@@ -139,6 +139,7 @@ var Controls = {
     }
     else {
       Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
+        Stage.dinoDirection = "right";
         Stage.dino.attr({"src" : "images/sprites/1.png"});
         Program.parse("command-area");
       });
