@@ -8,7 +8,11 @@ get '/' do
 end
 
 
-get '/app' do
+get '/more.html' do
+  File.read(File.join('views', 'more.html'))
+end
+
+get '/index.html' do
   File.read(File.join('views', 'index.html'))
 end
 

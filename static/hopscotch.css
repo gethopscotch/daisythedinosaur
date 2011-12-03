@@ -1,6 +1,6 @@
 body {
   width: 970px;
-  font-family: Nilland-black;
+  font-family: Nilland;
   padding: 20px;
 }
 
@@ -23,31 +23,50 @@ body {
 }
 
 a#play {
-  background-image: url(images/play.png);
+  background-image: url(images/controls/play.png);
+  margin-bottom: 30px;
 }
 
 a#play:active {
-  background-image: url(images/play-active.png);
+  background-image: url(images/controls/play-active.png);
 }
 a#more {
-  background-image: url(images/share.png);
+  background-image: url(images/controls/next.png);
 }
 a#more:active {
-  background-image: url(images/share.png);
+  background-image: url(images/controls/next-active.png);
 }
 a#share {
-  background-image: url(images/share.png);
+  background-image: url(images/controls/share.png);
 }
 a#share:active {
-  background-image: url(images/share-active.png);
+  background-image: url(images/controls/share-active.png);
 }
 a#help {
-  background-image: url(images/help.png);
+  background-image: url(images/controls/help.png);
 }
 a#help:active {
-  background-image: url(images/help-active.png);
+  background-image: url(images/controls/help-active.png);
 }
-
+a#previous {
+  display: block;
+  height: 70px;
+  width: 140px;
+  background-position: top left;
+  background-repeat: no-repeat;
+  font-family: Geneva, Helvetica;
+  font-size: 26px;
+  color: #F6498A;
+  text-decoration: none;
+  text-align: right;
+  line-height: 64px;
+  float: left;
+  margin-top: 143px;
+  background-image: url(images/controls/previous.png);
+}
+a#previous:active {
+  background-image: url(images/controls/previous-active.png);
+}
 #trash-bin {
   background-image: url(images/trash.png);
 }

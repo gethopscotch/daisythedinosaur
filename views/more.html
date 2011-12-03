@@ -14,6 +14,7 @@
     <script src='javascripts/on_load.js'></script>
 
     <link href='css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='css/more.css' rel='stylesheet' type='text/css' />
     <link href='hopscotch.css' rel='stylesheet' type='text/css' />
     <link href='css/command_library.css' rel='stylesheet' type='text/css' />
     <link href='css/command_area.css' rel='stylesheet' type='text/css' />
@@ -28,40 +29,6 @@
     <script type="text/javascript" charset="utf-8" src="phonegap-1.1.0.js"></script>
     <script type="text/javascript">
 
-
-
-        // If you want to prevent dragging, uncomment this section
-      /*
-         function preventBehavior(e)
-         {
-         e.preventDefault();
-         };
-         document.addEventListener("touchmove", preventBehavior, false);
-       */
-
-      /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-         see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-         for more details -jm */
-      /*
-         function handleOpenURL(url)
-         {
-      // TODO: do something with the url passed in.
-      }
-       */
-
-      function onBodyLoad()
-      {
-        document.addEventListener("deviceready", onDeviceReady, false);
-      }
-
-      function onDeviceReady()
-      {
-        $('head meta[name=viewport]').remove();
-        $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />');
-
-
-      }
-
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-26599714-1']);
       _gaq.push(['_trackPageview']);
@@ -71,53 +38,33 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-
     </script>
   </head>
-  <body onload="onBodyLoad()">
-
-  </head>
   <body>
-    <div class='arrow'></div>
-    <div class='library'>
+    <a href="index.html" id="previous">Back</a>
+    <div class='program more-games'>
       <div class='title'>
-        commands
-      </div>
-      <div id='command-library'>
-        <ul id='methods'></ul>
-      </div>
-    </div>
-    <div class='program'>
-      <div class='title'>
-        program
+        Having fun? Now try building a game.
       </div>
       <div id="workspace">
-        <div id='command-area'>
-          <ul class='command-list'>
-          </ul>
+        <div class='game'>
+          <div class='your-own'> program your own... </div>
+          <div class='promo'>
+            <a href="#" id="magic-8-ball"><img src='/images/magic8ball-2.png'/ ></a>
+          </div>
+          <div class='game-name'>Shuffleboard</div>
+        </div>
+        <div class='game'>
+          <div class='your-own'> program your own... </div>
+          <div class='promo'></div>
+          <div class='game-name'>Shuffleboard</div>
+        </div>
+        <div class='game'>
+          <div class='your-own'> program your own... </div>
+          <div class='promo'></div>
+          <div class='game-name'>Shuffleboard</div>
         </div>
       </div>
     </div>
-
-    <div id='controls'>
-      <a href='#' id='play'>Play</a>
-      <a href='#' id='help'>Help</a>
-      <a href='more.html' id='more'>more</a>
-    </div>
-    <div class='stage'>
-      <div class='title'>stage</div>
-      <div id='print-area'></div>
-    </div>
-
-    <div data-title='You need to choose some commands!' id='play-dialog'>
-      <p>Try dragging a method from the commands area over to the program area</p>
-    </div>
-    <div data-title='Welcome to Hopscotch!' id='help-dialog'>
-      <p>You can animate the dinosaur by moving methods from the commands over to the program area and pressing play.</p>
-    </div>
-    <div data-title='So glad you like us!' id='share-dialog'>
-      <p>We haven't made this functionality yet but it's coming soon.</p>
-    </div>
   </body>
 </html>
-

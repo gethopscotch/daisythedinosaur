@@ -1,0 +1,37 @@
+.more-games {
+  width: 800px;
+  float: right;
+}
+.game {
+  width: 260px;
+  height: 250px;
+  padding-top: 45px;
+  float: left;
+  overflow: hidden;
+}
+
+.game img {
+  border-radius: 30px;
+  height: 150px;
+  width: 150px;
+}
+.promo {
+  height: 150px;
+  width: 150px;
+  border: 3px solid #828282;
+  border-radius: 30px;
+  margin: auto;
+}
+.your-own {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.game-name {
+  text-align: center;
+  margin-top: 4px;
+  font-family: Helvetica, Arial;
+}
+
