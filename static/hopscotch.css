@@ -61,7 +61,7 @@ a#previous {
   text-align: right;
   line-height: 64px;
   float: left;
-  margin-top: 143px;
+  margin-top: 300px;
   background-image: url(images/controls/previous.png);
 }
 a#previous:active {
