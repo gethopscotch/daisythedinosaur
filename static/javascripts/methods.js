@@ -113,7 +113,7 @@ var PrivateMethods = {
   },
 
   animateRight: function(index, x, offset, callback) {
-    if (x + offset > Stage.width - 99  || x + offset < 0) {
+    if (x + offset > Stage.width - 63  || x + offset < 0) {
       offset = 0;
     }
     if (index < 10) {
