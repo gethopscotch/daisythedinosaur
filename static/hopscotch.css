@@ -24,7 +24,7 @@ body {
 
 a#play {
   background-image: url(images/controls/play.png);
-  margin-bottom: 30px;
+  margin-bottom: 110px;
 }
 
 a#play:active {
