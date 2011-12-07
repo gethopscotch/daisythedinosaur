@@ -11,14 +11,14 @@
 }
 
 .game img {
-  border-radius: 30px;
+  border-radius: 24px;
   height: 150px;
   width: 150px;
 }
 .promo {
   height: 150px;
   width: 150px;
-  border: 3px solid #828282;
+  border: 5px solid #828282;
   border-radius: 30px;
   margin: auto;
 }
@@ -35,3 +35,36 @@
   font-family: Helvetica, Arial;
 }
 
+.game-detail {
+	float: left;
+	border-radius: 30px;
+	height: 150px;
+	width: 150px;
+	border: 5px solid #828282;
+	}
+	
+.game-detail img {
+	border-radius: 24px;
+	height: 150px;
+	width: 150px;	
+}
+
+
+.detail-page #workspace {
+	padding: 40px;
+}
+
+.game-description {
+	float: left;
+	padding: 0px 40px;
+	font-size: 22px;
+	width: 450px;
+	line-height: 30px;
+	font-family: arial;
+	color: #828282;
+	}
+	
+.game-description blockquote {
+  padding: 20px 0px 20px 20px;
+  font-size: 18px;
+}	

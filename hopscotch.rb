@@ -16,6 +16,30 @@ get '/index.html' do
   File.read(File.join('views', 'index.html'))
 end
 
+get '/crystalball.html' do
+  File.read(File.join('views', 'crystalball.html'))
+end
+
+get '/astrodefender.html' do
+  File.read(File.join('views', 'astrodefender.html'))
+end
+
+get '/tictactoe.html' do
+  File.read(File.join('views', 'tictactoe.html'))
+end
+
+get '/crabby.html' do
+  File.read(File.join('views', 'crabby.html'))
+end
+
+get '/noisemachine.html' do
+  File.read(File.join('views', 'noisemachine.html'))
+end
+
+get '/whackamole.html' do
+  File.read(File.join('views', 'whackamole.html'))
+end
+
 get '/alex' do
 <<END
 <!DOCTYPE html>

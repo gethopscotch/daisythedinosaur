@@ -209,3 +209,7 @@ li {
   opacity: 0.0;
   display: none;
 }
+
+em {
+    font-style: italic;
+}
