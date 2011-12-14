@@ -9,6 +9,7 @@ var Methods = {
   }}),
 
   roll: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_roll"},  type: "POST"})
     if  (Stage.dinoDirection == "right") {
       var anim = Stage.dino.animate(
         {transform: "r360,"+(Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
@@ -28,6 +29,7 @@ var Methods = {
 
   jump: $.extend({}, Method, {call:
                  function(args, callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_jump"},  type: "POST"})
     if  (Stage.dinoDirection == "right") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/3.png')  }, 10);
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/4.png')  }, 250);
@@ -49,6 +51,7 @@ var Methods = {
   }),
 
   turn: $.extend({}, Method, {call: function(args, callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_turn"},  type: "POST"})
     if (Stage.dinoDirection == "left") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/back.png')  }, 150);
       setTimeout(function(){
@@ -66,8 +69,11 @@ var Methods = {
     };
   }}),
 
-  loop: $.extend({}, Method, {call: function(args, callback, command, commandList) {}}),
+  loop: $.extend({}, Method, {call: function(args, callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_loop"},  type: "POST"})
+  }}),
   when: $.extend({}, Method, {args: ['shake'], call: function(arg, callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_shake"},  type: "POST"})
     var prevX = 1.0;
     var axl = new Accelerometer();
     var threshold = 0.5;
@@ -94,6 +100,7 @@ var Methods = {
 
 var PrivateMethods = {
   moveForward: function(callback) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_move_forward"},  type: "POST"})
     var x = Stage.dino.attr('x');
     if  (Stage.dinoDirection == "left") {
       PrivateMethods.animateLeft(1, x, -10, callback);
@@ -104,6 +111,7 @@ var PrivateMethods = {
   },
 
   moveBackward: function(callback) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_move_backward"},  type: "POST"})
     var x = Stage.dino.attr('x');
     if  (Stage.dinoDirection == "left") {
       PrivateMethods.animateLeft(1, x, 10, callback);
