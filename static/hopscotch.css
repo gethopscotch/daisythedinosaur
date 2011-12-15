@@ -19,12 +19,12 @@ body {
   color: #F6498A;
   text-decoration: none;
   text-align: left;
-  line-height: 64px;
 }
 
 a#play {
   background-image: url(images/controls/play.png);
-  margin-bottom: 110px;
+  margin-bottom: 46px;
+  line-height: 64px;
 }
 
 a#play:active {
@@ -32,11 +32,13 @@ a#play:active {
 }
 a#more {
   background-image: url(images/controls/next.png);
+  line-height: 64px;
 }
 a#more:active {
   background-image: url(images/controls/next-active.png);
 }
 a#share {
+  padding-top: 4px;
   background-image: url(images/controls/share.png);
 }
 a#share:active {
@@ -44,6 +46,7 @@ a#share:active {
 }
 a#help {
   background-image: url(images/controls/help.png);
+  line-height: 64px;
 }
 a#help:active {
   background-image: url(images/controls/help-active.png);
