@@ -147,6 +147,7 @@ var Controls = {
   },
   share: function(e){
     e.preventDefault();
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "tapped_share"},  type: "POST"})
     var dialog = $("#share-dialog").dialog({
       title: $("#share-dialog").data("title"),
       resizable: false,
@@ -160,6 +161,7 @@ var Controls = {
   },
   help: function(e){
     e.preventDefault();
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "tapped_help"},  type: "POST"})
     $("#help-dialog").dialog({
       title: $("#help-dialog").data("title"),
       resizable: false,
