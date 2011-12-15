@@ -125,17 +125,18 @@ var Controls = {
   play: function(e){
     e.preventDefault();
     if( $(".command-list > .command").length == 0 ) {
-      $("#play-dialog").dialog({
+      var dialog = $("#play-dialog").dialog({
         title: $("#play-dialog").data('title'),
         resizable: false,
         close: function(){
-          $('body').unbind('touchstart')
+          $('.overlay').unbind('touchstart')
+          $(".overlay").removeClass("shown");
         }
       });
-      $('body').bind("touchstart", function() {
-          dialog.dialog("close");
+      $(".overlay").addClass("shown");
+      $('.overlay').bind("touchstart", function() {
+        dialog.dialog("close");
       });
-
     }
     else {
       Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
@@ -152,25 +153,29 @@ var Controls = {
       title: $("#share-dialog").data("title"),
       resizable: false,
       close: function(){
-        $('body').unbind('touchstart')
+        $('.overlay').unbind('touchstart')
+        $(".overlay").removeClass("shown");
       }
     });
-    $('body').bind("touchstart", function() {
+    $(".overlay").addClass("shown");
+    $('.overlay').bind("touchstart", function() {
         dialog.dialog("close");
     });
   },
   help: function(e){
     e.preventDefault();
     $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "tapped_help"},  type: "POST"})
-    $("#help-dialog").dialog({
+    var dialog = $("#help-dialog").dialog({
       title: $("#help-dialog").data("title"),
       resizable: false,
       close: function(){
-        $('body').unbind('touchstart')
+        $('.overlay').unbind('touchstart')
+        $(".overlay").removeClass("shown");
       }
     });
-    $('body').bind("touchstart", function() {
-        dialog.dialog("close");
+    $(".overlay").addClass("shown");
+    $('.overlay').bind("touchstart", function() {
+      dialog.dialog("close");
     });
   }
 }
