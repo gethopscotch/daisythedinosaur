@@ -34,6 +34,7 @@ var Stage = {
       width: 30
     });
     this.dino = this.paper.image("images/sprites/1.png", this.position.x, this.position.y, 70, 80);
+    this.dino.data("scale", 0)
     this.dinoDirection = "right";
   }
 }

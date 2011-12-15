@@ -96,6 +96,22 @@ var Methods = {
     );
     callback(command, commandList);
   }}),
+  grow: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
+    var scale = Stage.dino.data("scale");
+    if (scale < 5) {
+      Stage.dino.scale(1.2,1.2);
+      Stage.dino.data("scale", scale + 1);
+    }
+    callback(command, commandList);
+  }}),
+  shrink: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
+    var scale = Stage.dino.data("scale");
+    if (scale > - 5) {
+      Stage.dino.scale(.8,.8);
+      Stage.dino.data("scale", scale - 1);
+    }
+    callback(command, commandList);
+  }})
 };
 
 var PrivateMethods = {

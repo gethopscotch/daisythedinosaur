@@ -2,6 +2,7 @@
   border-top: 8px solid #c9d970;
   height: 292px;
   width: 224px;
+  overflow-y: scroll;
 }
 
 #command-library #methods {
