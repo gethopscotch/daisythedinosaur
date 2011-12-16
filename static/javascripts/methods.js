@@ -96,7 +96,8 @@ var Methods = {
     );
     callback(command, commandList);
   }}),
-  grow: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
+  grow: $.extend({}, Method, {call: function(args, callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_grow"},  type: "POST"})
     var scale = Stage.dino.data("scale");
     if (scale < 5) {
       var height = Stage.dino.attrs.height
@@ -109,7 +110,8 @@ var Methods = {
       callback(command, commandList);
     }
   }}),
-  shrink: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
+  shrink: $.extend({}, Method, {call: function(args, callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_shrink"},  type: "POST"})
     var scale = Stage.dino.data("scale");
     if (scale > - 5) {
       var height = Stage.dino.attrs.height
@@ -120,6 +122,34 @@ var Methods = {
       });
     } else {
       callback(command, commandList);
+    }
+  }}),
+  spin: $.extend({}, Method, {call: function(args, callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_spin"},  type: "POST"})
+    if (Stage.dinoDirection == "left") {
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/back.png')  }, 150);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/1.png'); }, 300);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/front.png')  }, 450)
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l1.png'); }, 600);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/back.png')  }, 750);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/1.png'); }, 900);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/front.png')  }, 1050)
+      setTimeout(function(){
+        Stage.dino.attr('src', 'images/sprites/l1.png');
+        callback(command, commandList);
+      }, 1250);
+    } else if(Stage.dinoDirection == "right") {
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/front.png')  }, 150);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l1.png'); }, 300);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/back.png')  }, 450)
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/1.png'); }, 600);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/front.png')  }, 750);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/l1.png'); }, 900);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/sprites/back.png')  }, 1050)
+      setTimeout(function(){
+        Stage.dino.attr('src', 'images/sprites/1.png');
+        callback(command, commandList);
+      }, 1250);
     }
   }})
 };
