@@ -161,14 +161,26 @@ var PrivateMethods = {
     }
     if (index < 10) {
       Stage.dino.animate({x: x+offset}, 100, 'linear', function() {
-        Stage.dino.attr('src', 'images/sprites/' + index + '.png');
-        PrivateMethods.animateRight(index + 1, x + offset, offset, callback);
+        if  (Stage.dinoDirection == "left") {
+          Stage.dino.attr('src', 'images/sprites/l' + index + '.png');
+          PrivateMethods.animateLeft(index + 1, x - offset, -offset, callback);
+        } else {
+          Stage.dino.attr('src', 'images/sprites/' + index + '.png');
+          PrivateMethods.animateRight(index + 1, x + offset, offset, callback);
+        }
       });
     } else if (index == 10) {
-      Stage.dino.animate({x: x + offset}, 100, 'linear', function() {
-        Stage.dino.attr('src', 'images/sprites/1.png');
-        callback();
-      });
+      if  (Stage.dinoDirection == "left") {
+        Stage.dino.animate({x: x - offset}, 100, 'linear', function() {
+          Stage.dino.attr('src', 'images/sprites/l1.png');
+          callback();
+        });
+      } else {
+        Stage.dino.animate({x: x + offset}, 100, 'linear', function() {
+          Stage.dino.attr('src', 'images/sprites/1.png');
+          callback();
+        });
+      }
     }
 
   },
@@ -178,15 +190,27 @@ var PrivateMethods = {
       offset = 0;
     }
     if (index < 10) {
-      Stage.dino.animate({x: x + offset}, 100, 'linear', function() {
-        Stage.dino.attr('src', 'images/sprites/l' + index + '.png');
-        PrivateMethods.animateLeft(index + 1, x + offset, offset, callback);
+      Stage.dino.animate({x: x - offset}, 100, 'linear', function() {
+        if  (Stage.dinoDirection == "right") {
+          Stage.dino.attr('src', 'images/sprites/' + index + '.png');
+          PrivateMethods.animateRight(index + 1, x - offset, -offset, callback);
+        } else {
+          Stage.dino.attr('src', 'images/sprites/l' + index + '.png');
+          PrivateMethods.animateLeft(index + 1, x + offset, offset, callback);
+        }
       });
     } else if (index == 10) {
-      Stage.dino.animate({x: x + offset}, 100, 'linear', function() {
-        Stage.dino.attr('src', 'images/sprites/l1.png');
-        callback();
-      });
+      if  (Stage.dinoDirection == "right") {
+        Stage.dino.animate({x: x - offset}, 100, 'linear', function() {
+          Stage.dino.attr('src', 'images/sprites/1.png');
+          callback();
+        });
+      } else {
+        Stage.dino.animate({x: x + offset}, 100, 'linear', function() {
+          Stage.dino.attr('src', 'images/sprites/l1.png');
+          callback();
+        });
+      }
     }
   },
 
