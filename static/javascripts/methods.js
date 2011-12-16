@@ -4,7 +4,7 @@ var Method = {
 }
 
 var Methods = {
-  loop: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
+  "repeat": $.extend({}, Method, {call: function(arg, callback, command, commandList) {
     $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_loop"},  type: "POST"})
   }}),
   when: $.extend({}, Method, {args: ['shake', 'touch'], call: function(arg, callback, command, commandList) {

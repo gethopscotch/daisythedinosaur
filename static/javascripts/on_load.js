@@ -1,8 +1,8 @@
 var CommandLibrary = {
   init: function() {
     _.each(_.keys(Methods), function(method) {
-      if (method == "loop") {
-        $("<li class='loop command'><span class='name'>loop</span></li>").append(
+      if (method == "repeat") {
+        $("<li class='loop command'><span class='name'>repeat</span></li>").append(
           $("<span class='times'> 5</span>")).appendTo("#methods");
         } else {
         var command = $("<li class='command "+method+"'><span class='name'>"
@@ -71,12 +71,12 @@ var Program = {
   },
   parse: function(id) {
     var flattenCommand = function(command) {
-      if ($(command).find(".name").html() == "loop") {
+      if ($(command).find(".name").html() == "repeat") {
         var range = $(command).find(".times").html();
         var loopBodyID = "#loop-"+_.last(command.id.split('-'));
         var array = _.map(_.range(range), function() {
           return _.map($(loopBodyID).find(".command"), function(commandInner) {
-            if ($(commandInner).find(".name").html() == "loop") {
+            if ($(commandInner).find(".name").html() == "repeat") {
               return flattenCommand(commandInner);
             } else {
               return $(commandInner);
