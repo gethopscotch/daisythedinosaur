@@ -4,6 +4,12 @@ var Method = {
 }
 
 var Methods = {
+  loop: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_loop"},  type: "POST"})
+  }}),
+  when: $.extend({}, Method, {args: ['shake', 'touch'], call: function(arg, callback, command, commandList) {
+    PrivateMethods[arg](callback, command, commandList);
+  }}),
   move: $.extend({}, Method, {args: ['Forward', 'Backward'], call: function(arg, callback, command, commandList) {
     PrivateMethods["move" + arg](function() {callback(command, commandList)});
   }}),
@@ -69,33 +75,6 @@ var Methods = {
     };
   }}),
 
-  loop: $.extend({}, Method, {call: function(args, callback, command, commandList) {
-    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_loop"},  type: "POST"})
-  }}),
-  when: $.extend({}, Method, {args: ['shake'], call: function(arg, callback, command, commandList) {
-    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_shake"},  type: "POST"})
-    var prevX = 1.0;
-    var axl = new Accelerometer();
-    var threshold = 0.5;
-    axl.watchAcceleration(
-      function (Accel)
-      {
-        if (true === Accel.is_updating){
-          return;
-        }
-        var diffX = Math.abs(Accel.x) - prevX;
-
-        if (diffX >= threshold)
-        {
-          Program.executeEvent(command);
-        }
-        prevX = Math.abs(Accel.x);
-      },
-      function(){},
-      {frequency : 100}
-    );
-    callback(command, commandList);
-  }}),
   grow: $.extend({}, Method, {call: function(args, callback, command, commandList) {
     $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_grow"},  type: "POST"})
     var scale = Stage.dino.data("scale");
@@ -209,5 +188,38 @@ var PrivateMethods = {
         callback();
       });
     }
+  },
+
+  shake: function(callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_shake"},  type: "POST"});
+    var prevX = 1.0;
+    var axl = new Accelerometer();
+    var threshold = 0.5;
+    axl.watchAcceleration(
+      function (Accel)
+      {
+        if (true === Accel.is_updating){
+          return;
+        }
+        var diffX = Math.abs(Accel.x) - prevX;
+
+        if (diffX >= threshold)
+        {
+          Program.executeEvent(command);
+        }
+        prevX = Math.abs(Accel.x);
+      },
+      function(){},
+      {frequency : 100}
+    );
+    callback(command, commandList);
+  },
+
+  touch: function(callback, command, commandList) {
+    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_touch"},  type: "POST"});
+    $("#print-area").bind("touchstart", function() {
+      Program.executeEvent(command);
+    });
+    callback(command, commandList);
   }
 }
