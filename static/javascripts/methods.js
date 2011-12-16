@@ -99,18 +99,28 @@ var Methods = {
   grow: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
     var scale = Stage.dino.data("scale");
     if (scale < 5) {
-      Stage.dino.scale(1.2,1.2);
-      Stage.dino.data("scale", scale + 1);
+      var height = Stage.dino.attrs.height
+      var width = Stage.dino.attrs.width
+      Stage.dino.animate({width: width * 1.25, height: height * 1.25}, 500, function(){
+        Stage.dino.data("scale", scale + 1);
+        callback(command, commandList);
+      });
+    } else {
+      callback(command, commandList);
     }
-    callback(command, commandList);
   }}),
   shrink: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
     var scale = Stage.dino.data("scale");
     if (scale > - 5) {
-      Stage.dino.scale(.8,.8);
-      Stage.dino.data("scale", scale - 1);
+      var height = Stage.dino.attrs.height
+      var width = Stage.dino.attrs.width
+      Stage.dino.animate({width: width*0.8, height: height*0.8 }, 500, function(){
+        Stage.dino.data("scale", scale - 1);
+        callback(command, commandList);
+      });
+    } else {
+      callback(command, commandList);
     }
-    callback(command, commandList);
   }})
 };
 
