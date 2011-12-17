@@ -81,7 +81,7 @@ var Methods = {
     if (scale < 5) {
       var height = Stage.dino.attrs.height
       var width = Stage.dino.attrs.width
-      Stage.dino.animate({width: width * 1.25, height: height * 1.25}, 500, function(){
+      Stage.dino.animate({width: width * 1.25, height: height * 1.25, y: Stage.dino.attrs.y * 0.83}, 500, function(){
         Stage.dino.data("scale", scale + 1);
         callback(command, commandList);
       });
@@ -95,7 +95,7 @@ var Methods = {
     if (scale > - 5) {
       var height = Stage.dino.attrs.height
       var width = Stage.dino.attrs.width
-      Stage.dino.animate({width: width*0.8, height: height*0.8 }, 500, function(){
+      Stage.dino.animate({width: width*0.8, height: height*0.8, y: Stage.dino.attrs.y * 1.2}, 500, function(){
         Stage.dino.data("scale", scale - 1);
         callback(command, commandList);
       });
@@ -241,6 +241,7 @@ var PrivateMethods = {
 
   touch: function(callback, command, commandList) {
     $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_touch"},  type: "POST"});
+    $("#print-area").unbind("touchstart");
     $("#print-area").bind("touchstart", function() {
       Program.executeEvent(command);
     });
