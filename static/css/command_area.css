@@ -18,6 +18,14 @@
   margin-left: 0;
 }
 
+.loop-commands .command-list.highlight{
+  background-color: #f89bc9;
+  border: none;
+  margin-left: 0;
+  border-radius: 15px;
+  opacity: 0.4
+}
+
 .command-list {
   width: 166px;
   min-height: 292px;
