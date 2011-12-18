@@ -29,7 +29,7 @@ var Methods = {
         500, 'linear', function(){
           Stage.dino.transform("r0");
           callback(command, commandList);
-        } );
+        });
     }
   }}),
 

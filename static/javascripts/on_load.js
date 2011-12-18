@@ -25,6 +25,7 @@ var Program = {
         var id = Date.now();
         $(this).attr('id', "command-"+id);
         if ($(this).hasClass("loop")||$(this).hasClass('when')) {
+          $("#command-area > .command-list").addClass("with-loop");
           var nestedID = 'loop-'+id
           $('.program').append("<div class='nestedCommands' id='loop-"+id+"'>"+
             "<div class='loop-commands'><ul class='command-list'>"+
@@ -221,7 +222,12 @@ $(function() {
   $("#command-library").droppable({
     accept: ".command-list .command, .loop-commands .command",
     activeClass: 'trash-highlight',
-    drop: function(event, ui) { ui.draggable.remove(); }
+    drop: function(event, ui) { 
+      ui.draggable.remove(); 
+      if ($(".command-list").find(".command-list").length == 0) {
+        $("#command-area > .command-list").removeClass("with-loop");
+      }
+    }
   });
 });
 

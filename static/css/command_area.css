@@ -26,6 +26,13 @@
   opacity: 0.4
 }
 
+#command-area > .command-list {
+  width: 750px;
+}
+#command-area > .command-list.with-loop {
+  width: 166px;
+}
+
 .command-list {
   width: 166px;
   min-height: 292px;
