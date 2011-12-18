@@ -5,8 +5,8 @@ task :test do
 end
 
 task :build do
-  `cp -r static/ ../iOS/HopscotchV3/www/`
-  `cp views/*.html ../iOS/HopscotchV3/www/`
+  `cp -r static/ ../iOS/DaisyTheDinosaur/www/`
+  `cp views/*.html ../iOS/DaisyTheDinosaur/www/`
 end
 
 begin

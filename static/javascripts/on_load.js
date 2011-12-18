@@ -186,6 +186,7 @@ var Controls = {
 
 $(function() {
   Stage.init();
+  Analytics.init();
   CommandLibrary.init();
   Program.init();
   $("#share").click(Controls.share);
