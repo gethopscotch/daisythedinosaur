@@ -63,6 +63,11 @@ var Program = {
 
       var name = command.find('.name').html();
       rest = _.rest(rest, 1);
+      if(command.find('.args').length == 0) {
+        Analytics.record("played_"+name);
+      } else {
+        Analytics.record("played_"+name+"_"+command.find('.args').val());
+      }
       Methods[name].call(command.find('.args').val(), Program.executeMethods, command, rest);
     }
   },
@@ -145,7 +150,9 @@ var Controls = {
         Stage.dino.data("scale", 0)
         Stage.spriteDir = "sprites"
         Stage.dino.attr({"src" : "images/sprites/1.png", height: 80, width: 70});
-
+        if ($('.program .nestedCommands').length > 1) {
+          Analytics.record("pressed_play_with_two_loops")
+        }
         Program.parse("command-area");
       });
     }
