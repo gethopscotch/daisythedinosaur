@@ -63,6 +63,11 @@ var Program = {
 
       var name = command.find('.name').html();
       rest = _.rest(rest, 1);
+      if(command.find('.args').length == 0) {
+        Analytics.record("played_"+name);
+      } else {
+        Analytics.record("played_"+name+"_"+command.find('.args').val());
+      }
       Methods[name].call(command.find('.args').val(), Program.executeMethods, command, rest);
     }
   },

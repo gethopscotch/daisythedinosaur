@@ -5,7 +5,6 @@ var Method = {
 
 var Methods = {
   "repeat": $.extend({}, Method, {call: function(arg, callback, command, commandList) {
-    Analytics.record("played_loop");
   }}),
   when: $.extend({}, Method, {args: ['shake', 'touch'], call: function(arg, callback, command, commandList) {
     PrivateMethods[arg](callback, command, commandList);
@@ -15,7 +14,6 @@ var Methods = {
   }}),
 
   roll: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
-    Analytics.record("played_roll");
     if  (Stage.dinoDirection == "right") {
       var anim = Stage.dino.animate(
         {transform: "r360,"+(Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
@@ -35,7 +33,6 @@ var Methods = {
 
   jump: $.extend({}, Method, {call:
                  function(args, callback, command, commandList) {
-    Analytics.record("played_jump");
     if  (Stage.dinoDirection == "right") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/3.png')  }, 10);
       setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/4.png')  }, 250);
@@ -57,7 +54,6 @@ var Methods = {
   }),
 
   turn: $.extend({}, Method, {call: function(args, callback, command, commandList) {
-    Analytics.record("played_turn");
     if (Stage.dinoDirection == "left") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/back.png')  }, 150);
       setTimeout(function(){
@@ -76,7 +72,6 @@ var Methods = {
   }}),
 
   grow: $.extend({}, Method, {call: function(args, callback, command, commandList) {
-    Analytics.record("played_grow");
     var scale = Stage.dino.data("scale");
     if (scale == 2) {
       Stage.spriteDir = "sprites_lg";
@@ -97,7 +92,6 @@ var Methods = {
     }
   }}),
   shrink: $.extend({}, Method, {call: function(args, callback, command, commandList) {
-    Analytics.record("played_shrink");
     var scale = Stage.dino.data("scale");
     if (scale == 2) {
       Stage.spriteDir = "sprites";
@@ -116,7 +110,6 @@ var Methods = {
     }
   }}),
   spin: $.extend({}, Method, {call: function(args, callback, command, commandList) {
-    Analytics.record("played_spin");
     if (Stage.dinoDirection == "left") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/back.png')  }, 150);
       setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/1.png'); }, 300);
@@ -147,7 +140,6 @@ var Methods = {
 
 var PrivateMethods = {
   moveForward: function(callback) {
-    Analytics.record("played_move_forward");
     var x = Stage.dino.attr('x');
     if  (Stage.dinoDirection == "left") {
       PrivateMethods.animateLeft(1, x, -10, callback);
@@ -158,7 +150,6 @@ var PrivateMethods = {
   },
 
   moveBackward: function(callback) {
-    Analytics.record("played_move_backward");
     var x = Stage.dino.attr('x');
     if  (Stage.dinoDirection == "left") {
       PrivateMethods.animateLeft(1, x, 10, callback);
@@ -227,7 +218,6 @@ var PrivateMethods = {
   },
 
   shake: function(callback, command, commandList) {
-    Analytics.record("played_shake");
     var prevX = 1.0;
     var axl = new Accelerometer();
     var threshold = 0.5;
@@ -252,7 +242,6 @@ var PrivateMethods = {
   },
 
   touch: function(callback, command, commandList) {
-    Analytics.record("played_touch");
     $("#print-area").unbind("touchstart");
     $("#print-area").bind("touchstart", function() {
       Program.executeEvent(command);
