@@ -29,7 +29,7 @@
     <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
     <script type="text/javascript" charset="utf-8" src="phonegap-1.1.0.js"></script>
     <script type="text/javascript">
-      $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "loaded_more_page"},  type: "POST"})
+      Analytics.record("loaded_more_page");
     </script>
   </head>
   <body>

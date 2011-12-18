@@ -223,8 +223,8 @@ $(function() {
   $("#command-library").droppable({
     accept: ".command-list .command, .loop-commands .command",
     activeClass: 'trash-highlight',
-    drop: function(event, ui) { 
-      ui.draggable.remove(); 
+    drop: function(event, ui) {
+      ui.draggable.remove();
       if ($(".command-list").find(".command-list").length == 0) {
         $("#command-area > .command-list").removeClass("with-loop");
       }
