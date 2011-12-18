@@ -62,7 +62,7 @@
 
 
       }
-      $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "loaded_app"},  type: "POST"})
+      Analytics.record("loaded_app");
 
     </script>
   </head>
