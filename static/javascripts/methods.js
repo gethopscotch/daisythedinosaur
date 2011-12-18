@@ -5,7 +5,7 @@ var Method = {
 
 var Methods = {
   "repeat": $.extend({}, Method, {call: function(arg, callback, command, commandList) {
-    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "played_loop"},  type: "POST"})
+    Analytics.record("played_loop");
   }}),
   when: $.extend({}, Method, {args: ['shake', 'touch'], call: function(arg, callback, command, commandList) {
     PrivateMethods[arg](callback, command, commandList);

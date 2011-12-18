@@ -145,13 +145,14 @@ var Controls = {
         Stage.dino.data("scale", 0)
         Stage.spriteDir = "sprites"
         Stage.dino.attr({"src" : "images/sprites/1.png", height: 80, width: 70});
+
         Program.parse("command-area");
       });
     }
   },
   share: function(e){
     e.preventDefault();
-    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "tapped_share"},  type: "POST"})
+    Analytics.record("tapped_share");
     var dialog = $("#share-dialog").dialog({
       title: $("#share-dialog").data("title"),
       resizable: false,
@@ -167,7 +168,7 @@ var Controls = {
   },
   help: function(e){
     e.preventDefault();
-    $.ajax({url: "http://hopscotch-data.herokuapp.com/analytics", data: {event: "tapped_help"},  type: "POST"})
+    Analytics.record("tapped_help");
     var dialog = $("#help-dialog").dialog({
       title: $("#help-dialog").data("title"),
       resizable: false,
