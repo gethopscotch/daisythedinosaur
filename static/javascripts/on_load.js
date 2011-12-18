@@ -145,7 +145,9 @@ var Controls = {
         Stage.dino.data("scale", 0)
         Stage.spriteDir = "sprites"
         Stage.dino.attr({"src" : "images/sprites/1.png", height: 80, width: 70});
-
+        if ($('.program .nestedCommands').length > 1) {
+          Analytics.record("pressed_play_with_two_loops")
+        }
         Program.parse("command-area");
       });
     }
