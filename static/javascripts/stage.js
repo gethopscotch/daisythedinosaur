@@ -2,6 +2,8 @@ var Stage = {
   position: {x: 50, y: 140},
   height: 305,
   width: 804,
+
+  spriteDir: "sprites",
   init: function() {
     this.paper = Raphael("print-area", Stage.width, Stage.height);
     this.paper.safari()

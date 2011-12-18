@@ -142,6 +142,7 @@ var Controls = {
       Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
         Stage.dinoDirection = "right";
         Stage.dino.data("scale", 0)
+        Stage.spriteDir = "sprites"
         Stage.dino.attr({"src" : "images/sprites/1.png", height: 80, width: 70});
         Program.parse("command-area");
       });
