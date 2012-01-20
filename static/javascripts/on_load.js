@@ -55,6 +55,7 @@ var Program = {
   executeMethods: function(command, rest) {
     if (rest.length == 0) {
       command.removeClass("active");
+      Tutorial.runStepSpec();
       return;
     } else {
       command.removeClass("active");
