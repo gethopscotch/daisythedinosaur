@@ -1,4 +1,11 @@
-var currentStep = parseInt(window.localStorage.getItem("current-step"));
+var currentStep = window.localStorage.getItem("current-step");
+if (currentStep == undefined) {
+  currentStep = 0;
+  window.localStorage.setItem("key", 0);
+} else {
+  currentStep = parseInt(currentStep);
+}
+
 var Step = {
   title: "",
   description: "",
