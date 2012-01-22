@@ -232,3 +232,6 @@ li {
 em {
     font-style: italic;
 }
+.ui-icon {
+  display: none !important;
+}
