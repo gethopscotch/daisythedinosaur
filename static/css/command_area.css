@@ -19,11 +19,13 @@
 }
 
 .loop-commands .command-list.highlight{
+  overflow: hidden;
+  padding: 0 0 40px;
   background-color: #f89bc9;
   border: none;
   margin-left: 0;
   border-radius: 15px;
-  opacity: 0.4
+  opacity: 0.4;
 }
 
 #command-area > .command-list {
