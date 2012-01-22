@@ -204,6 +204,19 @@ $(function() {
   $('head meta[name=viewport]').remove();
   $('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />');
 
+  $("#methods .command").bind("mousedown", function() {
+    $(".command-list").addClass("highlight");
+    if($('.command-list li').length == 0) {
+      $('.arrow').show();
+      var pos = $(this).offset()
+      $('.arrow').css({top: pos.top-30+'px', left: pos.left+50+'px'});
+      $('.arrow').animate({left:pos.left+150+'px', opacity: '1'},'slow','swing',function(){
+        $('.arrow').animate({opacity:'0'},1500,function(){
+          $('.arrow').hide();
+        });
+      });
+    }
+  });
   $("#methods .command").bind("touchend", function() {
     $(".command-list").removeClass("highlight");
   });
