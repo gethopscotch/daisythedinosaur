@@ -2,20 +2,8 @@
   display: none;
 }
 
-#current-step.step-0 #command-library .command {
+#current-step.tutorial-step #command-library .command {
   display: none;
-}
-
-#current-step.step-0 #command-library .command.move {
-  display: block;
-}
-
-#current-step.step-1 #command-library .command {
-  display: none;
-}
-
-#current-step.step-1 #command-library .command.move, #current-step.step-1 #command-library .command.jump {
-  display: block;
 }
 
 .ui-dialog .ui-dialog-content {
