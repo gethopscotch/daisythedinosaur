@@ -78,18 +78,14 @@ var Methods = {
       src = Stage.dino.attr('src');
       Stage.dino.attr('src', src.split('/sprites/').join('/sprites_lg/'))
     }
-    if (scale < 5) {
-      var height = Stage.dino.attrs.height;
-      var width = Stage.dino.attrs.width;
-      console.log(height*1.25)
-      console.log(180 - 0.5 * (height * 1.25))
-      Stage.dino.animate({width: width * 1.25, height: height * 1.25, y: (194 - 0.66 * (height * 1.25))}, 500, function(){
-        Stage.dino.data("scale", scale + 1);
-        callback(command, commandList);
-      });
-    } else {
+    var height = Stage.dino.attrs.height;
+    var width = Stage.dino.attrs.width;
+    console.log(height*1.25)
+    console.log(180 - 0.5 * (height * 1.25))
+    Stage.dino.animate({width: width * 1.25, height: height * 1.25, y: (194 - 0.66 * (height * 1.25))}, 500, function(){
+      Stage.dino.data("scale", scale + 1);
       callback(command, commandList);
-    }
+    });
   }}),
   shrink: $.extend({}, Method, {call: function(args, callback, command, commandList) {
     var scale = Stage.dino.data("scale");
@@ -98,16 +94,12 @@ var Methods = {
       src = Stage.dino.attr('src');
       Stage.dino.attr('src', src.split('/sprites_lg/').join('/sprites/'))
     }
-    if (scale > - 5) {
-      var height = Stage.dino.attrs.height
-      var width = Stage.dino.attrs.width
-      Stage.dino.animate({width: width*0.8, height: height*0.8, y: (200 - 0.66 * (height * 0.8))}, 500, function(){
-        Stage.dino.data("scale", scale - 1);
-        callback(command, commandList);
-      });
-    } else {
+    var height = Stage.dino.attrs.height
+    var width = Stage.dino.attrs.width
+    Stage.dino.animate({width: width*0.8, height: height*0.8, y: (200 - 0.66 * (height * 0.8))}, 500, function(){
+      Stage.dino.data("scale", scale - 1);
       callback(command, commandList);
-    }
+    });
   }}),
   spin: $.extend({}, Method, {call: function(args, callback, command, commandList) {
     if (Stage.dinoDirection == "left") {
