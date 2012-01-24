@@ -70,7 +70,7 @@ Step.all = [
     },
     draw: function() {
     },
-    methods: ["spin"]
+    methods: ["move", "jump", "spin"]
   }),
   $.extend({}, Step, {
     title: "Loop-de-loop",
@@ -101,7 +101,7 @@ Step.all = [
     },
     draw: function() {
     },
-    methods: ["spin", "loop"]
+    methods: ["move", "jump", "spin", "loop"]
   }),
   // $.extend({}, Step, {
     // title: "Moonwalk to the sun",
