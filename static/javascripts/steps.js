@@ -21,8 +21,14 @@ var Step = {
         }
       }
     });
+  },
+  star: function(left, topCoord) {
+    var star = Stage.paper.path("M100,225, S125,190,350,175, L115,375, L200,100, S250,200,285,375, M285,375, S192.5,315,100,225").attr('stroke-width', 0).attr('fill', 'gold').transform("R10,100,100S.25,T" + left + "," + topCoord )
+    var glow = star.glow({width: '2'}).transform("R5");
+    return [star, glow]
   }
 }
+
 Step.all = [
   $.extend({}, Step, {
     title: "First Steps",
@@ -34,9 +40,7 @@ Step.all = [
               Stage.dino.attr('y') == 140);
     },
     draw: function() {
-      this.elements = [
-        Tutorial.target = Stage.paper.circle(190,175,50).attr({'stroke-width': 4, 'stroke': '#F6498A'})
-      ];
+      this.elements = Step.star(0,-80)
     },
     methods: ["move"]
   }),
@@ -49,9 +53,7 @@ Step.all = [
       return _.isEqual(expectedSteps,gotSteps);
     },
     draw: function() {
-      this.elements = [
-        Tutorial.target = Stage.paper.circle(190,135,50).attr({'stroke-width': 4, 'stroke': '#F6498A'})
-      ];
+      this.elements = Step.star(0,-170);
     },
     methods: ["move", "jump"]
   }),
@@ -103,6 +105,31 @@ Step.all = [
     },
     methods: ["move", "jump", "spin", "loop"]
   }),
+  $.extend({}, Step, {
+    title: "Jump Really High",
+    description: "There's a trick to making Daisy jump really high: the 'when' command. By making daisy jump when you tap her, you can jump higher. Add a when 'touch' and then fill it with a jump to reach the red circle.",
+    spec: function() {
+      var numWhen = _.foldl($('.program .command .name'), function(memo, command) {
+        if ($(command).html() == 'when') {
+          return memo + 1;
+        } else {
+          return memo;
+        }
+      }, 0);
+      var numNestedJump = _.foldl($('.nestedCommands .command .name'), function(memo, command) {
+        if ($(command).html() == 'jump') {
+          return memo + 1;
+        } else {
+          return memo;
+        }
+      }, 0);
+      return numWhen > 0 && numNestedJump > 0
+    },
+    draw: function() {
+      this.elements = Step.star(-100,-225);
+    },
+    methods: ["move", "jump", "spin", "loop", "when"]
+  })
   // $.extend({}, Step, {
     // title: "Moonwalk to the sun",
     // description: "Try turning the dino around and walking backwards- it can moonwalk! See if you can moonwalk the dino all the way to the sun and make him big enough to touch it.",
@@ -138,9 +165,9 @@ Step.all = [
       // ];
     // }
   // }),
-  $.extend({}, Step, {
-    title: "Great Work!",
-    description: "<h1>OK, you've mastered all we can teach you. Make Daisy do a dance!</h1>"
-  })
+  // $.extend({}, Step, {
+    // title: "Great Work!",
+    // description: "<h1>OK, you've mastered all we can teach you. Make Daisy do a dance!</h1>"
+  // })
 ]
 

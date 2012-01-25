@@ -16,7 +16,7 @@ $(function(){
 
 var Tutorial = {
   promptStep: function(dialog) {
-    if (currentStep >= Tutorial.steps.length - 1) {
+    if (currentStep > Tutorial.steps.length - 1) {
       $('#current-step').attr('class',"tutorial-finished");
     } else {
       if (currentStep == undefined || isNaN(currentStep)) {
@@ -36,6 +36,7 @@ var Tutorial = {
             $(this).dialog('close');
           }
         });
+        $(".ui-dialog-content").attr('id', '')
         $(".ui-dialog-content").html($('.step-dialog' + currentStep));
       } else {
         $('.step-dialog'+currentStep).dialog({
