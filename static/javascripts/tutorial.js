@@ -10,16 +10,28 @@ var Step = Backbone.Model.extend({
     })
   },
   success: function() {
+    var buttons;
+    if (this == this.collection.last()) {
+      window.resetTutorial();
+      buttons = [{
+        text: "You win! Go to freeplay mode",
+        click: function() { 
+          $(this).dialog("close"); 
+          window.location.href = "/freeplay.html";
+        }
+      }];
+    } else {
+      buttons = [{
+        text: "Try the next challenge",
+        click: function() { $(this).dialog("close"); }
+      }];
+    }
     $('#success').dialog({
       modal: true,
       dialogClass: 'success',
       width: 600,
       title: "Congratulations!",
-      buttons: {
-        "Try the next challenge": function() {
-          $(this).dialog("close");
-        }
-      }
+      buttons: buttons
     });
   },
   star: function(left, topCoord) {
@@ -192,6 +204,7 @@ var tutorial = new Tutorial([
     methods: ["move", "jump", "spin", "loop", "when"]
   }
 ]);
+
 $(function() {
   tutorial.prompt();
   $(".tutorial .previous-step").bind("click", function(e) {
