@@ -55,7 +55,7 @@ var Program = {
   executeMethods: function(command, rest) {
     if (rest.length == 0) {
       command.removeClass("active");
-      if ($('body.tutorial').length > 0) {
+      if ($('body.tutorial-page').length > 0) {
         tutorial.runSpec();
       }
       return;
