@@ -167,7 +167,7 @@ var tutorial = new Tutorial([
   },
   {
     title: "Jump Really High",
-    description: "There's a trick to making Daisy jump really high: the 'when' command. By making daisy jump when you tap her, you can jump higher. Add a when 'touch' and then fill it with a jump to reach the red star.",
+    description: "There's a trick to making Daisy jump really high: the 'when' command. By making daisy jump when you tap her, you can jump higher. Add a when 'touch' and then fill it with a jump to reach the yellow star.",
     spec: function() {
       var numWhen = _.foldl($('.program .command .name'), function(memo, command) {
         if ($(command).html() == 'when') {
