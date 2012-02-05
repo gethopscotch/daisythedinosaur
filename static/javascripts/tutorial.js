@@ -63,10 +63,10 @@ var Tutorial = Backbone.Collection.extend({
     }
     return this.at(currentStep);
   },
-  nextStep: function() {
+  moveStep: function(displacement) {
     var currentStep = this.currentStep();
     var tutorial = this;
-    if(currentStep == this.last()) {
+    if((currentStep == this.first() && displacement < 0)|| (currentStep == this.last() && displacement > 0)) {
       Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
         stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
         currentStep.undraw();
@@ -79,34 +79,11 @@ var Tutorial = Backbone.Collection.extend({
         stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
         currentStep.undraw();
         setTimeout(function() {tutorial.prompt()},400);
-        window.localStorage.setItem("current-step", stepIndex + 1);
+        window.localStorage.setItem("current-step", stepIndex + displacement);
         $(".nestedCommands").remove();
         $("#command-area > .command-list").html('');
       });
     }
-  },
-  previousStep: function() {
-    var currentStep = this.currentStep();
-    var tutorial = this;
-    if(currentStep == this.first()) {
-      Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
-        stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
-        currentStep.undraw();
-        setTimeout(function() {tutorial.prompt()},400);
-        $(".nestedCommands").remove();
-        $("#command-area > .command-list").html('');
-      });
-    } else {
-      Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
-        stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
-        currentStep.undraw();
-        setTimeout(function() {tutorial.prompt()},400);
-        window.localStorage.setItem("current-step", stepIndex - 1);
-        $(".nestedCommands").remove();
-        $("#command-area > .command-list").html('');
-      });
-    }
-
   },
   runSpec: function() {
     if (this.currentStep().get('spec')()) {
@@ -218,11 +195,11 @@ $(function() {
   tutorial.prompt();
   $(".tutorial .previous-step").bind("click", function(e) {
     e.preventDefault();
-    tutorial.previousStep();
+    tutorial.moveStep(-1);
   });
   $(".tutorial .next-step").bind("click", function(e) {
     e.preventDefault();
-    tutorial.nextStep();
+    tutorial.moveStep(1);
   });
 });
 
