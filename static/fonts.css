@@ -1,19 +1,19 @@
 @font-face {
     font-family: 'Nilland';
-    src: url('/assets/Nilland.eot');
-    src: url('/assets/Nilland.eot?#iefix') format('embedded-opentype'),
-         url('/assets/Nilland.ttf') format('truetype'),
-         url('/assets/Nilland.svg#') format('svg');
+    src: url('assets/Nilland.eot');
+    src: url('assets/Nilland.eot?#iefix') format('embedded-opentype'),
+         url('assets/Nilland.ttf') format('truetype'),
+         url('assets/Nilland.svg#') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'NillandBlackRegular';
-    src: url('/assets/Nilland-Black.eot');
-    src: url('/assets/Nilland-Black.eot?#iefix') format('embedded-opentype'),
-         url('/assets/Nilland-Black.ttf') format('truetype'),
-         url('/assets/Nilland-Black.svg#') format('svg');
+    src: url('assets/Nilland-Black.eot');
+    src: url('assets/Nilland-Black.eot?#iefix') format('embedded-opentype'),
+         url('assets/Nilland-Black.ttf') format('truetype'),
+         url('assets/Nilland-Black.svg#') format('svg');
     font-weight: normal;
     font-style: normal;
 
