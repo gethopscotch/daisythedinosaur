@@ -81,8 +81,6 @@ var Tutorial = Backbone.Collection.extend({
   runSpec: function() {
     if (this.currentStep().get('spec')()) {
       this.nextStep();
-    } else {
-      alert('did not pass');
     }
   }
 });
