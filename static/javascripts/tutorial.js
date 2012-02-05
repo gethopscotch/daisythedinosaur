@@ -9,7 +9,7 @@ var Step = Backbone.Model.extend({
       e.remove();
     })
   },
-  success: function(callback) {
+  success: function() {
     $('#success').dialog({
       modal: true,
       dialogClass: 'success',
@@ -17,7 +17,7 @@ var Step = Backbone.Model.extend({
       title: "Congratulations!",
       buttons: {
         "Try the next challenge": function() {
-          callback(this);
+          $(this).dialog("close");
         }
       }
     });
@@ -87,7 +87,8 @@ var Tutorial = Backbone.Collection.extend({
   },
   runSpec: function() {
     if (this.currentStep().get('spec')()) {
-      this.nextStep();
+      this.moveStep(1);
+      this.currentStep().success();
     }
   }
 });
