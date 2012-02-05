@@ -28,25 +28,14 @@ var Step = Backbone.Model.extend({
     return [star, glow];
   },
   prompt: function() {
-    if(this == this.collection.last()) {
-      $('#current-step').attr('class',"tutorial-finished");
-    } else {
-      this.get('draw')(this);
-      _.each(this.get('methods'), function(method) {
-        $("#current-step").find("." + method ).show();
-      });
+    this.get('draw')(this);
+    $('#current-step #command-library .command').hide();
+    _.each(this.get('methods'), function(method) {
+      $("#current-step").find("." + method ).show();
+    });
 
-      var $stepDialog = $('<div>'+this.get('description') +'</div>');
-      $stepDialog.dialog({
-        modal: true,
-        title: this.get('title'),
-        buttons: {
-          "Let's go!": function() {
-            $(this).dialog('close');
-          }
-        }
-      });
-    }
+    $(".tutorial .title").html( this.get('title'));
+    $(".tutorial .text").html(this.get('description'));
   }
 });
 
@@ -54,6 +43,14 @@ var Tutorial = Backbone.Collection.extend({
   prompt: function() {
     var currentStep = this.currentStep();
     currentStep.prompt(currentStep);
+    if (currentStep == this.last()) {
+      $(".tutorial .next-step").hide();
+    } else if (currentStep == this.first()){
+      $(".tutorial .previous-step").hide();
+    } else {
+      $(".tutorial .next-step").show();
+      $(".tutorial .previous-step").show();
+    }
   },
   model: Step,
   currentStep: function() {
@@ -69,14 +66,47 @@ var Tutorial = Backbone.Collection.extend({
   nextStep: function() {
     var currentStep = this.currentStep();
     var tutorial = this;
-    Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
-      stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
-      currentStep.undraw();
-      window.localStorage.setItem("current-step", stepIndex + 1);
-      setTimeout(function() {tutorial.prompt()},400);
-      $(".nestedCommands").remove();
-      $("#command-area > .command-list").html('');
-    });
+    if(currentStep == this.last()) {
+      Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
+        stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
+        currentStep.undraw();
+        setTimeout(function() {tutorial.prompt()},400);
+        $(".nestedCommands").remove();
+        $("#command-area > .command-list").html('');
+      });
+    } else {
+      Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
+        stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
+        currentStep.undraw();
+        setTimeout(function() {tutorial.prompt()},400);
+        window.localStorage.setItem("current-step", stepIndex + 1);
+        $(".nestedCommands").remove();
+        $("#command-area > .command-list").html('');
+      });
+    }
+  },
+  previousStep: function() {
+    var currentStep = this.currentStep();
+    var tutorial = this;
+    if(currentStep == this.first()) {
+      Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
+        stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
+        currentStep.undraw();
+        setTimeout(function() {tutorial.prompt()},400);
+        $(".nestedCommands").remove();
+        $("#command-area > .command-list").html('');
+      });
+    } else {
+      Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
+        stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
+        currentStep.undraw();
+        setTimeout(function() {tutorial.prompt()},400);
+        window.localStorage.setItem("current-step", stepIndex - 1);
+        $(".nestedCommands").remove();
+        $("#command-area > .command-list").html('');
+      });
+    }
+
   },
   runSpec: function() {
     if (this.currentStep().get('spec')()) {
@@ -186,6 +216,14 @@ var tutorial = new Tutorial([
 ]);
 $(function() {
   tutorial.prompt();
+  $(".tutorial .previous-step").bind("click", function(e) {
+    e.preventDefault();
+    tutorial.previousStep();
+  });
+  $(".tutorial .next-step").bind("click", function(e) {
+    e.preventDefault();
+    tutorial.nextStep();
+  });
 });
 
 // For development purposes

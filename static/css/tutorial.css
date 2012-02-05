@@ -1,6 +1,18 @@
-.tutorial {
-  display: none;
+body.tutorial-page .program {
+  width: 376px;
+  margin-right: 20px;
 }
+.tutorial {
+  float: left;
+  width: 330px;
+}
+
+.tutorial .text {
+  border-top: 8px solid #C9D970;
+  padding-top: 10px;
+  line-height: 20px;
+}
+
 
 #current-step #command-library .command {
   display: none;

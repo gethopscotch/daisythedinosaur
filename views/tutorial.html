@@ -10,10 +10,10 @@
     <script src='javascripts/analytics.js'></script>
     <script src='javascripts/sprite_loader.js'></script>
     <script src='javascripts/vendor/underscore.js'></script>
+    <script src='javascripts/vendor/backbone.js'></script>
     <script src='javascripts/methods.js'></script>
     <script src='javascripts/stage.js'></script>
     <script src='javascripts/on_load.js'></script>
-    <script src='javascripts/steps.js'></script>
     <script src='javascripts/tutorial.js'></script>
 
     <link href='css/reset.css' rel='stylesheet' type='text/css' />
@@ -68,7 +68,7 @@
 
     </script>
   </head>
-  <body onload="onBodyLoad()">
+  <body class='tutorial-page' onload="onBodyLoad()">
 
   </head>
   <body>
@@ -94,6 +94,12 @@
           </div>
         </div>
       </div>
+      <div class='tutorial'> 
+        <div class='title'></div>
+        <div class='text'></div>
+        <a href='#' class='previous-step'>Previous Step</a>
+        <a href='#' class='next-step'>Next Step</a>
+      </div>
 
       <div id='controls'>
         <a href='#' id='play'>Play</a>
@@ -114,8 +120,6 @@
       </div>
       <div data-title='So glad you like us!' id='share-dialog'>
         <p>We haven't made this functionality yet but it's coming soon. </p>
-      </div>
-      <div class='tutorial'>
       </div>
     </div>
 

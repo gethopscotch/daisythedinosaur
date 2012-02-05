@@ -22,6 +22,7 @@ body {
 
 #controls {
   width: 150px;
+  clear: left;
 }
 
 #controls a, #trash-bin {
@@ -234,4 +235,29 @@ em {
 }
 .ui-icon {
   display: none !important;
+}
+
+.tutorial .previous-step {
+  display: block;
+  background: transparent url("images/controls/previous.png");
+  height: 67px;
+  width: 67px;
+  text-indent: -9999px;
+  margin: 20px;
+  float: left;
+}
+.tutorial .previous-step:active {
+  background: transparent url("images/controls/previous-active.png");
+}
+.tutorial .next-step {
+  display: block;
+  background: transparent url("images/controls/next.png");
+  height: 67px;
+  width: 67px;
+  text-indent: -9999px;
+  margin: 20px;
+  float: right;
+}
+.tutorial .next-step:active {
+  background: transparent url("images/controls/next-active.png");
 }
