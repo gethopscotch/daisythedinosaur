@@ -16,6 +16,10 @@ get '/tutorial.html' do
   File.read(File.join('views', 'tutorial.html'))
 end
 
+get '/freeplay.html' do
+  File.read(File.join('views', 'freeplay.html'))
+end
+
 
 get '/alex' do
 <<END
