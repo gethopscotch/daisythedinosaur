@@ -12,11 +12,10 @@ var Step = Backbone.Model.extend({
   success: function() {
     var buttons;
     if (this == this.collection.last()) {
-      window.resetTutorial();
       buttons = [{
         text: "You win! Go to freeplay mode",
         click: function() { 
-          $(this).dialog("close"); 
+          $(this).dialog("close");
           window.location.href = "/freeplay.html";
         }
       }];
