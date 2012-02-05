@@ -2,8 +2,12 @@
   display: none;
 }
 
-#current-step.tutorial-step #command-library .command {
+#current-step #command-library .command {
   display: none;
+}
+
+#current-step.tutorial-finished #command-library .command {
+  display: block;
 }
 
 .ui-dialog .ui-dialog-content {

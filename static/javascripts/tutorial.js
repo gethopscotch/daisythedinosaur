@@ -1,75 +1,238 @@
-var currentStep = window.localStorage.getItem("current-step");
-if (currentStep == undefined) {
-  currentStep = 0;
-  window.localStorage.setItem("current-step", 0);
-} else {
-  currentStep = parseInt(currentStep);
-}
-
-
-$(function(){
-  _.each(Tutorial.steps, function(step, n) {
-    $('.tutorial').append($('<div data-title="'+step.title+'"class="step-dialog'+n+'">'+step.description+'</div>'));
-  });
-  Tutorial.promptStep();
-})
-
-var Tutorial = {
-  promptStep: function(dialog) {
-    if (currentStep > Tutorial.steps.length - 1) {
+var Step = Backbone.Model.extend({
+  defaults: {
+    title: "",
+    description: "",
+    elements: []
+  },
+  undraw: function() {
+    _.each(this.get('elements'), function(e){
+      e.remove();
+    })
+  },
+  success: function(callback) {
+    $('#success').dialog({
+      modal: true,
+      dialogClass: 'success',
+      width: 600,
+      title: "Congratulations!",
+      buttons: {
+        "Try the next challenge": function() {
+          callback(this);
+        }
+      }
+    });
+  },
+  star: function(left, topCoord) {
+    var star = Stage.paper.path("M100,225, S125,190,350,175, L115,375, L200,100, S250,200,285,375, M285,375, S192.5,315,100,225").attr('stroke-width', 0).attr('fill', 'gold').transform("R10,100,100S.25,T" + left + "," + topCoord );
+    var glow = star.glow({width: '2'}).transform("R5");
+    return [star, glow];
+  },
+  prompt: function() {
+    if(this == this.collection.last()) {
       $('#current-step').attr('class',"tutorial-finished");
     } else {
-      if (currentStep == undefined || isNaN(currentStep)) {
-        currentStep = 0
-        window.localStorage.setItem("current-step", 0);
-      }
-      $('#current-step').attr('class', 'tutorial-step step-'+currentStep);
-      var step = Tutorial.steps[currentStep];
-      step.draw();
-      _.each(step.methods, function(method) {
+      this.get('draw')(this);
+      _.each(this.get('methods'), function(method) {
         $("#current-step").find("." + method ).show();
       });
-      if ($(".ui-dialog").length > 0) {
-        $(dialog).dialog('option', 'title', step.title);
-        $(dialog).dialog('option', 'buttons', {
+
+      var $stepDialog = $('<div>'+this.get('description') +'</div>');
+      $stepDialog.dialog({
+        modal: true,
+        title: this.get('title'),
+        buttons: {
           "Let's go!": function() {
             $(this).dialog('close');
           }
-        });
-        $(".ui-dialog-content").attr('id', '')
-        $(".ui-dialog-content").html($('.step-dialog' + currentStep));
-      } else {
-        $('.step-dialog'+currentStep).dialog({
-          modal: true,
-          title: step.title,
-          buttons: {
-            "Let's go!": function() {
-              $(this).dialog('close');
-            }
-          }
-        });
-      }
+        }
+      });
     }
+  }
+});
+
+var Tutorial = Backbone.Collection.extend({ 
+  prompt: function() {
+    var currentStep = this.currentStep();
+    currentStep.prompt(currentStep);
   },
-  runStepSpec: function() {
-    if (Tutorial.steps[currentStep].spec()) {
-      Tutorial.steps[currentStep].success(Tutorial.nextStep);
+  model: Step,
+  currentStep: function() {
+    var currentStep = window.localStorage.getItem('current-step');
+    if (currentStep == undefined || isNaN(currentStep)) {
+      currentStep = 0;
+      window.localStorage.setItem("current-step", 0);
+    } else {
+      currentStep = parseInt(currentStep);
     }
+    return this.at(currentStep);
   },
-  nextStep: function(dialog) {
+  nextStep: function() {
+    var currentStep = this.currentStep();
+    var tutorial = this;
     Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
-      Tutorial.steps[currentStep].undraw();
-      window.localStorage.setItem("current-step", currentStep + 1);
-      currentStep = parseInt(window.localStorage.getItem("current-step"));
-      setTimeout(function() {Tutorial.promptStep(dialog)},400);
+      stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
+      currentStep.undraw();
+      window.localStorage.setItem("current-step", stepIndex + 1);
+      setTimeout(function() {tutorial.prompt()},400);
       $(".nestedCommands").remove();
       $("#command-area > .command-list").html('');
     });
   },
-  steps: Step.all
-}
+  runSpec: function() {
+    if (this.currentStep().get('spec')()) {
+      this.nextStep();
+    } else {
+      alert('did not pass');
+    }
+  }
+});
 
-// Only for testing purposes, for now
+var tutorial = new Tutorial([
+  {
+    title: "First Step",
+    description: "Hello and welcome to hopscotch!<br/><br/>"+
+                 "Try figuring out how to move Daisy so that she stops in the center of the star.",
+    spec: function() {
+      return (Stage.dino.attr('x') == 150 &&
+              Stage.dino.attr('y') == 140);
+    },
+    draw: function(model) {
+      model.set("elements", model.star(0,-80));
+    },
+    methods: ["move"]
+  },
+  {
+    title: "Reach for the clouds!",
+    description: "Now the circle is a little higher. Use the jump method to reach it.",
+    spec: function() {
+      var gotSteps = _.map($('.program .command .name'), function(command){return $(command).html()});
+      var expectedSteps = ["move", "jump"];
+      return _.isEqual(expectedSteps,gotSteps);
+    },
+    draw: function(model) {
+      model.set('elements', model.star(0,-170));
+    },
+    methods: ["move", "jump"]
+  },
+  {
+    title: "Make daisy dizzy",
+    description: "Make daisy spin five times.",
+    spec: function() {
+      var numSpins = _.foldl($('.program .command .name'), function(memo, command) {
+        if ($(command).html() == 'spin') {
+          return memo + 1;
+        } else {
+          return memo;
+        }
+      }, 0);
+      return (numSpins > 4);
+    },
+    draw: function(model) {},
+    methods: ["move", "jump", "spin"]
+  },
+  {
+    title: "Loop-de-loop",
+    description: "Try making Daisy spin 5 times while only using the spin method once. Hint: put the spin inside the repeat 5.",
+    spec: function() {
+      var numLoops = _.foldl($('.program .command .name'), function(memo, command) {
+        if ($(command).html() == 'repeat') {
+          return memo + 1;
+        } else {
+          return memo;
+        }
+      }, 0);
+      var totalSpins = _.foldl($('.program .command .name'), function(memo, command) {
+        if ($(command).html() == 'spin') {
+          return memo + 1;
+        } else {
+          return memo;
+        }
+      }, 0);
+      var numLoopSpins = _.foldl($('.nestedCommands .command .name'), function(memo, command) {
+        if ($(command).html() == 'spin') {
+          return memo + 1;
+        } else {
+          return memo;
+        }
+      }, 0);
+      return (totalSpins == 1 && numLoopSpins == 1 && numLoops > 0);
+    },
+    draw: function(model) {},
+    methods: ["move", "jump", "spin", "loop"]
+  },
+  {
+    title: "Jump Really High",
+    description: "There's a trick to making Daisy jump really high: the 'when' command. By making daisy jump when you tap her, you can jump higher. Add a when 'touch' and then fill it with a jump to reach the red star.",
+    spec: function() {
+      var numWhen = _.foldl($('.program .command .name'), function(memo, command) {
+        if ($(command).html() == 'when') {
+          return memo + 1;
+        } else {
+          return memo;
+        }
+      }, 0);
+      var numNestedJump = _.foldl($('.nestedCommands .command .name'), function(memo, command) {
+        if ($(command).html() == 'jump') {
+          return memo + 1;
+        } else {
+          return memo;
+        }
+      }, 0);
+      return numWhen > 0 && numNestedJump > 0
+    },
+    draw: function(model) {
+      model.set('elements', model.star(-100,-225));
+    },
+    methods: ["move", "jump", "spin", "loop", "when"]
+  }
+]);
+$(function() {
+  tutorial.prompt();
+});
+
+// For development purposes
 window.resetTutorial = function() {
   window.localStorage.setItem("current-step", 0);
 }
+
+
+
+  // $.extend({}, Step_old, {
+    // title: "Moonwalk to the sun",
+    // description: "Try turning the dino around and walking backwards- it can moonwalk! See if you can moonwalk the dino all the way to the sun and make him big enough to touch it.",
+    // spec: function() {
+      // var height = Stage.dino.attr('height');
+      // var x = Stage.dino.attr('x');
+      // if (x > 680 && height > 140 ) {
+        // var numTurns = _.foldl($('.program .command .name'), function(memo, command) {
+          // if ($(command).html() == 'turn') {
+            // return memo + 1;
+          // } else {
+            // return memo;
+          // }
+        // }, 0);
+        // var numBackward = _.foldl($('.program .command .args option:selected'), function(memo, command) {
+          // if ($(command).html() == 'Backward') {
+            // return memo + 1;
+          // } else {
+            // return memo;
+          // }
+        // }, 0);
+        // if (numTurns%2 == 1 && numBackward > 6) {
+          // return true
+        // } else {
+          // return false
+        // }
+      // } else {
+        // return false
+      // }
+    // },
+    // draw: function() {
+      // this.elements = [
+      // ];
+    // }
+  // }),
+  // $.extend({}, Step_old, {
+    // title: "Great Work!",
+    // description: "<h1>OK, you've mastered all we can teach you. Make Daisy do a dance!</h1>"
+  // })
