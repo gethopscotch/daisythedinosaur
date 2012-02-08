@@ -9,17 +9,16 @@ a {
   display: block;
   float: left;
   text-indent: -9999px;
-  margin-top: 261px;
-  margin-left: 20px;
+  margin-top: 380px;
 }
 a#freeplay {
-  background: transparent url("images/menu-freeplay.jpg") 0 0 no-repeat;
-  width: 352px;
-  height: 284px;
+  width: 238px;
+  height: 290px;
+  margin-left: 56px;
 }
 a#challenge {
-  background: transparent url("images/menu-challenge.jpg") 0 0 no-repeat;
-  width: 377px;
-  height: 284px;
+  width: 240px;
+  height: 293px;
+  margin-left: 32px;
 }
 
