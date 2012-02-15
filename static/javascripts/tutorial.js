@@ -54,12 +54,9 @@ var Tutorial = Backbone.Collection.extend({
   prompt: function() {
     var currentStep = this.currentStep();
     currentStep.prompt(currentStep);
-    if (currentStep == this.last()) {
-      $(".tutorial .next-step").hide();
-    } else if (currentStep == this.first()){
+    if (currentStep == this.first()) {
       $(".tutorial .previous-step").hide();
     } else {
-      $(".tutorial .next-step").show();
       $(".tutorial .previous-step").show();
     }
   },
@@ -209,10 +206,6 @@ $(function() {
   $(".tutorial .previous-step").bind("click", function(e) {
     e.preventDefault();
     tutorial.moveStep(-1);
-  });
-  $(".tutorial .next-step").bind("click", function(e) {
-    e.preventDefault();
-    tutorial.moveStep(1);
   });
 });
 
