@@ -137,14 +137,13 @@ var Controls = {
       var dialog = $("#play-dialog").dialog({
         title: $("#play-dialog").data('title'),
         resizable: false,
-        close: function(){
-          $('.overlay').unbind('touchstart')
-          $(".overlay").removeClass("shown");
+        modal: true,
+        width: 400,
+        buttons: {
+          "Ok": function() {
+            $(this).dialog('close');
+          }
         }
-      });
-      $(".overlay").addClass("shown");
-      $('.overlay').bind("touchstart", function() {
-        dialog.dialog("close");
       });
     }
     else {
