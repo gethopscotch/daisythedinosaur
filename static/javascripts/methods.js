@@ -30,29 +30,6 @@ var Methods = {
         });
     }
   }}),
-
-  jump: $.extend({}, Method, {call:
-                 function(args, callback, command, commandList) {
-    if  (Stage.dinoDirection == "right") {
-      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/3.png')  }, 10);
-      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/4.png')  }, 250);
-      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/1.png')  }, 500);
-      Stage.dino.animate(
-        {y: Stage.dino.attr('y') - 50}, 250, 'linear',
-        function(){
-          Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', function() {callback(command, commandList)})
-        });
-    } else if (Stage.dinoDirection == "left") {
-      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/l3.png')  }, 10);
-      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/l4.png')  }, 250);
-      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/l1.png')  }, 500);
-      Stage.dino.animate(
-        {y: Stage.dino.attr('y') - 50}, 250, 'linear',
-        function(){ Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', function() {callback(command, commandList)}) });
-    }
-  }
-  }),
-
   turn: $.extend({}, Method, {call: function(args, callback, command, commandList) {
     if (Stage.dinoDirection == "left") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/back.png')  }, 150);
@@ -101,6 +78,29 @@ var Methods = {
       callback(command, commandList);
     });
   }}),
+
+  jump: $.extend({}, Method, {call:
+                 function(args, callback, command, commandList) {
+    if  (Stage.dinoDirection == "right") {
+      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/3.png')  }, 10);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/4.png')  }, 250);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/1.png')  }, 500);
+      Stage.dino.animate(
+        {y: Stage.dino.attr('y') - 50}, 250, 'linear',
+        function(){
+          Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', function() {callback(command, commandList)})
+        });
+    } else if (Stage.dinoDirection == "left") {
+      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/l3.png')  }, 10);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/l4.png')  }, 250);
+      setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/l1.png')  }, 500);
+      Stage.dino.animate(
+        {y: Stage.dino.attr('y') - 50}, 250, 'linear',
+        function(){ Stage.dino.animate({y: Stage.dino.attr('y') + 50}, 250, 'linear', function() {callback(command, commandList)}) });
+    }
+  }
+  }),
+
   spin: $.extend({}, Method, {call: function(args, callback, command, commandList) {
     if (Stage.dinoDirection == "left") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/back.png')  }, 150);
