@@ -107,8 +107,7 @@ var tutorial = new Tutorial([
     description: "Hello and welcome to hopscotch!<br/><br/>"+
                  "Try figuring out how to move Daisy so that she stops in the center of the star.",
     spec: function() {
-      return (Stage.dino.attr('x') == 150 &&
-              Stage.dino.attr('y') == 140);
+      return (Stage.dino.attr('x') >= 150);
     },
     draw: function(model) {
       model.set("elements", model.star(0,-80));
@@ -120,8 +119,17 @@ var tutorial = new Tutorial([
     description: "Now the circle is a little higher. Use the jump method to reach it.",
     spec: function() {
       var gotSteps = _.map($('.program .command .name'), function(command){return $(command).html()});
-      var expectedSteps = ["move", "jump"];
-      return _.isEqual(expectedSteps,gotSteps);
+      var x = 50;
+      // Cheating and assuming they only move forward
+      var hitTheStar = false;
+      _.map(gotSteps, function(step) {
+        if (step == "move") {
+          x += 100;
+        } else if (step == "jump" && x == 150) {
+          hitTheStar = true;
+        }
+      });
+      return hitTheStar;
     },
     draw: function(model) {
       model.set('elements', model.star(0,-170));
@@ -175,8 +183,8 @@ var tutorial = new Tutorial([
     methods: ["move", "jump", "spin", "loop"]
   },
   {
-    title: "Jump Really High",
-    description: "There's a trick to making Daisy jump really high: the 'when' command. By making daisy jump when you tap her, you can jump higher. Add a when 'touch' and then fill it with a jump to reach the yellow star.",
+    title: "Control Daisy yourself",
+    description: "Here's something new: when. If you put a method inside when it will run every time you shake (or touch). Try moving Daisy to the end of the screen using only when.",
     spec: function() {
       var numWhen = _.foldl($('.program .command .name'), function(memo, command) {
         if ($(command).html() == 'when') {
@@ -185,17 +193,32 @@ var tutorial = new Tutorial([
           return memo;
         }
       }, 0);
-      var numNestedJump = _.foldl($('.nestedCommands .command .name'), function(memo, command) {
-        if ($(command).html() == 'jump') {
+      var numNestedMove = _.foldl($('.nestedCommands .command .name'), function(memo, command) {
+        if ($(command).html() == 'move') {
           return memo + 1;
         } else {
           return memo;
         }
       }, 0);
-      return numWhen > 0 && numNestedJump > 0
+      var unNestedMove = _.foldl($('#command-area .command .name'), function(memo, command) {
+        if ($(command).html() == 'move') {
+          return memo + 1;
+        } else {
+          return memo;
+        }
+      }, 0);
+      var hitStar = false;
+      if (Stage.dino.attr('x') > 730) {
+        hitStar = true;
+      } else if (numWhen > 0 && numNestedMove > 0 && unNestedMove == 0) {
+        setTimeout(function() {
+          tutorial.runSpec()
+        }, 1000);
+      }
+      return hitStar;
     },
     draw: function(model) {
-      model.set('elements', model.star(-100,-225));
+      model.set('elements', model.star(580,-80));
     },
     methods: ["move", "jump", "spin", "loop", "when"]
   }
