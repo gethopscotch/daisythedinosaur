@@ -1,4 +1,4 @@
-function preloader() {
+$(function() {
   if (document.images) {
     var img1 = new Image();
     img1.src = "images/sprites_lg/1.png";
@@ -104,19 +104,5 @@ function preloader() {
     (new Image()).src = 'images/loop-dialog-middle.png';
     (new Image()).src = 'images/loop-dialog-top.png';
   }
-};
-function addLoadEvent(func) {
-  var oldonload = window.onload;
-  if (typeof window.onload != 'function') {
-    window.onload = func;
-  } else {
-    window.onload = function() {
-      if (oldonload) {
-        oldonload();
-      }
-      func();
-    }
-  }
-}
-addLoadEvent(preloader);
-
+  $(".overlay").remove();
+});
