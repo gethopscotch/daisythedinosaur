@@ -13,23 +13,6 @@ var Methods = {
     PrivateMethods["move" + arg](function() {callback(command, commandList)});
   }}),
 
-  roll: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
-    if  (Stage.dinoDirection == "right") {
-      var anim = Stage.dino.animate(
-        {transform: "r360,"+(Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
-        500, 'linear', function(){
-          Stage.dino.transform("r0");
-          callback(command, commandList);
-        });
-    } else if (Stage.dinoDirection == "left") {
-      var anim = Stage.dino.animate(
-        {transform: "r-360,"+(-Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
-        500, 'linear', function(){
-          Stage.dino.transform("r0");
-          callback(command, commandList);
-        });
-    }
-  }}),
   turn: $.extend({}, Method, {call: function(args, callback, command, commandList) {
     if (Stage.dinoDirection == "left") {
       setTimeout(function(){ Stage.dino.attr('src', 'images/' + Stage.spriteDir + '/back.png')  }, 150);
@@ -100,6 +83,24 @@ var Methods = {
     }
   }
   }),
+
+  roll: $.extend({}, Method, {call: function(arg, callback, command, commandList) {
+    if  (Stage.dinoDirection == "right") {
+      var anim = Stage.dino.animate(
+        {transform: "r360,"+(Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
+        500, 'linear', function(){
+          Stage.dino.transform("r0");
+          callback(command, commandList);
+        });
+    } else if (Stage.dinoDirection == "left") {
+      var anim = Stage.dino.animate(
+        {transform: "r-360,"+(-Stage.dino.width / 2)+","+(Stage.dino.height / 2)},
+        500, 'linear', function(){
+          Stage.dino.transform("r0");
+          callback(command, commandList);
+        });
+    }
+  }}),
 
   spin: $.extend({}, Method, {call: function(args, callback, command, commandList) {
     if (Stage.dinoDirection == "left") {
