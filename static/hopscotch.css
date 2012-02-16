@@ -13,6 +13,12 @@ body {
   height: 768px;
   z-index: 999;
 }
+img#loading {
+  z-index: 9999;
+  position: absolute;
+  top: 300px;
+  left: 500px;
+}
 
 #controls {
   width: 150px;
