@@ -95,6 +95,10 @@ $(function() {
   imgl8.src = "images/sprites/l8.png";
   var imgl9 = new Image();
   imgl9.src = "images/sprites/l9.png";
+  (new Image()).src = 'images/controls/next.png';
+  (new Image()).src = 'images/controls/next-active.png';
+  (new Image()).src = 'images/controls/previous.png';
+  (new Image()).src = 'images/controls/previous-active.png';
   (new Image()).src = 'images/loop-dialog-bottom.png';
   (new Image()).src = 'images/loop-dialog-middle.png';
   (new Image()).src = 'images/loop-dialog-top.png';
