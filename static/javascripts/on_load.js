@@ -158,38 +158,6 @@ var Controls = {
         Program.parse("command-area");
       });
     }
-  },
-  share: function(e){
-    e.preventDefault();
-    Analytics.record("tapped_share");
-    var dialog = $("#share-dialog").dialog({
-      title: $("#share-dialog").data("title"),
-      resizable: false,
-      close: function(){
-        $('.overlay').unbind('touchstart')
-        $(".overlay").removeClass("shown");
-      }
-    });
-    $(".overlay").addClass("shown");
-    $('.overlay').bind("touchstart", function() {
-        dialog.dialog("close");
-    });
-  },
-  help: function(e){
-    e.preventDefault();
-    Analytics.record("tapped_help");
-    var dialog = $("#help-dialog").dialog({
-      title: $("#help-dialog").data("title"),
-      resizable: false,
-      close: function(){
-        $('.overlay').unbind('touchstart')
-        $(".overlay").removeClass("shown");
-      }
-    });
-    $(".overlay").addClass("shown");
-    $('.overlay').bind("touchstart", function() {
-      dialog.dialog("close");
-    });
   }
 }
 
