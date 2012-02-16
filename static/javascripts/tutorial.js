@@ -73,19 +73,17 @@ var Tutorial = Backbone.Collection.extend({
   },
   moveStep: function(displacement) {
     var currentStep = this.currentStep();
+    currentStep.undraw();
     var tutorial = this;
+    var stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
     if((currentStep == this.first() && displacement < 0)|| (currentStep == this.last() && displacement > 0)) {
       Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
-        stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
-        currentStep.undraw();
         setTimeout(function() {tutorial.prompt()},400);
         $(".nestedCommands").remove();
         $("#command-area > .command-list").html('');
       });
     } else {
       Stage.dino.animate({x: Stage.position.x, y: Stage.position.y}, 0, 'linear', function() {
-        stepIndex = parseInt(window.localStorage.getItem('current-step'), 10);
-        currentStep.undraw();
         setTimeout(function() {tutorial.prompt()},400);
         window.localStorage.setItem("current-step", stepIndex + displacement);
         $(".nestedCommands").remove();
