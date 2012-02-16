@@ -16,7 +16,7 @@ var Step = Backbone.Model.extend({
         text: "You win! Go to freeplay mode",
         click: function() { 
           $(this).dialog("close");
-          window.location.href = "/freeplay.html";
+          window.location.href = "freeplay.html";
         }
       }];
     } else {
