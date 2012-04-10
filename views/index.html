@@ -2,21 +2,6 @@
 <html>
   <head>
     <meta charset='utf-8' />
-    <script src='javascripts/vendor/jquery.js'></script>
-    <script src='javascripts/vendor/jquery-ui.js'></script>
-    <script src='javascripts/vendor/jquery.ui.mouse.touch.js'></script>
-    <script src='javascripts/vendor/doubletouch.js'></script>
-    <script src='javascripts/analytics.js'></script>
-    <script src='javascripts/sprite_loader.js'></script>
-
-    <link href='css/reset.css' rel='stylesheet' type='text/css' />
-    <link href='fonts.css' rel='stylesheet' type='text/css' />
-    <link href='hopscotch.css' rel='stylesheet' type='text/css' />
-    <link href='css/command_library.css' rel='stylesheet' type='text/css' />
-    <link href='css/command_area.css' rel='stylesheet' type='text/css' />
-    <link href='css/tutorial.css' rel='stylesheet' type='text/css' />
-    <link href='menu.css' rel='stylesheet' type='text/css' />
-    <link href='css/vendor/jquery-ui.css' rel='stylesheet' type='text/css' />
     <title>Hopscotch</title>
     <!-- iPad/iPhone specific css below, add after your main css >
     <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />
@@ -24,29 +9,9 @@
     -->
     <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
     <script type="text/javascript" charset="utf-8" src="phonegap-1.1.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="javascripts/analytics.js"></script>
     <script type="text/javascript">
       window.localStorage.setItem("current-step", 0);
-
-
-
-        // If you want to prevent dragging, uncomment this section
-      /*
-         function preventBehavior(e)
-         {
-         e.preventDefault();
-         };
-         document.addEventListener("touchmove", preventBehavior, false);
-       */
-
-      /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-         see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-         for more details -jm */
-      /*
-         function handleOpenURL(url)
-         {
-      // TODO: do something with the url passed in.
-      }
-       */
 
       function onBodyLoad()
       {
@@ -64,9 +29,12 @@
 
     </script>
   </head>
-  <body class='menu'>
-    <a id='freeplay' href='freeplay.html'>Freeplay Mode</a>
-    <a id='challenge' href='tutorial.html'>Challenge Mode</a>
+  <body>
   </body>
+  <script type="text/javascript" charset="utf-8" src="javascripts/vendor/zepto.js"></script>
+  <script type="text/javascript" charset="utf-8" src="javascripts/vendor/jquery-ui.js"></script>
+  <script type="text/javascript" charset="utf-8" src="javascripts/vendor/underscore.js"></script>
+  <script type="text/javascript" charset="utf-8" src="javascripts/vendor/backbone.js"></script>
+  <script type="text/javascript" charset="utf-8" src="javascripts/vendor/raphael.js"></script>
 </html>
 
