@@ -1,3 +1,4 @@
+var VERSION = 2
 var Analytics = {
   init: function() {
     var unsentAnalytics = JSON.parse(localStorage.getItem("unsentAnalytics"));
@@ -6,7 +7,7 @@ var Analytics = {
       _.each(unsentAnalytics, function(analytic) {
         $.ajax({
           url: "http://hopscotch-data.herokuapp.com/analytics",
-          data: {event: analytic},
+          data: {event: "v" + VERSION + "_" + analytic},
           type: "POST",
           error: function() {
             newUnsentAnalytics.push(analytic);
