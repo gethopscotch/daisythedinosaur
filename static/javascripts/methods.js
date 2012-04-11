@@ -4,7 +4,7 @@ $(function() {
     window.methodView = Backbone.View.extend({
       tagName: "li",
       render: function() {
-        var name = this.model.get('name').join(10);
+        var name = this.model.get('name').join(this.model.get('default'));
         this.$el.text(name);
         $("#command_selector ul." + this.className).append(this.$el);
       },
@@ -16,7 +16,9 @@ $(function() {
         var newActiveMethod = new activeMethodModel({
           name: this.model.get('name'),
           viewClass: this.className,
-          viewId: this.id
+          viewId: this.id,
+          default: this.model.get('default'),
+          methodName: this.model.get('methodName')
         });
         newActiveMethod.view.render();
         activeMethods.add(newActiveMethod);
@@ -26,7 +28,7 @@ $(function() {
     window.activeMethodView = Backbone.View.extend({
       tagName: "div",
       render: function() {
-        this.$el.html(this.model.get('name').join("<input type='text' value=10>"));
+        this.$el.html(this.model.get('name').join("<input type='text' value=" + this.model.get('default') + ">"));
         $("#middle").append(this.$el);
         this.draggable = new webkit_draggable(this.id, {revert: true});
       },
@@ -36,7 +38,7 @@ $(function() {
       },
       runMethod: function() {
         var xOffset = this.$el.find('input').val();
-        stage.activeSprite.move(xOffset);
+        stage.activeSprite[this.model.get('methodName')](xOffset);
       }
     });
 
@@ -70,7 +72,20 @@ $(function() {
     });
 
     window.motionMethods = new methodCollection([
-      {name: ["move ", " steps"],  viewClass: 'motion', id: "move_steps"}
+      {
+        methodName: "move",
+        name: ["move ", " steps"],
+        viewClass: 'motion',
+        id: "move_steps",
+        default: 10
+      },
+      {
+        methodName: "turn",
+        name: ["turn ", " degrees"],
+        viewClass: 'motion',
+        id: "turn_degrees",
+        default: 180,
+      }
     ]);
     motionMethods.render();
 

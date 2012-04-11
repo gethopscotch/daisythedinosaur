@@ -17,9 +17,26 @@ $(function() {
 
     window.Sprite = Backbone.Model.extend({
       move: function(xOffset) {
-        var x = this.get('element').attr('x');
+
         xOffset = parseInt(xOffset, 10);
-        this.get('element').animate({x: x + xOffset}, 100, 'linear');
+
+        var transform = this.transform();
+        this.get('element').animate({transform: transform + "t" + xOffset + ",0" }, 500, 'linear');
+      },
+      turn: function(degrees) {
+        degrees = parseInt(degrees, 10);
+        var transform = this.transform();
+        this.get('element').animate({transform: transform + "r" + degrees}, 500, 'linear');
+      },
+      transform: function() {
+        var element = this.get('element');
+
+        var transform = element.transform();
+
+        var transformString = _.map(transform, function(t) {
+          return t[0] + _.rest(t).join(',');
+        }).join(' ');
+        return transformString;
       }
     });
 
