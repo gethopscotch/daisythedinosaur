@@ -11,9 +11,10 @@
 #   - dist/**/*.js
 #
 src_files:
-    - static/javascripts/vendor/jquery.js
+    - static/javascripts/vendor/zepto.js
+    - static/javascripts/vendor/underscore.js
     - static/javascripts/vendor/*.js
-    - static/javascripts/**/*.js
+    - static/javascripts/*.js
 
 # stylesheets
 #
