@@ -1,0 +1,54 @@
+body {
+  width: 1024px;
+  height: 768px;
+}
+
+#left, #middle, #right {
+  float: left;
+  height: 100%;
+}
+
+#left {
+  width: 256px;
+  background: #ccc;
+}
+
+#middle {
+  width: 512px;
+  background: #bbb;
+}
+
+#right {
+  width: 256px;
+  background: #ccc;
+}
+
+#menu_selector {
+  box-shadow: 0 0 1px 1px #333;
+  height: 300px;
+}
+
+#menu_selector ul {
+  padding: 10px;
+}
+
+#menu_selector ul li.motion {
+  color: purple;
+}
+
+#left #command_selector ul {
+  display: none;
+}
+
+#left.motion #command_selector ul.motion {
+  display: block;
+}
+
+#command_selector li, #middle div.motion {
+  display: block;
+  background: purple;
+  padding: 10px;
+  width: 80%;
+  color: white;
+}
+
