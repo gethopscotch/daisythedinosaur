@@ -2,13 +2,6 @@
 <html>
   <head>
     <meta charset='utf-8' />
-    <script src='javascripts/vendor/jquery.js'></script>
-    <script src='javascripts/vendor/jquery-ui.js'></script>
-    <script src='javascripts/vendor/jquery.ui.mouse.touch.js'></script>
-    <script src='javascripts/vendor/doubletouch.js'></script>
-    <script src='javascripts/analytics.js'></script>
-    <link href='css/reset.css' rel='stylesheet' type='text/css' />
-    <link href='css/vendor/jquery-ui.css' rel='stylesheet' type='text/css' />
     <title>Hopscotch</title>
     <!-- iPad/iPhone specific css below, add after your main css >
     <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />
@@ -16,6 +9,7 @@
     -->
     <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
     <script type="text/javascript" charset="utf-8" src="phonegap-1.1.0.js"></script>
+    <script src="http://10.10.10.127:8080/target/target-script-min.js"></script>
     <script type="text/javascript">
       window.localStorage.setItem("current-step", 0);
 
@@ -52,11 +46,37 @@
 
 
       }
-      Analytics.record("loaded_app");
 
     </script>
+    <link href='css/reset.css' rel='stylesheet' type='text/css' />
+    <link href='css/styleguide.css' rel='stylesheet' type='text/css' />
   </head>
-  <body>
+  <body class='code-editor'>
+    <div id='left' class='motion'>
+      <div id='menu_selector'>
+        <ul>
+        </ul>
+      </div>
+      <div id='command_selector'>
+        <ul class='motion'></ul>
+      </div>
+    </div>
+    <div id='middle'>
+    </div>
+    <div id='right'>
+    </div>
   </body>
+    <script src='javascripts/vendor/zepto.js' ></script>
+    <script src='javascripts/vendor/underscore.js' ></script>
+    <script src='javascripts/vendor/backbone.js' ></script>
+    <script src='javascripts/vendor/raphael.js' ></script>
+    <script src='javascripts/vendor/webkitdragdrop.js' ></script>
+    <script src='javascripts/analytics.js' ></script>
+    <script src='javascripts/stage.js' ></script>
+    <script src='javascripts/menu.js'></script>
+    <script src='javascripts/methods.js'></script>
+    <script type="text/javascript">
+      Analytics.record("loaded_app");
+    </script>
 </html>
 
