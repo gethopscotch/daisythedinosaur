@@ -29,6 +29,13 @@ $(function() {
         this.$el.text(this.model.get('name'));
         $("#middle").append(this.$el);
         this.draggable = new webkit_draggable(this.id, {revert: true});
+      },
+      events: {
+        "doubleTap" : "runMethod"
+      },
+      runMethod: function() {
+        var x = window.sprite.attr('x');
+        window.sprite.animate({x: x+10}, 100, 'linear');
       }
     });
 
