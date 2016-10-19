@@ -1,0 +1,114 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body {
+  width: 100%;
+  background: black url(/images/bg-image.png) no-repeat -238px -521px;
+}
+#content {
+  width: 960px;
+  height: 900px;
+  margin: 0px auto;
+}
+#about, #signup {
+  color: #F6F3F3;
+  font-family: "Baskerville","Georgia", serif;
+}
+#about {
+  line-height: 35px;
+  font-size: 35px;
+  position: relative;
+  left: 100px;
+  top: 215px;
+}
+#about .we{ padding-left: 46px; }
+#about .line1{ padding-left: 198px; }
+#about .line2{ padding-left: 100px; }
+#about .line3{ padding-left: 250px; }
+#signup {
+  margin-left: 25px;
+  position: absolute;
+  top: 500px;
+}
+#signup label {
+  font-size: 22px;
+}
+#signup .fineprint {
+  width: 300px;
+}
+#signup input.email {
+  border-radius: 8px;
+  border-color: #B7F1DB;
+  background-color: #B7F1DB;
+  font-size 24px;
+  color: #614D4D;
+  font-size: 22px;
+  padding: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+#signup input.submit {
+  font-size: 22px;
+  padding: 5px;
+}
+#logo {
+  width: 559px;
+  height: 108px;
+  background: transparent url(/images/logo.png) no-repeat 0 0;
+}
+#contact {
+  color: #e6dfdf;
+}
+html {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* input inner #B7F1DB */
+/* input border #A8D5C3*/
+/* button inner #342B2B */
+/* button border #3E3636 */
+/* button text #EBDFE0 */
+/* email text #EBDFE0 */
+

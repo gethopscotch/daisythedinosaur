@@ -1,0 +1,45 @@
+body.tutorial-page .program {
+  width: 376px;
+  margin-right: 20px;
+}
+.tutorial {
+  float: left;
+  width: 330px;
+}
+
+.tutorial .text {
+  border-top: 8px solid #C9D970;
+  padding-top: 10px;
+  line-height: 27px;
+  height: 150px;
+  font-family: Helvetica;
+  font-size: 20px;
+  color: #828282;
+}
+
+
+#current-step #command-library .command {
+  display: none;
+}
+
+#current-step.tutorial-finished #command-library .command {
+  display: block;
+}
+
+.ui-dialog .ui-dialog-content {
+  font-family: "Nilland" !important;
+}
+#success {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.success .ui-dialog-buttonset {
+  float: left !important;
+  margin-left: 41px;
+}
+
+.ui-dialog .ui-dialog-title {
+  margin: .1em 16px .1em 29px !important;
+  font-size: 30px;
+}
