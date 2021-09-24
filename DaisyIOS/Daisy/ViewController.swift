@@ -7,10 +7,20 @@
 
 import UIKit
 import WebKit
+import CoreMotion
 
 class ViewController: UIViewController {
 
-    let webView = WKWebView(frame: .zero)
+    let userContentController = WKUserContentController()
+    private lazy var configuration: WKWebViewConfiguration = {
+        let configuration = WKWebViewConfiguration()
+        configuration.userContentController = self.userContentController
+        return configuration
+    }()
+    private lazy var webView: WKWebView = {
+        WKWebView(frame: UIScreen.main.bounds, configuration: self.configuration)
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9122232199, green: 0.9865009189, blue: 0.9939107299, alpha: 1)
@@ -44,6 +54,11 @@ class ViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool { true }
 
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        guard motion == .motionShake else { return }
+        webView.evaluateJavaScript("window.startShake()") { _, _ in }
+    }
 
+    override func becomeFirstResponder() -> Bool { true }
 }
-
+   
