@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Artboard.jpg",
+      "idiom" : "ipad"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
