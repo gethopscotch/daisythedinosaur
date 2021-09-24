@@ -131,6 +131,13 @@ var Methods = {
   }})
 };
 
+var SHAKING = false;
+function startShake() {
+    SHAKING = true;
+    setTimeout(function() {
+        SHAKING = false;
+    }, 500);
+}
 var PrivateMethods = {
   moveForward: function(callback) {
     var x = Stage.dino.attr('x');
@@ -212,26 +219,19 @@ var PrivateMethods = {
 
   shake: function(callback, command, commandList) {
     var prevX = 1.0;
-    var axl = new Accelerometer();
-    var threshold = 0.5;
-    axl.watchAcceleration(
-      function (Accel)
-      {
-        if (true === Accel.is_updating){
-          return;
-        }
-        var diffX = Math.abs(Accel.x) - prevX;
 
-        if (diffX >= threshold)
-        {
-          Program.executeEvent(command);
-        }
-        prevX = Math.abs(Accel.x);
-      },
-      function(){},
-      {frequency : 100}
-    );
-    callback(command, commandList);
+
+      function step() {
+          if (SHAKING) {
+              Program.executeEvent(command);
+          }
+          setTimeout(function() {
+              step();
+          }, 100);
+      }
+
+      step();
+      callback(command, commandList);
   },
 
   touch: function(callback, command, commandList) {
